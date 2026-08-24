@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DIMAS FF — Demonstração</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#070512;color:#fff;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:-20%;background:radial-gradient(circle at 20% 20%,#6a00ff55,transparent 30%),radial-gradient(circle at 80% 70%,#00eaff33,transparent 30%);filter:blur(25px);z-index:-1}
+header{padding:22px 7%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ffffff18;background:#090617cc;backdrop-filter:blur(12px);position:sticky;top:0;z-index:5}
+.logo{font-size:30px;font-weight:900;letter-spacing:2px;color:#b96cff;text-shadow:0 0 18px #9b38ff}
+nav a{color:#ddd;text-decoration:none;margin-left:22px}.hero{text-align:center;padding:75px 20px 45px}
+.hero h1{font-size:clamp(48px,9vw,95px);margin:0;font-weight:1000;letter-spacing:5px;color:#fff;text-shadow:0 0 15px #8b2cff,0 0 40px #00d9ff}
+.hero p{color:#bbb;font-size:18px}.btn{display:inline-block;margin-top:18px;padding:14px 26px;border-radius:12px;background:linear-gradient(90deg,#8b2cff,#00d9ff);color:#fff;font-weight:800;text-decoration:none;box-shadow:0 0 25px #7c28ff66}
+section{padding:35px 7%;max-width:1200px;margin:auto}.title{text-align:center;font-size:30px;margin-bottom:25px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
+.card{background:#100b20;border:1px solid #8b2cff55;border-radius:18px;padding:22px;text-align:center;box-shadow:0 0 22px #6f24b722;transition:.25s}
+.card:hover{transform:translateY(-7px);border-color:#00eaff;box-shadow:0 0 28px #00eaff44}
+.diamond{font-size:42px}.amount{font-size:27px;font-weight:900;margin:8px}.price{font-size:20px;color:#00eaff;font-weight:800}.buy{border:0;cursor:pointer;margin-top:15px;padding:11px 18px;border-radius:10px;background:#fff;color:#12051e;font-weight:900}
+.account{min-height:180px;display:flex;flex-direction:column;justify-content:center}
+footer{text-align:center;padding:35px;color:#777;border-top:1px solid #ffffff14;margin-top:30px}
+.modal{display:none;position:fixed;inset:0;background:#000b;align-items:center;justify-content:center;padding:20px;z-index:10}.modalbox{max-width:420px;width:100%;background:#11091e;border:1px solid #b65cff;border-radius:20px;padding:28px;text-align:center;box-shadow:0 0 50px #8b2cff66}.close{float:right;cursor:pointer;color:#aaa}
+.note{font-size:13px;color:#888;margin-top:22px}
+</style>
+</head>
+<body>
+<header><div class="logo">DIMAS FF</div><nav><a href="#dimas">Diamantes</a><a href="#contas">Contas</a></nav></header>
+<main>
+<div class="hero"><h1>DIMAS FF</h1><p>Loja demonstrativa de diamantes e contas • interface neon</p><a class="btn" href="#dimas">VER OFERTAS</a></div>
+<section id="dimas"><h2 class="title">💎 PACOTES DE DIAMANTES</h2><div class="grid">
+<div class="card"><div class="diamond">💎</div><div class="amount">100 💎</div><div class="price">R$ 4,99</div><button class="buy" onclick="openModal('100 diamantes — R$ 4,99')">COMPRAR</button></div>
+<div class="card"><div class="diamond">💎</div><div class="amount">310 💎</div><div class="price">R$ 12,99</div><button class="buy" onclick="openModal('310 diamantes — R$ 12,99')">COMPRAR</button></div>
+<div class="card"><div class="diamond">💎</div><div class="amount">520 💎</div><div class="price">R$ 19,99</div><button class="buy" onclick="openModal('520 diamantes — R$ 19,99')">COMPRAR</button></div>
+<div class="card"><div class="diamond">💎</div><div class="amount">1.060 💎</div><div class="price">R$ 39,99</div><button class="buy" onclick="openModal('1.060 diamantes — R$ 39,99')">COMPRAR</button></div>
+</div></section>
+<section id="contas"><h2 class="title">🔥 CONTAS — DEMONSTRAÇÃO</h2><div class="grid">
+<div class="card account"><h3>CONTA RARO</h3><p>Nível 65 • Coleção demonstrativa</p><div class="price">R$ 49,90</div><button class="buy" onclick="openModal('Conta Raro — R$ 49,90')">VER OFERTA</button></div>
+<div class="card account"><h3>CONTA PREMIUM</h3><p>Nível 72 • Coleção demonstrativa</p><div class="price">R$ 89,90</div><button class="buy" onclick="openModal('Conta Premium — R$ 89,90')">VER OFERTA</button></div>
+<div class="card account"><h3>CONTA LENDÁRIA</h3><p>Nível 80 • Coleção demonstrativa</p><div class="price">R$ 149,90</div><button class="buy" onclick="openModal('Conta Lendária — R$ 149,90')">VER OFERTA</button></div>
+</div><p class="note">⚠️ Protótipo visual: os preços, contas e compras são apenas exemplos e não realizam pagamentos reais.</p></section>
+</main>
+<footer>DIMAS FF © 2026 • Demonstração de interface</footer>
+<div class="modal" id="modal"><div class="modalbox"><span class="close" onclick="closeModal()">✕</span><h2>🛒 Oferta selecionada</h2><p id="chosen"></p><p>Esta versão é somente uma demonstração. O botão de compra não processa pagamentos.</p><button class="buy" onclick="closeModal()">VOLTAR</button></div></div>
+<script>
+function openModal(x){document.getElementById('chosen').textContent=x;document.getElementById('modal').style.display='flex'}
+function closeModal(){document.getElementById('modal').style.display='none'}
+</script>
+</body></html>
