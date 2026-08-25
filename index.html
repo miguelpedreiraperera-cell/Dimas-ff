@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dimas FF</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #070014;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 25px 15px;
+      text-align: center;
+      background: linear-gradient(135deg, #17002e, #090014);
+      border-bottom: 2px solid #a000ff;
+      box-shadow: 0 0 25px #8a00ff;
+    }
+
+    header h1 {
+      color: #d000ff;
+      font-size: 38px;
+      text-shadow: 0 0 15px #d000ff;
+    }
+
+    header p {
+      margin-top: 8px;
+      color: #ccc;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1000px;
+      margin: 30px auto;
+    }
+
+    .banner {
+      text-align: center;
+      padding: 35px 20px;
+      border: 1px solid #9d00ff;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #160025, #08000f);
+      box-shadow: 0 0 25px #7000aa;
+      margin-bottom: 30px;
+    }
+
+    .banner h2 {
+      font-size: 28px;
+      color: #00eaff;
+      text-shadow: 0 0 12px #00eaff;
+      margin-bottom: 10px;
+    }
+
+    .banner p {
+      color: #ddd;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: #11001d;
+      border: 1px solid #8000ff;
+      border-radius: 18px;
+      padding: 25px 15px;
+      text-align: center;
+      box-shadow: 0 0 15px #4b0070;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 0 30px #a000ff;
+    }
+
+    .diamond {
+      font-size: 45px;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      color: #00eaff;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #8500ff, #d000ff);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 12px #9500ff;
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, #00bfff, #7000ff);
+    }
+
+    .info {
+      margin-top: 30px;
+      padding: 25px;
+      text-align: center;
+      background: #100019;
+      border: 1px solid #5f00a8;
+      border-radius: 18px;
+    }
+
+    .info h2 {
+      color: #d000ff;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      margin-top: 40
