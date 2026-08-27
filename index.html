@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dimas FF</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#02050d;color:#fff;font-family:Arial,sans-serif}
+.app{min-height:100vh;background:radial-gradient(circle at 50% 8%,#06447e 0,#050b18 34%,#02040a 78%)}
+header{height:70px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #078cff55}
+.brand{font-size:29px;font-weight:900;letter-spacing:4px;text-shadow:0 0 10px #00aaff,0 0 28px #006cff}
+.menu{position:absolute;left:14px;top:15px;width:46px;height:40px;border:1px solid #08f;border-radius:12px;background:#061426;color:#fff;font-size:25px;cursor:pointer}
+nav{position:fixed;z-index:10;left:0;top:0;width:275px;height:100%;padding:70px 16px;background:#030914f7;transform:translateX(-110%);transition:.25s;border-right:1px solid #08f;box-shadow:10px 0 35px #08f2}
+nav.open{transform:translateX(0)}nav button{width:100%;padding:15px;margin:7px 0;background:#07172d;color:#fff;border:1px solid #087cff;border-radius:12px;text-align:left;cursor:pointer}
+main{max-width:850px;width:94%;margin:auto}.screen{display:none}.active{display:block}
+.hero{text-align:center;padding:45px 10px 25px}.hero h1{font-size:clamp(42px,12vw,82px);margin:0;text-shadow:0 0 12px #00aaff,0 0 35px #0066ff}.hero p{color:#b7dcff}
+.cards{display:grid;gap:16px}.card{display:flex;align-items:center;gap:18px;padding:20px;border:1px solid #08f;border-radius:18px;background:#061226;box-shadow:0 0 22px #08f2;color:white;cursor:pointer;text-align:left}.icon{font-size:42px;width:60px;text-align:center}.card h2{margin:0 0 6px}.card p{margin:0;color:#00baff}.arrow{margin-left:auto;font-size:32px}
+.benefits{display:grid;grid-template-columns:repeat(4,1fr);margin-top:22px;border:1px solid #086cc4;border-radius:15px;overflow:hidden}.benefits div{padding:17px 6px;text-align:center;background:#050c18;font-size:12px}.benefits b{display:block;margin-top:7px}
+.back{margin:22px 0 10px;padding:10px 14px;border:1px solid #08f;border-radius:10px;background:#061326;color:white;cursor:pointer}.title{text-align:center}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.product{padding:18px;border:1px solid #08f;border-radius:15px;background:#061226;box-shadow:0 0 18px #08f1}.product h3{margin:0 0 8px}.price{font-size:23px;font-weight:bold;color:#00c0ff}.buy{width:100%;margin-top:13px;padding:12px;border:0;border-radius:10px;background:#087cff;color:#fff;font-weight:bold;cursor:pointer}
+.form{max-width:560px;margin:auto;padding:20px;border:1px solid #08f;border-radius:16px;background:#061226}label{display:block;margin:12px 0 6px}input{width:100%;padding:12px;border-radius:9px;border:1px solid #24618d;background:#020711;color:white}
+.sum{margin-top:16px;padding:14px;background:#030914;border-radius:10px}.row{display:flex;justify-content:space-between;margin:8px 0}.total{border-top:1px solid #24618d;padding-top:10px;color:#00c0ff;font-weight:bold}
+footer{text-align:center;color:#7189a5;padding:35px 0}@media(max-width:650px){.grid{grid-template-columns:1fr}.benefits{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="app">
+<header><button class="menu" onclick="toggle()">⋯</button><div class="brand">DIMAS FF</div></header>
+<nav id="nav">
+<button onclick="go('home')">⌂ &nbsp; Início</button>
+<button onclick="discord()">💬 &nbsp; Discord</button>
+<button onclick="go('how')">❓ &nbsp; Como funciona</button>
+</nav>
+<main>
+<section id="home" class="screen active">
+<div class="hero"><h1>DIMAS FF</h1><p>O MELHOR PREÇO, ENTREGA RÁPIDA E SEGURA!</p></div>
+<div class="cards">
+<button class="card" onclick="go('diamonds')"><div class="icon">💎</div><div><h2>DIAMANTES</h2><p>RECARGAS NA HORA!</p></div><div class="arrow">›</div></button>
+<button class="card" onclick="go('accounts')"><div class="icon">👤</div><div><h2>CONTAS</h2><p>CONTAS UPADAS!</p></div><div class="arrow">›</div></button>
+<button class="card" onclick="discord()"><div class="icon">🎟️</div><div><h2>CUPONS</h2><p>VEJA OS CUPONS NO DISCORD!</p></div><div class="arrow">›</div></button>
+</div>
+<div class="benefits"><div>🛡️<b>100% SEGURO</b></div><div>⚡<b>ENTREGA RÁPIDA</b></div><div>🎧<b>SUPORTE 24H</b></div><div>★<b>MELHORES PREÇOS</b></div></div>
+</section>
+
+<section id="diamonds" class="screen">
+<button class="back" onclick="go('home')">← Voltar</button><h2 class="title">💎 Pacotes de Diamantes</h2>
+<div id="diamondsList" class="grid"></div>
+</section>
+
+<section id="accounts" class="screen">
+<button class="back" onclick="go('home')">← Voltar</button><h2 class="title">👤 Contas</h2>
+<div id="accountsList" class="grid"></div>
+</section>
+
+<section id="buy" class="screen">
+<button class="back" onclick="go('diamonds')">← Voltar</button><h2 class="title">Finalizar compra</h2>
+<div class="form">
+<h3 id="chosen"></h3>
+<label>ID do jogador</label><input id="uid" placeholder="Digite seu ID">
+<label>Cupom de desconto</label><input id="coupon" placeholder="Digite o cupom">
+<button class="buy" onclick="applyCoupon()">Aplicar cupom</button>
+<div class="sum">
+<div class="row"><span>Produto</span><b id="sp"></b></div>
+<div class="row"><span>Preço</span><span id="price"></span></div>
+<div class="row"><span>Desconto</span><span id="discount">R$ 0,00</span></div>
+<div class="row"><span>Taxa</span><span id="fee"></span></div>
+<div class="row total"><span>Total</span><span id="total"></span></div>
+</div>
+<button class="buy" onclick="pay()">Pagar</button>
+</div>
+</section>
+
+<section id="how" class="screen">
+<button class="back" onclick="go('home')">← Voltar</button>
+<div class="form"><h2>Como funciona?</h2>
+<p>1. Escolha o produto.</p><p>2. Confira o preço.</p><p>3. Informe os dados necessários.</p><p>4. Aplique seu cupom, quando disponível.</p><p>5. Clique em Pagar.</p></div>
+</section>
+</main>
+<footer>DIMAS FF — CONFIANÇA E QUALIDADE</footer>
+</div>
+
+<script>
+const CONFIG={
+ discordUrl:"COLE_AQUI_SEU_LINK_DO_DISCORD",
+ paymentUrl:"COLE_AQUI_SEU_LINK_DE_PAGAMENTO",
+ fee:0,
+ couponCode:"ZERO3",
+ couponPercent:3
+};
+
+const diamonds=[
+ ["100 Diamantes",2],["500 Diamantes",4],["1.000 Diamantes",8],
+ ["2.000 Diamantes",15],["5.000 Diamantes",35],["10.000 Diamantes",65]
+];
+
+const accounts=[
+ ["Conta #01",0],["Conta #02",0]
+];
+
+let current=null,discount=0;
+const money=n=>n.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+function toggle(){document.getElementById("nav").classList.toggle("open")}
+function go(id){
+ document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+ document.getElementById("nav").classList.remove("open");scrollTo(0,0);
+}
+function discord(){
+ if(CONFIG.discordUrl.startsWith("http")) location.href=CONFIG.discordUrl;
+ else alert("Coloque seu link do Discord no CONFIG do index.html.");
+}
+function render(){
+ document.getElementById("diamondsList").innerHTML=diamonds.map((p,i)=>`
+ <article class="product"><h3>💎 ${p[0]}</h3><div class="price">${money(p[1])}</div>
+ <button class="buy" onclick="buy(${i})">Comprar</button></article>`).join("");
+ document.getElementById("accountsList").innerHTML=accounts.map(p=>`
+ <article class="product"><h3>👤 ${p[0]}</h3><p>Foto e informações serão adicionadas depois.</p>
+ <div class="price">${p[1]?money(p[1]):"Preço a definir"}</div></article>`).join("");
+}
+function buy(i){
+ current=diamonds[i];discount=0;
+ document.getElementById("chosen").textContent=current[0];
+ document.getElementById("sp").textContent=current[0];
+ document.getElementById("coupon").value="";update();go("buy");
+}
+function applyCoupon(){
+ const c=document.getElementById("coupon").value.trim().toUpperCase();
+ discount=c===CONFIG.couponCode?current[1]*CONFIG.couponPercent/100:0;
+ if(c&&c!==CONFIG.couponCode)alert("Cupom inválido.");
+ update();
+}
+function update(){
+ document.getElementById("price").textContent=money(current[1]);
+ document.getElementById("discount").textContent=money(discount);
+ document.getElementById("fee").textContent=money(CONFIG.fee);
+ document.getElementById("total").textContent=money(current[1]-discount+CONFIG.fee);
+}
+function pay(){
+ if(CONFIG.paymentUrl.startsWith("http")) location.href=CONFIG.paymentUrl;
+ else alert("Coloque seu link de pagamento no CONFIG do index.html.");
+}
+render();
+</script>
+</body>
+</html>
