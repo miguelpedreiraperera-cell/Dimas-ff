@@ -136,8 +136,13 @@ function update(){
  document.getElementById("total").textContent=money(current[1]-discount+CONFIG.fee);
 }
 function pay(){
-  alert("💠 PIX\n\nChave Pix:\n43d78de8-20d7-4f4a-8e28-3702d5d46ab3\n\nCopie a chave e faça o pagamento pelo seu banco.");
-}
+  const pix="43d78de8-20d7-4f4a-8e28-3702d5d46ab3";
+  
+  if(confirm("💠 PAGAMENTO VIA PIX\n\nChave Pix:\n"+pix+"\n\nDeseja copiar a chave Pix?")){
+    navigator.clipboard.writeText(pix)
+      .then(()=>alert("✅ Chave Pix copiada!"))
+      .catch(()=>alert("Chave Pix:\n"+pix));
+  }
 render();
 </script>
 </body>
