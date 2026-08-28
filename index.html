@@ -51,6 +51,62 @@ footer{text-align:center;color:#7189a5;padding:35px 0}@media(max-width:650px){.g
 <button class="back" onclick="go('home')">← Voltar</button><h2 class="title">👤 Contas</h2>
 <div id="accountsList" class="grid"></div>
 </section>
+<section id="pix" class="screen">
+
+<button class="back" onclick="go('buy')">← Voltar</button>
+
+<div class="form pix-page">
+
+<h2>💠 Pagamento via Pix</h2>
+
+<p id="pixProduct"></p>
+
+<div id="pixAmount" class="pix-amount">
+R$ 0,00
+</div>
+
+<img
+  id="pixQr"
+  style="display:none;width:220px;max-width:100%;margin:15px auto;border-radius:12px"
+  alt="QR Code Pix"
+>
+
+<p>Pix Copia e Cola:</p>
+
+<input
+  id="pixCode"
+  class="pix-code"
+  readonly
+>
+
+<button class="buy" onclick="copyPix()">
+📋 Copiar Pix
+</button>
+
+<p id="pixStatus" style="color:#00c0ff"></p>
+
+<button
+  id="checkPayment"
+  class="buy"
+  onclick="checkPayment()">
+🔄 Verificar pagamento
+</button>
+
+<div id="paymentSuccess" style="display:none">
+
+<h3>✅ Pagamento confirmado!</h3>
+
+<p>Seu pagamento foi recebido.</p>
+
+<button class="buy" onclick="go('home')">
+Voltar ao site
+</button>
+
+</div>
+
+</div>
+
+</section>
 
 <section id="buy" class="screen">
 <button class="back" onclick="go('diamonds')">← Voltar</button><h2 class="title">Finalizar compra</h2>
@@ -135,82 +191,80 @@ function update(){
  document.getElementById("fee").textContent=money(CONFIG.fee);
  document.getElementById("total").textContent=money(current[1]-discount+CONFIG.fee);
 }
-async function pay(){
 
-  if(!current){
-    alert("Nenhum produto selecionado.");
+async function copyPix(){
+  const input = document.getElementById("pixCode");
+
+  if(!input.value){
+    alert("O Pix ainda não foi gerado.");
     return;
   }
 
-  const uid = document.getElementById("uid").value.trim();
+  try{
+    await navigator.clipboard.writeText(input.value);
+    document.getElementById("pixStatus").textContent =
+      "✅ Pix copiado! Agora cole no aplicativo do seu banco.";
+  }catch(error){
+    input.select();
+    document.execCommand("copy");
 
-  if(!uid){
-    alert("Digite o ID do jogador.");
+    document.getElementById("pixStatus").textContent =
+      "✅ Pix copiado!";
+  }
+}
+
+async function checkPayment(){
+
+  if(!window.currentPaymentId){
+    alert("Nenhum pagamento encontrado.");
     return;
   }
-
-  const amount = Number(
-    (current[1] - discount + CONFIG.fee).toFixed(2)
-  );
 
   const base = CONFIG.apiBaseUrl.replace(/\/$/, "");
 
-  try {
+  try{
 
     const response = await fetch(
-      base + "/api/create-pix",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          amount: amount,
-          product: current[0],
-          playerId: uid
-        })
-      }
+      base + "/api/payment-status/" +
+      encodeURIComponent(window.currentPaymentId)
     );
 
     const data = await response.json();
 
     if(!response.ok){
       throw new Error(
-        data.error || "Erro ao criar pagamento."
+        data.error || "Não foi possível verificar o pagamento."
       );
     }
 
-    document.getElementById("pixProduct").textContent =
-      current[0];
+    if(
+      data.status === "RECEIVED" ||
+      data.status === "CONFIRMED"
+    ){
 
-    document.getElementById("pixAmount").textContent =
-      money(amount);
+      document.getElementById("paymentSuccess").style.display =
+        "block";
 
-    document.getElementById("pixCode").value =
-      data.payload;
+      document.getElementById("checkPayment").style.display =
+        "none";
 
-    const qr = document.getElementById("pixQr");
+      document.getElementById("pixStatus").textContent =
+        "✅ Pagamento confirmado!";
 
-    if(data.encodedImage){
+    }else{
 
-      qr.src =
-        "data:image/png;base64," +
-        data.encodedImage;
-
-      qr.style.display = "block";
+      document.getElementById("pixStatus").textContent =
+        "⏳ Pagamento ainda não confirmado. Tente novamente depois.";
 
     }
 
-    window.currentPaymentId = data.paymentId;
-
-    go("pix");
-
-  } catch(error) {
+  }catch(error){
 
     alert(error.message);
 
   }
 }
+
 render();
 </script>
 </body>
