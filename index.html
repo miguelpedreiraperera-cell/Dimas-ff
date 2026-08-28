@@ -135,15 +135,81 @@ function update(){
  document.getElementById("fee").textContent=money(CONFIG.fee);
  document.getElementById("total").textContent=money(current[1]-discount+CONFIG.fee);
 }
-function pay(){
-  const pix = "43d78de8-20d7-4f4a-8e28-3702d5d46ab3";
+async function pay(){
 
-  alert(
-    "💠 PAGAMENTO VIA PIX\n\n" +
-    "Chave Pix:\n" +
-    pix +
-    "\n\nCopie a chave e faça o pagamento pelo seu banco."
+  if(!current){
+    alert("Nenhum produto selecionado.");
+    return;
+  }
+
+  const uid = document.getElementById("uid").value.trim();
+
+  if(!uid){
+    alert("Digite o ID do jogador.");
+    return;
+  }
+
+  const amount = Number(
+    (current[1] - discount + CONFIG.fee).toFixed(2)
   );
+
+  const base = CONFIG.apiBaseUrl.replace(/\/$/, "");
+
+  try {
+
+    const response = await fetch(
+      base + "/api/create-pix",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          amount: amount,
+          product: current[0],
+          playerId: uid
+        })
+      }
+    );
+
+    const data = await response.json();
+
+    if(!response.ok){
+      throw new Error(
+        data.error || "Erro ao criar pagamento."
+      );
+    }
+
+    document.getElementById("pixProduct").textContent =
+      current[0];
+
+    document.getElementById("pixAmount").textContent =
+      money(amount);
+
+    document.getElementById("pixCode").value =
+      data.payload;
+
+    const qr = document.getElementById("pixQr");
+
+    if(data.encodedImage){
+
+      qr.src =
+        "data:image/png;base64," +
+        data.encodedImage;
+
+      qr.style.display = "block";
+
+    }
+
+    window.currentPaymentId = data.paymentId;
+
+    go("pix");
+
+  } catch(error) {
+
+    alert(error.message);
+
+  }
 }
 render();
 </script>
