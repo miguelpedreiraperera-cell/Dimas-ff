@@ -136,8 +136,7 @@ function update(){
  document.getElementById("total").textContent=money(current[1]-discount+CONFIG.fee);
 }
 function pay(){
- if(CONFIG.paymentUrl.startsWith("http")) location.href=CONFIG.paymentUrl;
- else alert("Coloque seu link de pagamento no CONFIG do index.html.");
+  alert("💠 PIX\n\nChave Pix:\n43d78de8-20d7-4f4a-8e28-3702d5d46ab3\n\nCopie a chave e faça o pagamento pelo seu banco.");
 }
 render();
 </script>
