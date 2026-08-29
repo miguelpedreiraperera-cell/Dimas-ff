@@ -3,42 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Dimas FF</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
 
 body{
   margin:0;
   background:#02050d;
   color:#fff;
   font-family:Arial,sans-serif;
+  overflow-x:hidden;
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 50% 10%,rgba(0,140,255,.18),transparent 35%),
+    radial-gradient(circle at 10% 80%,rgba(0,70,255,.10),transparent 30%);
+  z-index:-1;
 }
 
 .app{
   min-height:100vh;
-  background:radial-gradient(circle at 50% 8%,#06447e 0,#050b18 34%,#02040a 78%);
+  background:
+    radial-gradient(circle at 50% 5%,#06447e 0,#050b18 30%,#02040a 75%);
 }
 
+/* HEADER */
+
 header{
-  height:70px;
+  height:72px;
   display:flex;
   align-items:center;
   justify-content:center;
   border-bottom:1px solid #078cff55;
+  background:#020711cc;
+  backdrop-filter:blur(10px);
+  position:sticky;
+  top:0;
+  z-index:20;
 }
 
 .brand{
   font-size:29px;
   font-weight:900;
   letter-spacing:4px;
-  text-shadow:0 0 10px #00aaff,0 0 28px #006cff;
+  color:#fff;
+  text-shadow:
+    0 0 8px #00aaff,
+    0 0 20px #008cff,
+    0 0 40px #006cff;
+  animation:brandGlow 2.5s infinite alternate;
+}
+
+@keyframes brandGlow{
+  from{
+    text-shadow:
+      0 0 8px #00aaff,
+      0 0 20px #008cff;
+  }
+  to{
+    text-shadow:
+      0 0 12px #00d9ff,
+      0 0 30px #008cff,
+      0 0 55px #006cff;
+  }
 }
 
 .menu{
   position:absolute;
   left:14px;
-  top:15px;
+  top:16px;
   width:46px;
   height:40px;
   border:1px solid #08f;
@@ -47,17 +93,26 @@ header{
   color:#fff;
   font-size:25px;
   cursor:pointer;
+  box-shadow:0 0 12px #08f4;
 }
+
+.menu:hover{
+  box-shadow:0 0 20px #08f;
+  transform:scale(1.04);
+}
+
+/* MENU */
 
 nav{
   position:fixed;
-  z-index:10;
+  z-index:30;
   left:0;
   top:0;
   width:275px;
   height:100%;
-  padding:70px 16px;
+  padding:85px 16px 20px;
   background:#030914f7;
+  backdrop-filter:blur(14px);
   transform:translateX(-110%);
   transition:.25s;
   border-right:1px solid #08f;
@@ -78,35 +133,65 @@ nav button{
   border-radius:12px;
   text-align:left;
   cursor:pointer;
+  font-size:15px;
+  transition:.2s;
 }
 
+nav button:hover{
+  background:#09284e;
+  box-shadow:0 0 15px #087cff88;
+  transform:translateX(4px);
+}
+
+/* MAIN */
+
 main{
-  max-width:850px;
+  max-width:900px;
   width:94%;
   margin:auto;
 }
 
 .screen{
   display:none;
+  animation:screenIn .25s ease;
 }
 
 .screen.active{
   display:block;
 }
 
+@keyframes screenIn{
+  from{
+    opacity:0;
+    transform:translateY(8px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* HOME */
+
 .hero{
   text-align:center;
-  padding:45px 10px 25px;
+  padding:55px 10px 30px;
 }
 
 .hero h1{
-  font-size:clamp(42px,12vw,82px);
+  font-size:clamp(45px,13vw,88px);
   margin:0;
-  text-shadow:0 0 12px #00aaff,0 0 35px #0066ff;
+  color:#fff;
+  text-shadow:
+    0 0 12px #00aaff,
+    0 0 35px #0066ff,
+    0 0 70px #004cff;
 }
 
 .hero p{
   color:#b7dcff;
+  font-size:14px;
+  letter-spacing:1px;
 }
 
 .cards{
@@ -115,17 +200,28 @@ main{
 }
 
 .card{
+  width:100%;
   display:flex;
   align-items:center;
   gap:18px;
-  padding:20px;
+  padding:21px;
   border:1px solid #08f;
   border-radius:18px;
-  background:#061226;
-  box-shadow:0 0 22px #08f2;
+  background:linear-gradient(135deg,#061226,#071b35);
+  box-shadow:
+    0 0 18px #08f2,
+    inset 0 0 20px #08f08;
   color:white;
   cursor:pointer;
   text-align:left;
+  transition:.2s;
+}
+
+.card:hover{
+  transform:translateY(-3px);
+  box-shadow:
+    0 0 28px #08f5,
+    inset 0 0 25px #08f12;
 }
 
 .icon{
@@ -145,8 +241,11 @@ main{
 
 .arrow{
   margin-left:auto;
-  font-size:32px;
+  font-size:34px;
+  color:#00baff;
 }
+
+/* BENEFITS */
 
 .benefits{
   display:grid;
@@ -155,6 +254,7 @@ main{
   border:1px solid #086cc4;
   border-radius:15px;
   overflow:hidden;
+  box-shadow:0 0 18px #087cff22;
 }
 
 .benefits div{
@@ -167,11 +267,14 @@ main{
 .benefits b{
   display:block;
   margin-top:7px;
+  color:#b7dcff;
 }
 
+/* BUTTONS */
+
 .back{
-  margin:22px 0 10px;
-  padding:10px 14px;
+  margin:24px 0 12px;
+  padding:10px 15px;
   border:1px solid #08f;
   border-radius:10px;
   background:#061326;
@@ -179,916 +282,124 @@ main{
   cursor:pointer;
 }
 
+.back:hover{
+  box-shadow:0 0 15px #08f6;
+}
+
 .title{
   text-align:center;
+  margin:15px 0 22px;
+  text-shadow:0 0 15px #08f;
 }
+
+/* PRODUCTS */
 
 .grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:14px;
+  gap:16px;
 }
 
 .product{
-  padding:18px;
+  position:relative;
+  padding:21px;
   border:1px solid #08f;
-  border-radius:15px;
-  background:#061226;
-  box-shadow:0 0 18px #08f1;
+  border-radius:17px;
+  background:
+    radial-gradient(circle at 50% 0%,#0b3158,#061226 55%);
+  box-shadow:
+    0 0 18px #08f2,
+    inset 0 0 18px #08f08;
+  transition:.22s;
+  overflow:hidden;
+}
+
+.product:before{
+  content:"";
+  position:absolute;
+  top:-60px;
+  left:50%;
+  width:120px;
+  height:120px;
+  transform:translateX(-50%);
+  background:#00aaff;
+  filter:blur(55px);
+  opacity:.18;
+  pointer-events:none;
+}
+
+.product:hover{
+  transform:translateY(-5px);
+  border-color:#00c8ff;
+  box-shadow:
+    0 0 30px #08f5,
+    inset 0 0 25px #08f10;
 }
 
 .product h3{
-  margin:0 0 8px;
+  margin:0 0 10px;
+  font-size:18px;
+}
+
+.diamond-icon{
+  font-size:34px;
+  margin-bottom:8px;
+  display:block;
+  filter:drop-shadow(0 0 8px #00baff);
 }
 
 .price{
-  font-size:23px;
+  font-size:25px;
   font-weight:bold;
   color:#00c0ff;
+  text-shadow:0 0 10px #008cff;
 }
 
 .buy{
   width:100%;
-  margin-top:13px;
-  padding:12px;
-  border:0;
-  border-radius:10px;
-  background:#087cff;
+  margin-top:15px;
+  padding:13px;
+  border:1px solid #00c8ff;
+  border-radius:11px;
+  background:linear-gradient(90deg,#087cff,#00aaff);
   color:#fff;
   font-weight:bold;
   cursor:pointer;
+  font-size:15px;
+  box-shadow:0 0 15px #087cff55;
+  transition:.2s;
 }
+
+.buy:hover{
+  transform:scale(1.02);
+  box-shadow:
+    0 0 20px #00aaff,
+    0 0 35px #087cff55;
+}
+
+.buy:active{
+  transform:scale(.98);
+}
+
+/* FORMS */
 
 .form{
   max-width:560px;
   margin:auto;
-  padding:20px;
+  padding:21px;
   border:1px solid #08f;
   border-radius:16px;
   background:#061226;
+  box-shadow:0 0 25px #08f2;
 }
 
 label{
   display:block;
-  margin:12px 0 6px;
+  margin:14px 0 6px;
 }
 
 input{
   width:100%;
-  padding:12px;
+  padding:13px;
   border-radius:9px;
-  border:1px solid #24618d;
-  background:#020711;
-  color:white;
-}
-
-.sum{
-  margin-top:16px;
-  padding:14px;
-  background:#030914;
-  border-radius:10px;
-}
-
-.row{
-  display:flex;
-  justify-content:space-between;
-  margin:8px 0;
-}
-
-.total{
-  border-top:1px solid #24618d;
-  padding-top:10px;
-  color:#00c0ff;
-  font-weight:bold;
-}
-
-.pix-amount{
-  text-align:center;
-  font-size:32px;
-  font-weight:bold;
-  color:#00c0ff;
-  margin:15px 0;
-}
-
-.pix-code{
-  width:100%;
-  margin-top:5px;
-  font-size:13px;
-}
-
-#pixQr{
-  display:none;
-  width:220px;
-  max-width:100%;
-  margin:15px auto;
-  border-radius:12px;
-}
-
-footer{
-  text-align:center;
-  color:#7189a5;
-  padding:35px 0;
-}
-
-@media(max-width:650px){
-  .grid{
-    grid-template-columns:1fr;
-  }
-
-  .benefits{
-    grid-template-columns:repeat(2,1fr);
-  }
-}
-</style>
-</head>
-
-<body>
-
-<div class="app">
-
-<header>
-<button class="menu" type="button" onclick="toggle()">⋯</button>
-<div class="brand">DIMAS FF</div>
-</header>
-
-<nav id="nav">
-<button type="button" onclick="go('home')">⌂ &nbsp; Início</button>
-<button type="button" onclick="discord()">💬 &nbsp; Discord</button>
-<button type="button" onclick="go('how')">❓ &nbsp; Como funciona</button>
-</nav>
-
-<main>
-
-<section id="home" class="screen active">
-
-<div class="hero">
-<h1>DIMAS FF</h1>
-<p>O MELHOR PREÇO, ENTREGA RÁPIDA E SEGURA!</p>
-</div>
-
-<div class="cards">
-
-<button class="card" type="button" onclick="go('diamonds')">
-<div class="icon">💎</div>
-<div>
-<h2>DIAMANTES</h2>
-<p>RECARGAS NA HORA!</p>
-</div>
-<div class="arrow">›</div>
-</button>
-
-<button class="card" type="button" onclick="go('accounts')">
-<div class="icon">👤</div>
-<div>
-<h2>CONTAS</h2>
-<p>CONTAS UPADAS!</p>
-</div>
-<div class="arrow">›</div>
-</button>
-
-<button class="card" type="button" onclick="discord()">
-<div class="icon">🎟️</div>
-<div>
-<h2>CUPONS</h2>
-<p>VEJA OS CUPONS NO DISCORD!</p>
-</div>
-<div class="arrow">›</div>
-</button>
-
-</div>
-
-<div class="benefits">
-<div>🛡️<b>100% SEGURO</b></div>
-<div>⚡<b>ENTREGA RÁPIDA</b></div>
-<div>🎧<b>SUPORTE 24H</b></div>
-<div>★<b>MELHORES PREÇOS</b></div>
-</div>
-
-</section>
-
-
-<section id="diamonds" class="screen">
-
-<button class="back" type="button" onclick="go('home')">
-← Voltar
-</button>
-
-<h2 class="title">💎 Pacotes de Diamantes</h2>
-
-<div id="diamondsList" class="grid"></div>
-
-</section>
-
-
-<section id="accounts" class="screen">
-
-<button class="back" type="button" onclick="go('home')">
-← Voltar
-</button>
-
-<h2 class="title">👤 Contas</h2>
-
-<div id="accountsList" class="grid"></div>
-
-</section>
-
-
-<section id="buy" class="screen">
-
-<button class="back" type="button" onclick="go('diamonds')">
-← Voltar
-</button>
-
-<h2 class="title">Finalizar compra</h2>
-
-<div class="form">
-
-<h3 id="chosen"></h3>
-
-<label>ID do jogador</label>
-
-<input
-id="uid"
-type="text"
-inputmode="numeric"
-placeholder="Digite seu ID"
->
-
-<label>Cupom de desconto</label>
-
-<input
-id="coupon"
-type="text"
-placeholder="Digite o cupom"
->
-
-<button
-class="buy"
-type="button"
-onclick="applyCoupon()">
-Aplicar cupom
-</button>
-
-<div class="sum">
-
-<div class="row">
-<span>Produto</span>
-<b id="sp"></b>
-</div>
-
-<div class="row">
-<span>Preço</span>
-<span id="price"></span>
-</div>
-
-<div class="row">
-<span>Desconto</span>
-<span id="discount">R$ 0,00</span>
-</div>
-
-<div class="row">
-<span>Taxa</span>
-<span id="fee"></span>
-</div>
-
-<div class="row total">
-<span>Total</span>
-<span id="total"></span>
-</div>
-
-</div>
-
-<button
-class="buy"
-type="button"
-onclick="pay()">
-💠 Pagar
-</button>
-
-</div>
-
-</section>
-
-
-<section id="pix" class="screen">
-
-<button class="back" type="button" onclick="go('buy')">
-← Voltar
-</button>
-
-<div class="form">
-
-<h2>💠 Pagamento via Pix</h2>
-
-<p id="pixProduct"></p>
-
-<div id="pixAmount" class="pix-amount">
-R$ 0,00
-</div>
-
-<img
-id="pixQr"
-alt="QR Code Pix"
->
-
-<p>Pix Copia e Cola:</p>
-
-<input
-id="pixCode"
-class="pix-code"
-readonly
-placeholder="Gerando Pix..."
->
-
-<button
-class="buy"
-type="button"
-onclick="copyPix()">
-📋 Copiar Pix
-</button>
-
-<p id="pixStatus"></p>
-
-<button
-id="checkPayment"
-class="buy"
-type="button"
-onclick="checkPayment()">
-🔄 Verificar pagamento
-</button>
-
-<div id="paymentSuccess" style="display:none">
-
-<h3>✅ Pagamento confirmado!</h3>
-
-<p>Seu pagamento foi recebido.</p>
-
-<button
-class="buy"
-type="button"
-onclick="go('home')">
-Voltar ao site
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-
-<section id="how" class="screen">
-
-<button class="back" type="button" onclick="go('home')">
-← Voltar
-</button>
-
-<div class="form">
-
-<h2>Como funciona?</h2>
-
-<p>1. Escolha o produto.</p>
-<p>2. Confira o preço.</p>
-<p>3. Informe seu ID.</p>
-<p>4. Aplique seu cupom, quando disponível.</p>
-<p>5. Clique em Pagar.</p>
-<p>6. Copie o Pix e faça o pagamento.</p>
-<p>7. Verifique o pagamento.</p>
-
-</div>
-
-</section>
-
-</main>
-
-<footer>
-DIMAS FF — CONFIANÇA E QUALIDADE
-</footer>
-
-</div>
-
-
-<script>
-
-const CONFIG = {
-  discordUrl:"https://discord.gg/Y9UHDeknz",
-  apiBaseUrl:"https://dimas-ff.onrender.com",
-  fee:0,
-  couponCode:"ZERO3",
-  couponPercent:10
-};
-
-
-const diamonds = [
-  ["100 Diamantes",2],
-  ["500 Diamantes",4],
-  ["1.000 Diamantes",8],
-  ["2.000 Diamantes",15],
-  ["5.000 Diamantes",35],
-  ["10.000 Diamantes",65]
-];
-
-
-const accounts = [
-  ["Conta #01",0],
-  ["Conta #02",0]
-];
-
-
-let current = null;
-let discount = 0;
-window.currentPaymentId = null;
-
-
-const money = n =>
-  Number(n).toLocaleString("pt-BR",{
-    style:"currency",
-    currency:"BRL"
-  });
-
-
-function toggle(){
-
-  document
-    .getElementById("nav")
-    .classList
-    .toggle("open");
-
-}
-
-
-function go(id){
-
-  document
-    .querySelectorAll(".screen")
-    .forEach(s => s.classList.remove("active"));
-
-  const page = document.getElementById(id);
-
-  if(page){
-    page.classList.add("active");
-  }
-
-  document
-    .getElementById("nav")
-    .classList
-    .remove("open");
-
-  window.scrollTo(0,0);
-
-}
-
-
-function discord(){
-
-  if(CONFIG.discordUrl.startsWith("http")){
-    location.href = CONFIG.discordUrl;
-  }else{
-    alert("Link do Discord não configurado.");
-  }
-
-}
-
-
-function render(){
-
-  document.getElementById("diamondsList").innerHTML =
-    diamonds.map((p,i) => `
-
-      <article class="product">
-
-        <h3>💎 ${p[0]}</h3>
-
-        <div class="price">
-          ${money(p[1])}
-        </div>
-
-        <button
-          class="buy"
-          type="button"
-          onclick="buy(${i})">
-
-          Comprar
-
-        </button>
-
-      </article>
-
-    `).join("");
-
-
-  document.getElementById("accountsList").innerHTML =
-    accounts.map(p => `
-
-      <article class="product">
-
-        <h3>👤 ${p[0]}</h3>
-
-        <p>
-          Foto e informações serão adicionadas depois.
-        </p>
-
-        <div class="price">
-          ${p[1] ? money(p[1]) : "Preço a definir"}
-        </div>
-
-      </article>
-
-    `).join("");
-
-}
-
-
-function buy(i){
-
-  current = diamonds[i];
-
-  discount = 0;
-
-  document.getElementById("chosen").textContent =
-    current[0];
-
-  document.getElementById("sp").textContent =
-    current[0];
-
-  document.getElementById("coupon").value = "";
-
-  document.getElementById("uid").value = "";
-
-  update();
-
-  go("buy");
-
-}
-
-
-function applyCoupon(){
-
-  if(!current){
-    alert("Nenhum produto selecionado.");
-    return;
-  }
-
-  const c =
-    document
-      .getElementById("coupon")
-      .value
-      .trim()
-      .toUpperCase();
-
-  discount =
-    c === CONFIG.couponCode
-      ? current[1] * CONFIG.couponPercent / 100
-      : 0;
-
-  if(c && c !== CONFIG.couponCode){
-    alert("Cupom inválido.");
-  }
-
-  update();
-
-}
-
-
-function update(){
-
-  if(!current){
-    return;
-  }
-
-  document.getElementById("price").textContent =
-    money(current[1]);
-
-  document.getElementById("discount").textContent =
-    money(discount);
-
-  document.getElementById("fee").textContent =
-    money(CONFIG.fee);
-
-  const total =
-    current[1] - discount + CONFIG.fee;
-
-  document.getElementById("total").textContent =
-    money(total);
-
-}
-
-
-async function pay(){
-
-  if(!current){
-    alert("Nenhum produto selecionado.");
-    return;
-  }
-
-  const uid =
-    document
-      .getElementById("uid")
-      .value
-      .trim();
-
-  if(!uid){
-    alert("Digite o ID do jogador.");
-    return;
-  }
-
-  const amount =
-    Number(
-      (current[1] - discount + CONFIG.fee)
-      .toFixed(2)
-    );
-
-  const base =
-    CONFIG.apiBaseUrl.replace(/\/$/,"");
-
-
-  const button =
-    document.querySelector(
-      '#buy .buy:last-of-type'
-    );
-
-  if(button){
-    button.disabled = true;
-    button.textContent = "⏳ Gerando Pix...";
-  }
-
-
-  try{
-
-    const response =
-      await fetch(
-        base + "/api/create-pix",
-        {
-          method:"POST",
-
-          headers:{
-            "Content-Type":"application/json"
-          },
-
-          body:JSON.stringify({
-            amount:amount,
-            product:current[0],
-            playerId:uid
-          })
-        }
-      );
-
-
-    const data =
-      await response.json()
-        .catch(() => ({}));
-
-
-    if(!response.ok){
-
-      throw new Error(
-        data.error ||
-        "Erro ao criar pagamento."
-      );
-
-    }
-
-
-    if(!data.payload){
-
-      throw new Error(
-        "O servidor não retornou o Pix."
-      );
-
-    }
-
-
-    document.getElementById("pixProduct")
-      .textContent =
-      current[0] + " — ID " + uid;
-
-
-    document.getElementById("pixAmount")
-      .textContent =
-      money(amount);
-
-
-    document.getElementById("pixCode")
-      .value =
-      data.payload;
-
-
-    document.getElementById("pixStatus")
-      .textContent =
-      "✅ Pix gerado. Copie o código e faça o pagamento.";
-
-
-    const qr =
-      document.getElementById("pixQr");
-
-
-    if(data.encodedImage){
-
-      qr.src =
-        "data:image/png;base64," +
-        data.encodedImage;
-
-      qr.style.display =
-        "block";
-
-    }else{
-
-      qr.style.display =
-        "none";
-
-    }
-
-
-    window.currentPaymentId =
-      data.paymentId;
-
-
-    document.getElementById("paymentSuccess")
-      .style.display =
-      "none";
-
-
-    document.getElementById("checkPayment")
-      .style.display =
-      "block";
-
-
-    go("pix");
-
-
-  }catch(error){
-
-    alert(
-      "Não foi possível gerar o Pix:\n\n" +
-      error.message
-    );
-
-  }finally{
-
-    if(button){
-
-      button.disabled = false;
-
-      button.textContent =
-        "💠 Pagar";
-
-    }
-
-  }
-
-}
-
-
-async function copyPix(){
-
-  const input =
-    document.getElementById("pixCode");
-
-
-  if(!input.value){
-
-    alert(
-      "O Pix ainda não foi gerado."
-    );
-
-    return;
-  }
-
-
-  try{
-
-    await navigator.clipboard.writeText(
-      input.value
-    );
-
-    document.getElementById("pixStatus")
-      .textContent =
-      "✅ Pix copiado! Agora cole no aplicativo do seu banco.";
-
-  }catch(error){
-
-    input.focus();
-    input.select();
-
-    document.execCommand("copy");
-
-    document.getElementById("pixStatus")
-      .textContent =
-      "✅ Pix copiado!";
-
-  }
-
-}
-
-
-async function checkPayment(){
-
-  if(!window.currentPaymentId){
-
-    alert(
-      "Nenhum pagamento encontrado."
-    );
-
-    return;
-  }
-
-
-  const base =
-    CONFIG.apiBaseUrl.replace(/\/$/,"");
-
-
-  const button =
-    document.getElementById(
-      "checkPayment"
-    );
-
-
-  button.disabled = true;
-
-  button.textContent =
-    "⏳ Verificando...";
-
-
-  try{
-
-    const response =
-      await fetch(
-        base +
-        "/api/payment-status/" +
-        encodeURIComponent(
-          window.currentPaymentId
-        )
-      );
-
-
-    const data =
-      await response.json()
-        .catch(() => ({}));
-
-
-    if(!response.ok){
-
-      throw new Error(
-        data.error ||
-        "Não foi possível verificar o pagamento."
-      );
-
-    }
-
-
-    if(
-      data.status === "RECEIVED" ||
-      data.status === "CONFIRMED"
-    ){
-
-      document.getElementById(
-        "paymentSuccess"
-      ).style.display =
-        "block";
-
-
-      button.style.display =
-        "none";
-
-
-      document.getElementById(
-        "pixStatus"
-      ).textContent =
-        "✅ Pagamento confirmado!";
-
-    }else{
-
-      document.getElementById(
-        "pixStatus"
-      ).textContent =
-        "⏳ Pagamento ainda não confirmado. Tente novamente depois.";
-
-    }
-
-
-  }catch(error){
-
-    alert(error.message);
-
-  }finally{
-
-    button.disabled = false;
-
-    if(button.style.display !== "none"){
-
-      button.textContent =
-        "🔄 Verificar pagamento";
-
-    }
-
-  }
-
-}
-
-
-render();
-
-</script>
-
-</body>
-</html>
+  border:
