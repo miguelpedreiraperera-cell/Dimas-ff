@@ -9,7 +9,6 @@
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-
 html{scroll-behavior:smooth}
 
 body{
@@ -159,9 +158,7 @@ header{
     0 0 70px #004cff;
 }
 
-.hero h1 span{
-  color:#00aaff;
-}
+.hero h1 span{color:#00aaff}
 
 .hero p{
   max-width:650px;
@@ -521,9 +518,7 @@ footer{
   font-size:13px;
 }
 
-footer strong{
-  color:#00aaff;
-}
+footer strong{color:#00aaff}
 
 /* MODAL */
 
@@ -537,11 +532,10 @@ footer strong{
   padding:18px;
   background:rgba(0,0,0,.75);
   backdrop-filter:blur(7px);
+  overflow-y:auto;
 }
 
-.modal.show{
-  display:flex;
-}
+.modal.show{display:flex}
 
 .modal-box{
   width:100%;
@@ -594,41 +588,32 @@ footer strong{
   background:rgba(0,140,255,.08);
   border:1px solid rgba(0,140,255,.3);
   color:#a8dcff;
+  line-height:1.5;
 }
 
 /* RESPONSIVO */
 
 @media(max-width:600px){
 
-  header{
-    height:64px;
-  }
+  header{height:64px}
 
   .side-menu{
     top:64px;
     height:calc(100vh - 64px);
   }
 
-  .logo{
-    font-size:22px;
-  }
+  .logo{font-size:22px}
 
   .hero{
     min-height:570px;
     padding-top:45px;
   }
 
-  .hero h1{
-    font-size:58px;
-  }
+  .hero h1{font-size:58px}
 
-  section{
-    padding:55px 15px;
-  }
+  section{padding:55px 15px}
 
-  .section-title{
-    font-size:28px;
-  }
+  .section-title{font-size:28px}
 
   .diamond-grid,
   .cards,
@@ -659,6 +644,10 @@ footer strong{
   <a href="#contato" onclick="closeMenu()">💬 Contato</a>
 
   <a href="#" onclick="discord(event)">🎮 Discord</a>
+
+  <!-- CUPOM -->
+
+  <a href="#" onclick="coupon(event)">🎁 Cupom</a>
 
 </nav>
 
@@ -707,14 +696,6 @@ footer strong{
         ⚡ Como funciona
       </a>
 
-      <a
-        class="btn btn-secondary"
-        href="https://discord.gg/42aTVc5Z5y"
-        target="_blank"
-        rel="noopener">
-        🎮 Discord
-      </a>
-
     </div>
 
   </div>
@@ -740,64 +721,81 @@ footer strong{
       <div class="diamond">💎</div>
       <h3>100 Diamantes</h3>
       <small>Pacote básico</small>
-      <div class="price">R$ 2,00</div>
-      <button class="buy-btn"
-        onclick="openPurchase('100 Diamantes','R$ 2,00',2)">
+      <div class="price">R$ 5,00</div>
+
+      <button
+        class="buy-btn"
+        onclick="openPurchase('100 Diamantes','R$ 5,00',5)">
         COMPRAR
       </button>
     </div>
+
 
     <div class="diamond-card">
       <div class="diamond">💎</div>
       <h3>310 Diamantes</h3>
       <small>Pacote popular</small>
-      <div class="price">R$ 3,00</div>
-      <button class="buy-btn"
-        onclick="openPurchase('310 Diamantes','R$ 3,00',3)">
+      <div class="price">R$ 7,00</div>
+
+      <button
+        class="buy-btn"
+        onclick="openPurchase('310 Diamantes','R$ 7,00',7)">
         COMPRAR
       </button>
     </div>
+
 
     <div class="diamond-card">
       <div class="diamond">💎</div>
       <h3>500 Diamantes</h3>
       <small>Mais diamantes</small>
-      <div class="price">R$ 4,00</div>
-      <button class="buy-btn"
-        onclick="openPurchase('500 Diamantes','R$ 4,00',4)">
+      <div class="price">R$ 10,00</div>
+
+      <button
+        class="buy-btn"
+        onclick="openPurchase('500 Diamantes','R$ 10,00',10)">
         COMPRAR
       </button>
     </div>
+
 
     <div class="diamond-card">
       <div class="diamond">💎</div>
       <h3>1.060 Diamantes</h3>
       <small>Pacote especial</small>
-      <div class="price">R$ 8,00</div>
-      <button class="buy-btn"
-        onclick="openPurchase('1.060 Diamantes','R$ 8,00',8)">
+      <div class="price">R$ 15,00</div>
+
+      <button
+        class="buy-btn"
+        onclick="openPurchase('1.060 Diamantes','R$ 15,00',15)">
         COMPRAR
       </button>
     </div>
+
 
     <div class="diamond-card">
       <div class="diamond">💎</div>
       <h3>2.180 Diamantes</h3>
       <small>Pacote avançado</small>
-      <div class="price">R$ 15,00</div>
-      <button class="buy-btn"
-        onclick="openPurchase('2.180 Diamantes','R$ 15,00',15)">
+      <div class="price">R$ 25,00</div>
+
+      <button
+        class="buy-btn"
+        onclick="openPurchase('2.180 Diamantes','R$ 25,00',25)">
         COMPRAR
       </button>
     </div>
+
 
     <div class="diamond-card">
       <div class="diamond">💎</div>
       <h3>5.600 Diamantes</h3>
       <small>Pacote máximo</small>
-      <div class="price">R$ 35,00</div>
-      <button class="buy-btn"
-        onclick="openPurchase('5.600 Diamantes','R$ 35,00',35)">
+      <div class="price">R$ 50,00</div>
+
+      <button
+        class="buy-btn"
+        onclick="openPurchase('5.600 Diamantes','R$ 50,00',50)">
         COMPRAR
       </button>
     </div>
@@ -839,12 +837,14 @@ footer strong{
         R$ 0,00
       </div>
 
-      <button class="buy-btn"
+      <button
+        class="buy-btn"
         onclick="accountMessage()">
         COMPRAR
       </button>
 
     </div>
+
 
     <div class="account-card">
 
@@ -864,7 +864,8 @@ footer strong{
         R$ 0,00
       </div>
 
-      <button class="buy-btn"
+      <button
+        class="buy-btn"
         onclick="accountMessage()">
         COMPRAR
       </button>
@@ -954,7 +955,10 @@ footer strong{
     <div class="step">
       <div class="step-number">2</div>
       <h3>Informe seus dados</h3>
-      <p>Digite corretamente o ID e o CPF solicitados.</p>
+      <p>
+        Digite o ID do Free Fire e o CPF/CNPJ
+        necessário para o pagamento.
+      </p>
     </div>
 
     <div class="step">
@@ -966,7 +970,10 @@ footer strong{
     <div class="step">
       <div class="step-number">4</div>
       <h3>Receba</h3>
-      <p>Após a confirmação, siga as instruções para receber.</p>
+      <p>
+        Após a confirmação, siga as instruções
+        para receber.
+      </p>
     </div>
 
   </div>
@@ -1022,7 +1029,9 @@ footer strong{
 
       <h2>💎 Comprar</h2>
 
-      <button class="close" onclick="closePurchase()">
+      <button
+        class="close"
+        onclick="closePurchase()">
         ×
       </button>
 
@@ -1030,14 +1039,21 @@ footer strong{
 
     <div class="selected-product">
 
-      <strong id="productName">Pacote</strong>
+      <strong id="productName">
+        Pacote
+      </strong>
 
-      <span id="productPrice">R$ 0,00</span>
+      <span id="productPrice">
+        R$ 0,00
+      </span>
 
     </div>
 
+
+    <!-- ID FREE FIRE -->
+
     <label for="playerId">
-      ID do jogador
+      👤 ID do jogador
     </label>
 
     <input
@@ -1047,31 +1063,39 @@ footer strong{
       placeholder="Digite seu ID do Free Fire"
       maxlength="30">
 
-    <label for="cpf">
-      CPF do cliente
+
+    <!-- CPF / CNPJ -->
+
+    <label for="cpfCnpj">
+      🪪 CPF ou CNPJ
     </label>
 
     <input
-      id="cpf"
+      id="cpfCnpj"
       type="text"
       inputmode="numeric"
-      autocomplete="off"
-      placeholder="Digite seu CPF"
-      maxlength="14">
+      placeholder="Digite seu CPF ou CNPJ"
+      maxlength="18"
+      autocomplete="off">
+
 
     <div class="warning">
-      🔒 O CPF é necessário para criar a cobrança no
-      ambiente de pagamento.
+      🔒 O CPF/CNPJ é utilizado para identificar
+      o cliente na cobrança Pix do sistema de pagamento.
     </div>
+
 
     <button
       class="btn btn-primary"
       style="width:100%;margin-top:20px"
       onclick="continuePurchase()">
-      CONTINUAR
+      💳 GERAR PIX
     </button>
 
-    <div class="form-message" id="formMessage"></div>
+    <div
+      class="form-message"
+      id="formMessage">
+    </div>
 
   </div>
 
@@ -1088,7 +1112,9 @@ footer strong{
 
       <h2>💠 Pagamento Pix</h2>
 
-      <button class="close" onclick="closePix()">
+      <button
+        class="close"
+        onclick="closePix()">
         ×
       </button>
 
@@ -1098,7 +1124,9 @@ footer strong{
       Produto
     </p>
 
-    <div class="pix-amount" id="pixAmount">
+    <div
+      class="pix-amount"
+      id="pixAmount">
       R$ 0,00
     </div>
 
@@ -1194,11 +1222,22 @@ function discord(event){
     event.preventDefault();
   }
 
-  window.open(
-    CONFIG.discordUrl,
-    "_blank",
-    "noopener"
-  );
+  window.location.href =
+    CONFIG.discordUrl;
+
+}
+
+
+/* CUPOM */
+
+function coupon(event){
+
+  if(event){
+    event.preventDefault();
+  }
+
+  window.location.href =
+    CONFIG.discordUrl;
 
 }
 
@@ -1235,7 +1274,7 @@ function openPurchase(
   ).value = "";
 
   document.getElementById(
-    "cpf"
+    "cpfCnpj"
   ).value = "";
 
   document.getElementById(
@@ -1260,60 +1299,13 @@ function closePurchase(){
 }
 
 
-/* FORMATAR CPF */
+/* LIMPAR CPF/CNPJ */
 
-function formatCPF(value){
+function cleanCpfCnpj(value){
 
-  let numbers =
-    String(value)
-      .replace(/\D/g,"")
-      .slice(0,11);
-
-  if(numbers.length > 9){
-
-    return numbers.replace(
-      /(\d{3})(\d{3})(\d{3})(\d{0,2})/,
-      "$1.$2.$3-$4"
-    );
-
-  }
-
-  if(numbers.length > 6){
-
-    return numbers.replace(
-      /(\d{3})(\d{3})(\d{0,3})/,
-      "$1.$2.$3"
-    );
-
-  }
-
-  if(numbers.length > 3){
-
-    return numbers.replace(
-      /(\d{3})(\d{0,3})/,
-      "$1.$2"
-    );
-
-  }
-
-  return numbers;
+  return value.replace(/\D/g,"");
 
 }
-
-
-/* FORMATAR CPF ENQUANTO DIGITA */
-
-document
-  .getElementById("cpf")
-  .addEventListener(
-    "input",
-    function(){
-
-      this.value =
-        formatCPF(this.value);
-
-    }
-  );
 
 
 /* CONTINUAR E GERAR PIX */
@@ -1325,15 +1317,11 @@ async function continuePurchase(){
       "playerId"
     ).value.trim();
 
-  const cpfInput =
-    document.getElementById(
-      "cpf"
-    ).value.trim();
-
-  const cpf =
-    cpfInput.replace(
-      /\D/g,
-      ""
+  const cpfCnpj =
+    cleanCpfCnpj(
+      document.getElementById(
+        "cpfCnpj"
+      ).value
     );
 
   const message =
@@ -1341,8 +1329,6 @@ async function continuePurchase(){
       "formMessage"
     );
 
-
-  /* VALIDAR ID */
 
   if(!playerId){
 
@@ -1356,12 +1342,25 @@ async function continuePurchase(){
   }
 
 
-  /* VALIDAR CPF */
-
-  if(cpf.length !== 11){
+  if(!cpfCnpj){
 
     message.textContent =
-      "Digite um CPF válido com 11 números.";
+      "Digite seu CPF ou CNPJ para continuar.";
+
+    message.style.display =
+      "block";
+
+    return;
+  }
+
+
+  if(
+    cpfCnpj.length !== 11 &&
+    cpfCnpj.length !== 14
+  ){
+
+    message.textContent =
+      "Digite um CPF ou CNPJ válido.";
 
     message.style.display =
       "block";
@@ -1408,8 +1407,8 @@ async function continuePurchase(){
             playerId:
               playerId,
 
-            cpf:
-              cpf
+            cpfCnpj:
+              cpfCnpj
 
           })
         }
@@ -1440,18 +1439,12 @@ async function continuePurchase(){
     }
 
 
-    /* GUARDAR ID DO PAGAMENTO */
-
     window.currentPaymentId =
       data.paymentId;
 
 
-    /* FECHAR MODAL */
-
     closePurchase();
 
-
-    /* PREENCHER PIX */
 
     document.getElementById(
       "pixProduct"
@@ -1470,8 +1463,6 @@ async function continuePurchase(){
     ).value =
       data.payload;
 
-
-    /* QR CODE */
 
     const qr =
       document.getElementById(
@@ -1514,8 +1505,6 @@ async function continuePurchase(){
       "block";
 
 
-    /* ABRIR PIX */
-
     document.getElementById(
       "pixModal"
     ).classList.add("show");
@@ -1523,8 +1512,7 @@ async function continuePurchase(){
 
   }catch(error){
 
-    message.textContent =
-      "";
+    message.textContent = "";
 
     alert(
       "Não foi possível gerar o Pix:\n\n" +
@@ -1683,8 +1671,7 @@ async function checkPayment(){
 
   }catch(error){
 
-    status.textContent =
-      "";
+    status.textContent = "";
 
     alert(
       "Erro ao verificar pagamento:\n\n" +
@@ -1775,4 +1762,4 @@ document.addEventListener(
 </script>
 
 </body>
-</html>
+      </html>
