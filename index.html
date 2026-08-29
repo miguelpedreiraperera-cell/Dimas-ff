@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Dimas FF</title>
 
 <style>
@@ -18,45 +19,39 @@ html{
 }
 
 body{
-    background:
-    radial-gradient(circle at 20% 0%,#063c63 0%,transparent 30%),
-    radial-gradient(circle at 100% 80%,#061b38 0%,transparent 35%),
-    #03060b;
-    color:#fff;
+    background:#f5f6f8;
+    color:#20242a;
 }
 
 /* TOPO */
 
 header{
-    height:70px;
+    height:64px;
+    background:#101318;
+    color:white;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 18px;
-    background:rgba(3,7,14,.96);
-    border-bottom:1px solid #00bfff55;
+    padding:0 5%;
     position:sticky;
     top:0;
-    z-index:50;
-    backdrop-filter:blur(12px);
+    z-index:100;
+    box-shadow:0 2px 12px #0003;
 }
 
-.menu{
-    background:none;
+.menu-btn{
     border:0;
+    background:none;
     color:white;
-    font-size:29px;
+    font-size:27px;
     cursor:pointer;
 }
 
 .logo{
-    color:#00c8ff;
-    font-size:25px;
+    font-size:23px;
     font-weight:900;
-    letter-spacing:1px;
-    text-shadow:
-    0 0 8px #00bfff,
-    0 0 20px #0077ff;
+    color:#00b7ff;
+    text-shadow:0 0 12px #00b7ff;
 }
 
 /* MENU LATERAL */
@@ -64,15 +59,20 @@ header{
 .sidebar{
     position:fixed;
     top:0;
-    left:-290px;
-    width:275px;
+    left:-300px;
+
+    width:280px;
     height:100vh;
-    background:#070c15;
-    border-right:1px solid #00bfff55;
-    padding:25px 18px;
-    z-index:100;
+
+    background:#11161d;
+
+    padding:22px;
+
+    z-index:200;
+
     transition:.3s;
-    box-shadow:0 0 35px #00bfff25;
+
+    box-shadow:5px 0 25px #0005;
 }
 
 .sidebar.active{
@@ -80,265 +80,424 @@ header{
 }
 
 .sidebar h2{
-    color:#00c8ff;
+    color:#00b7ff;
     margin-bottom:30px;
-    text-shadow:0 0 15px #00bfff;
 }
 
 .sidebar a{
     display:block;
-    padding:15px;
-    margin:7px 0;
-    border-radius:10px;
+    color:white;
     text-decoration:none;
-    color:#dce6ef;
+    padding:15px;
+    border-radius:8px;
+    margin-bottom:6px;
 }
 
 .sidebar a:hover{
-    background:#00bfff18;
-    color:#00c8ff;
+    background:#ffffff12;
+    color:#00b7ff;
 }
 
 .close{
     float:right;
-    font-size:25px;
+    color:white;
+    font-size:26px;
     cursor:pointer;
 }
 
 .overlay{
     position:fixed;
     inset:0;
-    background:#000b;
+
+    background:#0008;
+
+    z-index:150;
+
     display:none;
-    z-index:90;
 }
 
 .overlay.active{
     display:block;
 }
 
-/* GERAL */
+/* CONTAINER */
 
 .container{
-    width:min(1100px,92%);
+    width:min(1120px,92%);
     margin:auto;
 }
 
 .section{
-    padding:25px 0;
+    margin:20px 0;
 }
 
-.title{
-    font-size:25px;
-    margin-bottom:16px;
+.section-title{
+    font-size:23px;
+    font-weight:800;
+    margin-bottom:14px;
 }
 
-/* INÍCIO */
+/* BANNER */
 
-.hero{
-    padding:30px 0 20px;
-}
+.banner{
+    margin:22px auto;
 
-.hero-box{
-    min-height:260px;
-    padding:30px;
-    border-radius:22px;
-    border:1px solid #00bfff55;
-    background:
-    linear-gradient(135deg,#061a2b,#07111e 60%,#03111b);
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+    min-height:220px;
+
+    border-radius:15px;
+
     overflow:hidden;
-    box-shadow:0 0 35px #00bfff18;
+
+    background:
+        linear-gradient(
+            110deg,
+            #07111d,
+            #063b5b,
+            #00a9e8
+        );
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:35px;
+
+    color:white;
 }
 
-.hero h1{
-    font-size:clamp(40px,8vw,68px);
-    color:#00c8ff;
-    text-shadow:
-    0 0 12px #00bfff,
-    0 0 30px #0077ff;
+.banner h1{
+    font-size:42px;
 }
 
-.hero p{
-    max-width:580px;
-    margin-top:12px;
-    line-height:1.6;
-    color:#b9c7d5;
+.banner p{
+    margin-top:10px;
+    color:#d8f5ff;
 }
 
-.hero-icon{
-    font-size:105px;
-    filter:
-    drop-shadow(0 0 12px #00bfff)
-    drop-shadow(0 0 30px #0077ff);
+.banner-icon{
+    font-size:100px;
 }
 
 /* JOGO */
 
-.game{
+.game-select{
     display:flex;
+}
+
+.game{
+    background:white;
+
+    border:2px solid #00aef0;
+
+    border-radius:12px;
+
+    padding:15px;
+
+    min-width:210px;
+
+    display:flex;
+
     align-items:center;
-    gap:15px;
-    padding:18px;
-    border-radius:16px;
-    border:1px solid #00bfff;
-    background:linear-gradient(145deg,#0a1c2e,#070d17);
+
+    gap:12px;
 }
 
 .game-icon{
-    width:62px;
-    height:62px;
+    width:48px;
+    height:48px;
+
+    border-radius:10px;
+
     display:flex;
+
     align-items:center;
     justify-content:center;
-    border-radius:15px;
-    background:#111d2e;
-    font-size:32px;
+
+    background:#111820;
+
+    font-size:25px;
 }
 
-.game-name{
-    font-size:19px;
-    font-weight:bold;
-}
-
-.game-sub{
-    color:#8291a1;
-    margin-top:5px;
-}
-
-/* ID */
-
-.player{
-    margin-top:15px;
-    padding:20px;
-    background:#080e18;
-    border-radius:15px;
-    border:1px solid #ffffff12;
-}
-
-.player label{
+.game strong{
     display:block;
-    color:#c4cfda;
+}
+
+.game small{
+    color:#858c94;
+}
+
+/* PROMOÇÕES */
+
+.promo-grid{
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:15px;
+}
+
+.promo{
+    background:white;
+
+    border-radius:12px;
+
+    min-height:130px;
+
+    padding:22px;
+
+    border:1px solid #e3e6e9;
+}
+
+.promo h3{
     margin-bottom:8px;
 }
 
-.player input{
-    width:100%;
-    padding:14px;
-    border-radius:9px;
-    border:1px solid #294057;
-    background:#03070d;
+.promo p{
+    color:#777;
+
+    margin-bottom:15px;
+}
+
+.promo-btn{
+    border:0;
+
+    background:#00aef0;
+
     color:white;
+
+    padding:10px 18px;
+
+    border-radius:7px;
+}
+
+/* LOGIN */
+
+.login-box{
+    background:white;
+
+    border-radius:12px;
+
+    padding:22px;
+
+    border:1px solid #e3e6e9;
+}
+
+.login-box label{
+    display:block;
+
+    font-weight:bold;
+
+    margin-bottom:7px;
+}
+
+.login-row{
+    display:flex;
+
+    gap:10px;
+}
+
+.login-row input{
+    flex:1;
+
+    padding:13px;
+
+    border:1px solid #d4d8dc;
+
+    border-radius:7px;
+
     outline:none;
 }
 
-.player input:focus{
-    border-color:#00bfff;
+.login-row input:focus{
+    border-color:#00aef0;
+}
+
+.login-btn{
+    border:0;
+
+    padding:0 25px;
+
+    border-radius:7px;
+
+    background:#00aef0;
+
+    color:white;
+
+    font-weight:bold;
 }
 
 /* DIAMANTES */
 
-.diamantes{
+.diamond-grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:14px;
 }
 
-.card{
-    background:linear-gradient(145deg,#0b1523,#070b12);
-    border:1px solid #1c354b;
-    border-radius:16px;
+.diamond-card{
+    background:white;
+
+    border:1px solid #e2e5e8;
+
+    border-radius:12px;
+
     padding:20px;
+
     transition:.2s;
 }
 
-.card:hover{
-    transform:translateY(-4px);
-    border-color:#00bfff;
-    box-shadow:0 0 22px #00bfff25;
+.diamond-card:hover{
+    transform:translateY(-3px);
+
+    box-shadow:0 8px 25px #00000012;
 }
 
-.diamond{
-    font-size:34px;
+.diamond-image{
+    width:70px;
+    height:70px;
+
+    margin-bottom:10px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:#e8f8ff;
+
+    font-size:38px;
+}
+
+.diamond-card h3{
+    font-size:19px;
+
     margin-bottom:8px;
 }
 
-.card h3{
-    font-size:19px;
+.quantity{
+    color:#777;
+
+    margin-bottom:12px;
 }
 
-.price{
-    color:#00d0ff;
-    font-size:23px;
+.diamond-price{
+    font-size:22px;
+
     font-weight:bold;
-    margin:11px 0;
+
+    color:#111;
+
+    margin-bottom:14px;
 }
 
-.buy{
+.buy-btn{
     width:100%;
-    padding:12px;
+
     border:0;
-    border-radius:9px;
-    background:linear-gradient(90deg,#007cff,#00d5ff);
+
+    background:#00aef0;
+
     color:white;
+
+    padding:12px;
+
+    border-radius:7px;
+
     font-weight:bold;
-    cursor:pointer;
 }
 
-.buy:hover{
-    filter:brightness(1.15);
+.buy-btn:hover{
+    background:#008fca;
 }
 
-/* OFERTA */
+/* OFERTAS */
 
-.offer{
-    padding:22px;
-    border-radius:16px;
-    border:1px solid #00bfff45;
-    background:#071624;
+.offers{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:14px;
 }
 
-.offer strong{
-    color:#00c8ff;
-    font-size:19px;
+.offer-card{
+    background:white;
+
+    border:1px solid #e2e5e8;
+
+    border-radius:12px;
+
+    padding:18px;
 }
 
-.offer p{
-    margin-top:8px;
-    color:#aebbc8;
+.offer-image{
+    height:90px;
+
+    background:#edf1f4;
+
+    border-radius:9px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:42px;
+
+    margin-bottom:13px;
+}
+
+.offer-card h3{
+    margin-bottom:7px;
+}
+
+.offer-card p{
+    color:#777;
 }
 
 /* CONTAS */
 
-.contas{
+.accounts{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:14px;
 }
 
 .account{
+    background:white;
+
+    border:1px solid #e2e5e8;
+
+    border-radius:12px;
+
     overflow:hidden;
-    border-radius:16px;
-    background:#080f19;
-    border:1px solid #1b3348;
 }
 
 .account-photo{
-    height:190px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#0b1624;
-    color:#66788b;
-    font-size:55px;
-}
+    height:180px;
 
-.account-photo img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+    background:#edf1f4;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:45px;
+
+    color:#9299a0;
 }
 
 .account-info{
@@ -346,111 +505,239 @@ header{
 }
 
 .account-info h3{
-    margin-bottom:8px;
+    margin-bottom:7px;
 }
 
 .account-info p{
-    color:#8997a6;
+    color:#777;
+
     font-size:14px;
+
     line-height:1.5;
 }
 
 .account-price{
-    color:#00d0ff;
-    font-size:21px;
-    font-weight:bold;
     margin:12px 0;
+
+    font-weight:bold;
+
+    font-size:20px;
+
+    color:#111;
 }
 
 /* COMO FUNCIONA */
 
-.steps{
+.info-grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:14px;
 }
 
-.step{
+.info{
+    background:white;
+
+    border:1px solid #e2e5e8;
+
+    border-radius:12px;
+
     padding:20px;
-    border-radius:15px;
-    background:#080e18;
-    border:1px solid #ffffff12;
 }
 
-.step-number{
-    color:#00c8ff;
-    font-size:28px;
-    font-weight:bold;
+.info-icon{
+    font-size:30px;
+
     margin-bottom:10px;
 }
 
-.step p{
-    color:#aeb9c7;
+.info h3{
+    margin-bottom:8px;
+}
+
+.info p{
+    color:#777;
+
     line-height:1.5;
 }
 
 /* DISCORD */
 
 .discord{
-    text-align:center;
+    background:#5865f2;
+
+    color:white;
+
+    border-radius:12px;
+
     padding:25px;
-    border-radius:16px;
-    background:#080e18;
-    border:1px solid #ffffff12;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
 }
 
-.discord-button{
-    display:inline-block;
-    margin-top:15px;
-    padding:13px 25px;
-    border-radius:10px;
-    text-decoration:none;
-    background:#5865f2;
-    color:white;
+.discord h2{
+    margin-bottom:7px;
+}
+
+.discord p{
+    color:#e8e9ff;
+}
+
+.discord-btn{
+    border:0;
+
+    background:white;
+
+    color:#5865f2;
+
+    padding:12px 22px;
+
+    border-radius:7px;
+
     font-weight:bold;
+
+    text-decoration:none;
+
+    white-space:nowrap;
+}
+
+/* PAGAMENTO */
+
+.payment{
+    background:white;
+
+    border:1px solid #e2e5e8;
+
+    border-radius:12px;
+
+    padding:22px;
+}
+
+.payment-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:12px;
+}
+
+.payment-item{
+    border:1px solid #e1e4e7;
+
+    border-radius:9px;
+
+    padding:17px;
+
+    text-align:center;
+
+    font-weight:bold;
+}
+
+.payment-icon{
+    font-size:28px;
+
+    margin-bottom:8px;
 }
 
 /* RODAPÉ */
 
 footer{
-    margin-top:40px;
-    padding:25px;
-    text-align:center;
-    color:#718096;
-    font-size:13px;
-    border-top:1px solid #ffffff12;
+    margin-top:35px;
+
+    background:#101318;
+
+    color:#aab1b9;
+
+    padding:30px 5%;
+}
+
+.footer-inner{
+    width:min(1120px,92%);
+
+    margin:auto;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:20px;
+}
+
+.footer-brand{
+    color:#00b7ff;
+
+    font-size:20px;
+
+    font-weight:bold;
+}
+
+footer a{
+    color:#aab1b9;
+
+    text-decoration:none;
 }
 
 /* CELULAR */
 
 @media(max-width:800px){
 
-    .diamantes{
-        grid-template-columns:repeat(2,1fr);
+    .diamond-grid{
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
-    .contas{
-        grid-template-columns:repeat(2,1fr);
+    .offers,
+    .accounts,
+    .info-grid{
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
-    .steps{
-        grid-template-columns:1fr;
+    .payment-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .banner-icon{
+        display:none;
     }
 }
 
-@media(max-width:500px){
+@media(max-width:550px){
 
-    .diamantes,
-    .contas{
+    .diamond-grid,
+    .offers,
+    .accounts,
+    .info-grid,
+    .promo-grid{
         grid-template-columns:1fr;
     }
 
-    .hero-box{
-        padding:22px;
+    .login-row{
+        flex-direction:column;
     }
 
-    .hero-icon{
-        display:none;
+    .login-btn{
+        padding:12px;
+    }
+
+    .discord{
+        flex-direction:column;
+
+        align-items:flex-start;
+    }
+
+    .footer-inner{
+        flex-direction:column;
     }
 }
 </style>
@@ -462,45 +749,56 @@ footer{
 
 <nav class="sidebar" id="sidebar">
 
-    <span class="close" onclick="closeMenu()">×</span>
+    <span class="close"
+          onclick="closeMenu()">×</span>
 
     <h2>DIMAS FF</h2>
 
-    <a href="#inicio" onclick="closeMenu()">
+    <a href="#inicio"
+       onclick="closeMenu()">
         🏠 Início
     </a>
 
-    <a href="#diamantes" onclick="closeMenu()">
+    <a href="#diamantes"
+       onclick="closeMenu()">
         💎 Diamantes
     </a>
 
-    <a href="#contas" onclick="closeMenu()">
+    <a href="#contas"
+       onclick="closeMenu()">
         👤 Contas
     </a>
 
-    <a href="#como-funciona" onclick="closeMenu()">
+    <a href="#como"
+       onclick="closeMenu()">
         ❓ Como funciona
     </a>
 
-    <a href="#discord" onclick="closeMenu()">
+    <a href="#seguranca"
+       onclick="closeMenu()">
+        🛡️ Segurança
+    </a>
+
+    <a href="#discord"
+       onclick="closeMenu()">
         💬 Discord
     </a>
 
 </nav>
 
-<div
-    class="overlay"
-    id="overlay"
-    onclick="closeMenu()">
+
+<div class="overlay"
+     id="overlay"
+     onclick="closeMenu()">
 </div>
 
 
-<!-- TOPO -->
+<!-- HEADER -->
 
 <header>
 
     <button
-        class="menu"
+        class="menu-btn"
         onclick="openMenu()">
         ☰
     </button>
@@ -514,87 +812,158 @@ footer{
 </header>
 
 
-<main>
-
-<!-- INÍCIO -->
-
-<section
-    class="hero"
-    id="inicio">
+<main id="inicio">
 
 <div class="container">
 
-    <div class="hero-box">
 
-        <div>
+<!-- BANNER -->
 
-            <h1>DIMAS FF</h1>
+<section class="banner">
 
-            <p>
-                Sua loja de diamantes para Free Fire.
-                Escolha seu pacote, informe seu ID
-                e faça seu pedido.
-            </p>
+    <div>
 
-        </div>
+        <h1>
+            DIMAS FF
+        </h1>
 
-        <div class="hero-icon">
-            💎
-        </div>
+        <p>
+            Recarga de diamantes para Free Fire
+        </p>
 
     </div>
 
-</div>
+    <div class="banner-icon">
+        💎
+    </div>
 
 </section>
 
 
-<!-- FREE FIRE -->
+<!-- JOGO -->
 
 <section class="section">
 
-<div class="container">
+    <div class="section-title">
+        Seleção de jogos
+    </div>
 
-    <h2 class="title">
-        🎮 Jogo
-    </h2>
+    <div class="game-select">
 
-    <div class="game">
+        <div class="game">
 
-        <div class="game-icon">
-            🔥
-        </div>
-
-        <div>
-
-            <div class="game-name">
-                Free Fire
+            <div class="game-icon">
+                🔥
             </div>
 
-            <div class="game-sub">
-                Recarga de diamantes
+            <div>
+
+                <strong>
+                    Free Fire
+                </strong>
+
+                <small>
+                    Recarga
+                </small>
+
             </div>
 
         </div>
 
     </div>
 
+</section>
 
-    <div class="player">
+
+<!-- PROMOÇÕES -->
+
+<section class="section">
+
+    <div class="promo-grid">
+
+        <div class="promo">
+
+            <h3>
+                Item Grátis
+            </h3>
+
+            <p>
+                Confira os itens e novidades
+                disponíveis no Dimas FF.
+            </p>
+
+            <button class="promo-btn">
+                Conferir
+            </button>
+
+        </div>
+
+
+        <div class="promo">
+
+            <h3>
+                Eventos especiais
+            </h3>
+
+            <p>
+                Fique de olho nas próximas
+                promoções.
+            </p>
+
+            <button class="promo-btn">
+                Ver ofertas
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- LOGIN -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <span style="color:#00aef0;">
+            1
+        </span>
+
+        Login
+
+    </div>
+
+    <div class="login-box">
 
         <label>
             ID do jogador
         </label>
 
-        <input
-            id="playerId"
-            type="text"
-            inputmode="numeric"
-            placeholder="Digite seu ID do Free Fire">
+        <div class="login-row">
+
+            <input
+                id="playerId"
+                type="text"
+                inputmode="numeric"
+                placeholder="Insira o ID do jogador">
+
+            <button
+                class="login-btn"
+                onclick="login()">
+
+                Login
+
+            </button>
+
+        </div>
+
+        <p style="margin-top:12px;color:#777;">
+            Use somente o ID do jogador.
+        </p>
 
     </div>
-
-</div>
 
 </section>
 
@@ -605,21 +974,23 @@ footer{
     class="section"
     id="diamantes">
 
-<div class="container">
+    <div class="section-title">
 
-    <h2 class="title">
-        # Diamantes 💎
-    </h2>
+        <span style="color:#00aef0;">
+            2
+        </span>
+
+        Valor de Recarga
+
+    </div>
 
 
-    <div class="diamantes">
+    <div class="diamond-grid">
 
 
-        <!-- 100 -->
+        <div class="diamond-card">
 
-        <div class="card">
-
-            <div class="diamond">
+            <div class="diamond-image">
                 💎
             </div>
 
@@ -627,24 +998,28 @@ footer{
                 100 Diamantes
             </h3>
 
-            <div class="price">
+            <div class="quantity">
+                100 💎
+            </div>
+
+            <div class="diamond-price">
                 R$ 2,00
             </div>
 
             <button
-                class="buy"
+                class="buy-btn"
                 onclick="comprar('100 Diamantes','R$ 2,00')">
+
                 Comprar
+
             </button>
 
         </div>
 
 
-        <!-- 500 -->
+        <div class="diamond-card">
 
-        <div class="card">
-
-            <div class="diamond">
+            <div class="diamond-image">
                 💎
             </div>
 
@@ -652,24 +1027,28 @@ footer{
                 500 Diamantes
             </h3>
 
-            <div class="price">
+            <div class="quantity">
+                500 💎
+            </div>
+
+            <div class="diamond-price">
                 R$ 4,00
             </div>
 
             <button
-                class="buy"
+                class="buy-btn"
                 onclick="comprar('500 Diamantes','R$ 4,00')">
+
                 Comprar
+
             </button>
 
         </div>
 
 
-        <!-- 1000 -->
+        <div class="diamond-card">
 
-        <div class="card">
-
-            <div class="diamond">
+            <div class="diamond-image">
                 💎
             </div>
 
@@ -677,24 +1056,28 @@ footer{
                 1.000 Diamantes
             </h3>
 
-            <div class="price">
+            <div class="quantity">
+                1.000 💎
+            </div>
+
+            <div class="diamond-price">
                 R$ 8,00
             </div>
 
             <button
-                class="buy"
+                class="buy-btn"
                 onclick="comprar('1.000 Diamantes','R$ 8,00')">
+
                 Comprar
+
             </button>
 
         </div>
 
 
-        <!-- 2000 -->
+        <div class="diamond-card">
 
-        <div class="card">
-
-            <div class="diamond">
+            <div class="diamond-image">
                 💎
             </div>
 
@@ -702,24 +1085,28 @@ footer{
                 2.000 Diamantes
             </h3>
 
-            <div class="price">
+            <div class="quantity">
+                2.000 💎
+            </div>
+
+            <div class="diamond-price">
                 R$ 15,00
             </div>
 
             <button
-                class="buy"
+                class="buy-btn"
                 onclick="comprar('2.000 Diamantes','R$ 15,00')">
+
                 Comprar
+
             </button>
 
         </div>
 
 
-        <!-- 5000 -->
+        <div class="diamond-card">
 
-        <div class="card">
-
-            <div class="diamond">
+            <div class="diamond-image">
                 💎
             </div>
 
@@ -727,24 +1114,28 @@ footer{
                 5.000 Diamantes
             </h3>
 
-            <div class="price">
+            <div class="quantity">
+                5.000 💎
+            </div>
+
+            <div class="diamond-price">
                 R$ 35,00
             </div>
 
             <button
-                class="buy"
+                class="buy-btn"
                 onclick="comprar('5.000 Diamantes','R$ 35,00')">
+
                 Comprar
+
             </button>
 
         </div>
 
 
-        <!-- 10000 -->
+        <div class="diamond-card">
 
-        <div class="card">
-
-            <div class="diamond">
+            <div class="diamond-image">
                 💎
             </div>
 
@@ -752,22 +1143,25 @@ footer{
                 10.000 Diamantes
             </h3>
 
-            <div class="price">
+            <div class="quantity">
+                10.000 💎
+            </div>
+
+            <div class="diamond-price">
                 R$ 65,00
             </div>
 
             <button
-                class="buy"
+                class="buy-btn"
                 onclick="comprar('10.000 Diamantes','R$ 65,00')">
+
                 Comprar
+
             </button>
 
         </div>
 
-
     </div>
-
-</div>
 
 </section>
 
@@ -776,26 +1170,63 @@ footer{
 
 <section class="section">
 
-<div class="container">
-
-    <h2 class="title">
-        🎁 Ofertas
-    </h2>
-
-    <div class="offer">
-
-        <strong>
-            OFERTAS DIMAS FF
-        </strong>
-
-        <p>
-            Fique de olho nas novidades,
-            promoções e novos produtos.
-        </p>
-
+    <div class="section-title">
+        Ofertas especiais
     </div>
 
-</div>
+    <div class="offers">
+
+        <div class="offer-card">
+
+            <div class="offer-image">
+                🎁
+            </div>
+
+            <h3>
+                Oferta Especial
+            </h3>
+
+            <p>
+                Novidades do Dimas FF.
+            </p>
+
+        </div>
+
+
+        <div class="offer-card">
+
+            <div class="offer-image">
+                🔥
+            </div>
+
+            <h3>
+                Promoção
+            </h3>
+
+            <p>
+                Confira as próximas ofertas.
+            </p>
+
+        </div>
+
+
+        <div class="offer-card">
+
+            <div class="offer-image">
+                💎
+            </div>
+
+            <h3>
+                Diamantes
+            </h3>
+
+            <p>
+                Pacotes disponíveis acima.
+            </p>
+
+        </div>
+
+    </div>
 
 </section>
 
@@ -806,17 +1237,12 @@ footer{
     class="section"
     id="contas">
 
-<div class="container">
+    <div class="section-title">
+        Contas
+    </div>
 
-    <h2 class="title">
-        👤 Contas
-    </h2>
+    <div class="accounts">
 
-
-    <div class="contas">
-
-
-        <!-- CONTA 1 -->
 
         <div class="account">
 
@@ -831,17 +1257,15 @@ footer{
                 </h3>
 
                 <p>
-                    Informações da conta
-                    serão adicionadas aqui.
+                    Foto e informações serão
+                    adicionadas posteriormente.
                 </p>
 
                 <div class="account-price">
                     R$ --,--
                 </div>
 
-                <button
-                    class="buy"
-                    onclick="comprarConta('Conta Free Fire')">
+                <button class="buy-btn">
                     Comprar
                 </button>
 
@@ -850,8 +1274,6 @@ footer{
         </div>
 
 
-        <!-- CONTA 2 -->
-
         <div class="account">
 
             <div class="account-photo">
@@ -865,17 +1287,15 @@ footer{
                 </h3>
 
                 <p>
-                    Informações da conta
-                    serão adicionadas aqui.
+                    Foto e informações serão
+                    adicionadas posteriormente.
                 </p>
 
                 <div class="account-price">
                     R$ --,--
                 </div>
 
-                <button
-                    class="buy"
-                    onclick="comprarConta('Conta Free Fire')">
+                <button class="buy-btn">
                     Comprar
                 </button>
 
@@ -884,8 +1304,6 @@ footer{
         </div>
 
 
-        <!-- CONTA 3 -->
-
         <div class="account">
 
             <div class="account-photo">
@@ -899,17 +1317,15 @@ footer{
                 </h3>
 
                 <p>
-                    Informações da conta
-                    serão adicionadas aqui.
+                    Foto e informações serão
+                    adicionadas posteriormente.
                 </p>
 
                 <div class="account-price">
                     R$ --,--
                 </div>
 
-                <button
-                    class="buy"
-                    onclick="comprarConta('Conta Free Fire')">
+                <button class="buy-btn">
                     Comprar
                 </button>
 
@@ -919,8 +1335,6 @@ footer{
 
 
     </div>
-
-</div>
 
 </section>
 
@@ -929,61 +1343,210 @@ footer{
 
 <section
     class="section"
-    id="como-funciona">
+    id="como">
 
-<div class="container">
+    <div class="section-title">
+        Como funciona
+    </div>
 
-    <h2 class="title">
-        ❓ Como funciona
-    </h2>
+    <div class="info-grid">
 
 
-    <div class="steps">
+        <div class="info">
 
-        <div class="step">
-
-            <div class="step-number">
-                01
+            <div class="info-icon">
+                💎
             </div>
 
+            <h3>
+                Escolha
+            </h3>
+
             <p>
-                Escolha a quantidade de
-                diamantes ou uma conta.
+                Escolha o pacote de diamantes
+                que deseja comprar.
             </p>
 
         </div>
 
 
-        <div class="step">
+        <div class="info">
 
-            <div class="step-number">
-                02
+            <div class="info-icon">
+                🆔
             </div>
 
+            <h3>
+                Informe seu ID
+            </h3>
+
             <p>
-                Para diamantes, informe
-                corretamente o seu ID.
+                Digite corretamente o ID
+                da sua conta Free Fire.
             </p>
 
         </div>
 
 
-        <div class="step">
+        <div class="info">
 
-            <div class="step-number">
-                03
+            <div class="info-icon">
+                ⚡
             </div>
 
+            <h3>
+                Finalize
+            </h3>
+
             <p>
-                Finalize seu pedido e
-                aguarde a confirmação.
+                Confira o pedido e prossiga
+                para o pagamento.
             </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- SEGURANÇA -->
+
+<section
+    class="section"
+    id="seguranca">
+
+    <div class="section-title">
+        Segurança
+    </div>
+
+    <div class="info-grid">
+
+
+        <div class="info">
+
+            <div class="info-icon">
+                🛡️
+            </div>
+
+            <h3>
+                100% de segurança
+            </h3>
+
+            <p>
+                Trabalhamos para manter
+                suas informações protegidas.
+            </p>
+
+        </div>
+
+
+        <div class="info">
+
+            <div class="info-icon">
+                🔒
+            </div>
+
+            <h3>
+                Proteção de dados
+            </h3>
+
+            <p>
+                Nunca compartilhe sua senha
+                com terceiros.
+            </p>
+
+        </div>
+
+
+        <div class="info">
+
+            <div class="info-icon">
+                💬
+            </div>
+
+            <h3>
+                Suporte
+            </h3>
+
+            <p>
+                Entre no Discord para
+                informações e atendimento.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- PAGAMENTO -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <span style="color:#00aef0;">
+            3
+        </span>
+
+        Método de pagamento
+
+    </div>
+
+    <div class="payment">
+
+        <div class="payment-grid">
+
+            <div class="payment-item">
+
+                <div class="payment-icon">
+                    💠
+                </div>
+
+                PIX
+
+            </div>
+
+
+            <div class="payment-item">
+
+                <div class="payment-icon">
+                    💳
+                </div>
+
+                Cartão
+
+            </div>
+
+
+            <div class="payment-item">
+
+                <div class="payment-icon">
+                    📱
+                </div>
+
+                Carteira
+
+            </div>
+
+
+            <div class="payment-item">
+
+                <div class="payment-icon">
+                    🏦
+                </div>
+
+                Outros
+
+            </div>
 
         </div>
 
     </div>
-
-</div>
 
 </section>
 
@@ -994,25 +1557,24 @@ footer{
     class="section"
     id="discord">
 
-<div class="container">
-
-    <h2 class="title">
-        💬 Discord
-    </h2>
-
     <div class="discord">
 
-        <p>
-            Entre no Discord do Dimas FF
-            para novidades e suporte.
-        </p>
+        <div>
 
+            <h2>
+                Discord Dimas FF
+            </h2>
 
-        <!-- COLOQUE SEU LINK DO DISCORD AQUI -->
+            <p>
+                Promoções, novidades e suporte.
+            </p>
+
+        </div>
+
 
         <a
-            class="discord-button"
-            href="https://discord.com/"
+            class="discord-btn"
+            href="https://discord.gg/EZYSEM4dn"
             target="_blank">
 
             Entrar no Discord
@@ -1021,21 +1583,58 @@ footer{
 
     </div>
 
-</div>
-
 </section>
+
+
+</div>
 
 </main>
 
 
+<!-- FOOTER -->
+
 <footer>
 
-    DIMAS FF © 2026
+<div class="footer-inner">
 
-    <br><br>
+    <div>
 
-    Este é um projeto independente
-    e não é um site oficial da Garena.
+        <div class="footer-brand">
+            DIMAS FF
+        </div>
+
+        <p style="margin-top:8px;">
+            Recarga de diamantes para Free Fire.
+        </p>
+
+    </div>
+
+
+    <div>
+
+        <a href="#como">
+            Como funciona
+        </a>
+
+        <br><br>
+
+        <a href="#seguranca">
+            Segurança
+        </a>
+
+        <br><br>
+
+        <a
+            href="https://discord.gg/EZYSEM4dn"
+            target="_blank">
+
+            Discord
+
+        </a>
+
+    </div>
+
+</div>
 
 </footer>
 
@@ -1066,7 +1665,7 @@ function closeMenu(){
 }
 
 
-function comprar(pacote,preco){
+function login(){
 
     const id =
         document
@@ -1074,6 +1673,31 @@ function comprar(pacote,preco){
         .value
         .trim();
 
+    if(!id){
+
+        alert(
+            "Digite o ID do jogador."
+        );
+
+        return;
+    }
+
+    alert(
+        "ID informado: " +
+        id +
+        "\n\n" +
+        "Agora escolha seu pacote de diamantes."
+    );
+}
+
+
+function comprar(pacote,preco){
+
+    const id =
+        document
+        .getElementById("playerId")
+        .value
+        .trim();
 
     if(!id){
 
@@ -1088,24 +1712,17 @@ function comprar(pacote,preco){
         return;
     }
 
-
     alert(
-        "Pedido selecionado!\n\n" +
-        pacote + "\n" +
-        "Preço: " + preco + "\n" +
-        "ID: " + id +
+        "Produto selecionado!\n\n" +
+        pacote +
+        "\n" +
+        "Preço: " +
+        preco +
+        "\n" +
+        "ID: " +
+        id +
         "\n\n" +
-        "A integração de pagamento será adicionada depois."
-    );
-}
-
-
-function comprarConta(conta){
-
-    alert(
-        conta +
-        "\n\n" +
-        "A compra será configurada posteriormente."
+        "A integração de pagamento será adicionada posteriormente."
     );
 }
 
