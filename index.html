@@ -7,9 +7,9 @@
 
 <style>
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
 }
 
 html{
@@ -18,16 +18,13 @@ html{
 
 body{
     font-family:Arial,Helvetica,sans-serif;
-    background:
-        radial-gradient(circle at 20% 10%,rgba(0,238,255,.12),transparent 30%),
-        radial-gradient(circle at 80% 40%,rgba(0,110,255,.10),transparent 35%),
-        #05070d;
     color:#fff;
     min-height:100vh;
+    background:
+        radial-gradient(circle at 50% -10%,#183a70 0,#070b14 42%,#03050a 100%);
 }
 
 /* FUNDO */
-
 body:before{
     content:"";
     position:fixed;
@@ -41,577 +38,502 @@ body:before{
 }
 
 /* HEADER */
-
 header{
-    height:72px;
+    height:70px;
     position:fixed;
     top:0;
     left:0;
-    width:100%;
+    right:0;
     z-index:1000;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    background:rgba(4,7,13,.82);
-    border-bottom:1px solid rgba(0,238,255,.25);
+    background:rgba(3,6,12,.88);
+    border-bottom:1px solid #00d9ff55;
     backdrop-filter:blur(12px);
 }
 
-.menu-button{
-    position:absolute;
-    left:20px;
-
-    border:1px solid rgba(0,238,255,.35);
-    background:rgba(0,238,255,.07);
-    color:#00eeff;
-
-    width:44px;
-    height:44px;
-    border-radius:10px;
-
-    font-size:24px;
-    cursor:pointer;
-
-    box-shadow:0 0 15px rgba(0,238,255,.12);
-}
-
 .logo{
+    color:#00eaff;
     font-size:27px;
     font-weight:900;
-    color:#00eeff;
+    text-shadow:0 0 8px #00eaff,0 0 25px #008cff;
+}
 
-    text-shadow:
-        0 0 8px #00eeff,
-        0 0 20px rgba(0,238,255,.7);
+.menu{
+    position:absolute;
+    left:16px;
+    width:44px;
+    height:44px;
+    border:1px solid #00eaff66;
+    border-radius:10px;
+    background:#07111d;
+    color:#00eaff;
+    font-size:24px;
+    cursor:pointer;
 }
 
 /* MENU LATERAL */
-
 .sidebar{
     position:fixed;
-    left:-300px;
+    left:-290px;
     top:0;
-
-    width:285px;
+    width:275px;
     height:100vh;
-
-    padding:25px 20px;
-
-    background:#080c14;
-
-    border-right:1px solid rgba(0,238,255,.3);
-
-    box-shadow:
-        5px 0 35px rgba(0,0,0,.7),
-        0 0 30px rgba(0,238,255,.08);
-
-    z-index:2000;
-
-    transition:.3s ease;
+    padding:25px 18px;
+    background:#070c16;
+    border-right:1px solid #00eaff55;
+    box-shadow:5px 0 35px #000;
+    z-index:3000;
+    transition:.3s;
 }
 
-.sidebar.active{
+.sidebar.open{
     left:0;
 }
 
-.sidebar-title{
-    color:#00eeff;
-    font-size:25px;
-    font-weight:900;
-
+.sidebar h2{
+    color:#00eaff;
     margin:10px 0 35px;
+    text-shadow:0 0 15px #00eaff;
+}
 
-    text-shadow:0 0 12px rgba(0,238,255,.8);
+.sidebar .close{
+    position:absolute;
+    right:18px;
+    top:12px;
+    font-size:30px;
+    cursor:pointer;
 }
 
 .sidebar a{
     display:block;
-
     padding:15px;
-
-    margin-bottom:8px;
-
-    color:#fff;
+    margin:7px 0;
+    color:white;
     text-decoration:none;
-
     border-radius:10px;
-
-    border:1px solid transparent;
-
     transition:.2s;
 }
 
 .sidebar a:hover{
-    color:#00eeff;
-    background:rgba(0,238,255,.07);
-    border-color:rgba(0,238,255,.25);
-    box-shadow:0 0 15px rgba(0,238,255,.08);
-}
-
-.close{
-    position:absolute;
-    right:18px;
-    top:15px;
-
-    font-size:30px;
-    color:#fff;
-
-    cursor:pointer;
+    color:#00eaff;
+    background:#00eaff12;
+    box-shadow:0 0 15px #00eaff22;
 }
 
 .overlay{
     display:none;
-
     position:fixed;
     inset:0;
-
-    background:rgba(0,0,0,.7);
-
-    z-index:1500;
+    background:#0009;
+    z-index:2500;
 }
 
-.overlay.active{
+.overlay.open{
     display:block;
 }
 
-/* CONTAINER */
-
+/* GERAL */
 .container{
     width:min(1100px,92%);
     margin:auto;
 }
 
 section{
-    padding-top:105px;
+    padding-top:100px;
 }
 
-/* HERO */
+.title{
+    margin-bottom:24px;
+    font-size:28px;
+    font-weight:900;
+}
 
+.title span{
+    color:#00eaff;
+}
+
+/* CUPOM */
+.coupon-banner{
+    margin:95px auto 0;
+    width:min(1100px,92%);
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+
+    padding:20px 24px;
+
+    border:1px solid #00eaff55;
+    border-radius:16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00eaff12,
+            #080e18
+        );
+
+    box-shadow:0 0 25px #00eaff12;
+}
+
+.coupon-banner strong{
+    color:#00eaff;
+    font-size:20px;
+    text-shadow:0 0 10px #00eaff66;
+}
+
+.coupon-banner p{
+    color:#929dad;
+    margin-top:6px;
+}
+
+.coupon-button{
+    padding:12px 20px;
+    border-radius:9px;
+
+    background:#00eaff;
+    color:#001016;
+
+    text-decoration:none;
+    font-weight:900;
+    white-space:nowrap;
+
+    box-shadow:0 0 15px #00eaff55;
+}
+
+/* INÍCIO */
 .hero{
-    min-height:680px;
+    min-height:620px;
+    padding-top:110px;
 
     display:flex;
     align-items:center;
     justify-content:center;
-
     text-align:center;
 }
 
 .hero-box{
     width:100%;
-    max-width:900px;
+    padding:65px 25px;
 
-    padding:70px 25px;
-
+    border:1px solid #00eaff44;
     border-radius:25px;
 
     background:
         radial-gradient(
             circle,
-            rgba(0,238,255,.12),
+            #00d9ff18,
             transparent 65%
         );
 
-    border:1px solid rgba(0,238,255,.25);
-
-    box-shadow:
-        inset 0 0 50px rgba(0,238,255,.03),
-        0 0 40px rgba(0,238,255,.06);
+    box-shadow:0 0 45px #00d9ff0d;
 }
 
 .hero h1{
-    font-size:clamp(50px,9vw,95px);
+    font-size:clamp(50px,10vw,95px);
+    color:#00eaff;
     font-weight:1000;
 
-    color:#00eeff;
-
     text-shadow:
-        0 0 10px #00eeff,
-        0 0 25px #00eeff,
-        0 0 60px rgba(0,238,255,.7);
+        0 0 10px #00eaff,
+        0 0 30px #008cff;
 }
 
 .hero h2{
     margin-top:10px;
-    font-size:22px;
-    color:#ddd;
+    font-size:23px;
 }
 
 .hero p{
-    margin-top:15px;
-    color:#8f9aa8;
+    margin-top:12px;
+    color:#9ba7b8;
 }
 
-.hero-button{
+.btn{
     display:inline-block;
+    border:0;
+    border-radius:10px;
+    padding:14px 28px;
+    margin-top:25px;
 
-    margin-top:30px;
+    background:#00eaff;
+    color:#001016;
 
-    padding:14px 30px;
-
-    color:#001015;
-    background:#00eeff;
-
+    font-weight:900;
+    cursor:pointer;
     text-decoration:none;
 
-    font-weight:900;
-
-    border-radius:10px;
-
-    box-shadow:
-        0 0 12px #00eeff,
-        0 0 30px rgba(0,238,255,.5);
+    box-shadow:0 0 15px #00eaff77;
 }
 
-/* TITULOS */
-
-.title{
-    font-size:28px;
-    font-weight:900;
-
-    margin-bottom:22px;
-
-    color:#fff;
-
-    text-shadow:0 0 10px rgba(0,238,255,.25);
-}
-
-.title span{
-    color:#00eeff;
-}
-
-/* DIAMANTES */
-
-.diamonds{
+/* CARDS */
+.grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:18px;
 }
 
-.diamond-card{
-    position:relative;
-
-    padding:25px;
-
-    text-align:center;
-
+.card{
+    background:linear-gradient(145deg,#101927,#080d15);
+    border:1px solid #00eaff25;
     border-radius:18px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(15,22,35,.95),
-            rgba(7,11,18,.95)
-        );
-
-    border:1px solid rgba(0,238,255,.2);
-
-    box-shadow:
-        inset 0 0 25px rgba(0,238,255,.025);
-
+    padding:24px;
     transition:.25s;
 }
 
-.diamond-card:hover{
-    transform:translateY(-6px);
+.card:hover{
+    transform:translateY(-5px);
+    border-color:#00eaff;
+    box-shadow:0 0 25px #00eaff18;
+}
 
-    border-color:#00eeff;
-
-    box-shadow:
-        0 0 12px rgba(0,238,255,.3),
-        0 0 35px rgba(0,238,255,.1);
+/* DIAMANTES */
+.diamond{
+    text-align:center;
 }
 
 .diamond-icon{
     font-size:58px;
-
-    margin-bottom:15px;
-
-    filter:
-        drop-shadow(0 0 8px #00eeff)
-        drop-shadow(0 0 20px rgba(0,238,255,.5));
+    filter:drop-shadow(0 0 12px #00eaff);
 }
 
-.diamond-card h3{
-    font-size:20px;
+.diamond h3{
+    margin-top:12px;
 }
 
-.diamond-amount{
-    margin-top:7px;
-    color:#8d99a8;
+.diamond small{
+    color:#8995a6;
 }
 
 .price{
-    margin:15px 0;
-
-    font-size:25px;
+    color:#00eaff;
+    font-size:24px;
     font-weight:900;
-
-    color:#00eeff;
-
-    text-shadow:0 0 10px rgba(0,238,255,.5);
+    margin:15px 0;
+    text-shadow:0 0 10px #00eaff66;
 }
 
 .buy{
     width:100%;
-
-    border:0;
-
     padding:13px;
-
+    border:0;
     border-radius:9px;
 
-    background:#00eeff;
-
-    color:#001015;
+    background:#00eaff;
+    color:#001016;
 
     font-weight:900;
-
     cursor:pointer;
-
-    transition:.2s;
 }
 
-.buy:hover{
-    transform:scale(1.03);
+/* MODAL ID */
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:5000;
 
-    box-shadow:
-        0 0 12px #00eeff,
-        0 0 25px rgba(0,238,255,.5);
+    background:#000b;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(420px,100%);
+
+    background:#09111d;
+
+    border:1px solid #00eaff66;
+    border-radius:18px;
+
+    padding:28px;
+
+    box-shadow:0 0 35px #00eaff22;
+}
+
+.modal-box h2{
+    color:#00eaff;
+    margin-bottom:8px;
+}
+
+.modal-box p{
+    color:#9aa6b6;
+    margin-bottom:20px;
+}
+
+.modal-box input{
+    width:100%;
+    padding:14px;
+
+    border-radius:9px;
+    border:1px solid #00eaff44;
+
+    background:#050912;
+    color:white;
+
+    outline:none;
+    font-size:16px;
+}
+
+.modal-box input:focus{
+    border-color:#00eaff;
+    box-shadow:0 0 10px #00eaff22;
+}
+
+.modal-actions{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+
+.modal-actions button{
+    flex:1;
+}
+
+.cancel{
+    background:#1b2430!important;
+    color:white!important;
+    box-shadow:none!important;
+}
+
+/* ITEM GRÁTIS */
+.free{
+    text-align:center;
+    border:1px solid #00eaff44;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0d1827,
+            #060b13
+        );
+}
+
+.free-icon{
+    font-size:55px;
+    margin-bottom:15px;
+    filter:drop-shadow(0 0 12px #00eaff);
 }
 
 /* CONTAS */
-
-.accounts{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-}
-
-.account{
-    overflow:hidden;
-
-    background:#0c111b;
-
-    border:1px solid rgba(0,238,255,.17);
-
-    border-radius:18px;
-
-    transition:.25s;
-}
-
-.account:hover{
-    border-color:#00eeff;
-
-    box-shadow:
-        0 0 25px rgba(0,238,255,.12);
-}
-
 .account-photo{
-    height:210px;
+    height:190px;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    background:
-        linear-gradient(
-            135deg,
-            #101722,
-            #080b12
-        );
+    background:#0a101a;
 
-    color:#596574;
+    color:#657284;
 
-    font-size:20px;
+    border-radius:12px;
+
+    margin-bottom:18px;
 }
 
-.account-info{
-    padding:20px;
+.account p{
+    color:#8f9bab;
+    margin:8px 0;
 }
 
-.account-info p{
-    color:#8993a1;
-    margin-top:8px;
-}
-
-.account-price{
-    color:#00eeff;
-
-    font-size:23px;
-    font-weight:900;
-
-    margin:15px 0;
-}
-
-/* COMO FUNCIONA */
-
-.steps{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-}
-
-.step{
-    padding:28px;
-
+/* INFORMAÇÕES */
+.info{
     text-align:center;
-
-    background:#0c111b;
-
-    border:1px solid rgba(0,238,255,.16);
-
-    border-radius:17px;
 }
 
-.step-icon{
-    font-size:45px;
-    margin-bottom:15px;
+.info-icon{
+    font-size:43px;
+    margin-bottom:14px;
 }
 
-.step p{
-    color:#8993a1;
-
+.info p{
+    color:#929dad;
     line-height:1.5;
-
     margin-top:10px;
-}
-
-/* SEGURANÇA */
-
-.security{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-}
-
-.security-card{
-    padding:28px;
-
-    text-align:center;
-
-    background:#0c111b;
-
-    border:1px solid rgba(0,238,255,.16);
-
-    border-radius:17px;
-}
-
-.security-icon{
-    font-size:45px;
-    margin-bottom:15px;
-}
-
-.security-card p{
-    margin-top:10px;
-    color:#8993a1;
-    line-height:1.5;
 }
 
 /* DISCORD */
-
 .discord{
-    padding:35px;
-
     display:flex;
-
-    align-items:center;
     justify-content:space-between;
+    align-items:center;
 
     gap:20px;
+    padding:32px;
+
+    border-radius:20px;
 
     background:
         linear-gradient(
             135deg,
-            rgba(0,238,255,.10),
-            rgba(9,13,22,.95)
+            #00eaff12,
+            #080e18
         );
 
-    border:1px solid rgba(0,238,255,.3);
+    border:1px solid #00eaff55;
 
-    border-radius:20px;
-
-    box-shadow:
-        0 0 30px rgba(0,238,255,.05);
+    box-shadow:0 0 30px #00eaff12;
 }
 
 .discord h2{
-    color:#00eeff;
-
-    text-shadow:
-        0 0 10px rgba(0,238,255,.5);
+    color:#00eaff;
+    text-shadow:0 0 10px #00eaff66;
 }
 
 .discord p{
+    color:#909baa;
     margin-top:8px;
-    color:#8993a1;
 }
-
-.discord-button{
-    display:inline-block;
-
-    padding:14px 25px;
-
-    background:#00eeff;
-
-    color:#001015;
-
-    border-radius:9px;
-
-    text-decoration:none;
-
-    font-weight:900;
-
-    box-shadow:
-        0 0 15px rgba(0,238,255,.4);
-}
-
-/* FOOTER */
 
 footer{
     margin-top:100px;
-
     padding:35px 20px;
 
     text-align:center;
 
-    background:#030509;
+    color:#697586;
 
-    border-top:1px solid rgba(0,238,255,.18);
+    background:#020409;
 
-    color:#697481;
+    border-top:1px solid #00eaff22;
 }
 
 footer strong{
-    color:#00eeff;
-
-    text-shadow:0 0 8px rgba(0,238,255,.5);
+    color:#00eaff;
 }
 
 /* RESPONSIVO */
-
-@media(max-width:850px){
-
-    .diamonds,
-    .accounts,
-    .steps,
-    .security{
+@media(max-width:800px){
+    .grid{
         grid-template-columns:repeat(2,1fr);
     }
 }
 
-@media(max-width:560px){
+@media(max-width:550px){
 
-    .diamonds,
-    .accounts,
-    .steps,
-    .security{
+    .grid{
         grid-template-columns:1fr;
     }
 
     .discord{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .coupon-banner{
         flex-direction:column;
         align-items:flex-start;
     }
@@ -626,18 +548,13 @@ footer strong{
 <body>
 
 <!-- MENU -->
-
 <div class="sidebar" id="sidebar">
 
     <div class="close" onclick="closeMenu()">×</div>
 
-    <div class="sidebar-title">
-        DIMAS FF
-    </div>
+    <h2>⚡ DIMAS FF</h2>
 
-    <a href="#inicio" onclick="closeMenu()">
-        🏠 Início
-    </a>
+    <a href="#inicio" onclick="closeMenu()">🏠 Início</a>
 
     <a href="#diamantes" onclick="closeMenu()">
         💎 Diamantes
@@ -647,12 +564,16 @@ footer strong{
         👤 Contas
     </a>
 
-    <a href="#como-funciona" onclick="closeMenu()">
+    <a href="#gratis" onclick="closeMenu()">
+        🎁 Item Grátis
+    </a>
+
+    <a href="#como" onclick="closeMenu()">
         ⚙️ Como funciona
     </a>
 
     <a href="#seguranca" onclick="closeMenu()">
-        🛡️ Segurança
+        🛡️ 100% Seguro
     </a>
 
     <a href="#discord" onclick="closeMenu()">
@@ -669,15 +590,12 @@ footer strong{
 
 
 <!-- HEADER -->
-
 <header>
 
     <button
-        class="menu-button"
+        class="menu"
         onclick="openMenu()">
-
         ☰
-
     </button>
 
     <div class="logo">
@@ -687,8 +605,35 @@ footer strong{
 </header>
 
 
-<!-- INÍCIO -->
+<!-- CUPOM NA ENTRADA -->
+<div class="coupon-banner">
 
+    <div>
+
+        <strong>
+            🎟️ CUPOM ESPECIAL
+        </strong>
+
+        <p>
+            Entre no nosso Discord e veja o cupom!
+        </p>
+
+    </div>
+
+    <a
+        href="https://discord.gg/EZYSEM4dn"
+        target="_blank"
+        rel="noopener"
+        class="coupon-button">
+
+        VER CUPOM
+
+    </a>
+
+</div>
+
+
+<!-- INÍCIO -->
 <section
     class="hero"
     id="inicio">
@@ -702,16 +647,16 @@ footer strong{
             </h1>
 
             <h2>
-                Sua loja de Free Fire
+                Diamantes e Contas Free Fire
             </h2>
 
             <p>
-                Diamantes, contas e novidades.
+                Escolha seu produto e faça seu pedido.
             </p>
 
             <a
                 href="#diamantes"
-                class="hero-button">
+                class="btn">
 
                 VER DIAMANTES
 
@@ -728,25 +673,25 @@ footer strong{
 
 
 <!-- DIAMANTES -->
-
 <section id="diamantes">
 
     <div class="title">
         💎 <span>Diamantes</span>
     </div>
 
-    <div class="diamonds">
+    <div class="grid">
 
-
-        <div class="diamond-card">
+        <div class="card diamond">
 
             <div class="diamond-icon">💎</div>
 
-            <h3>100 Diamantes</h3>
+            <h3>
+                100 Diamantes
+            </h3>
 
-            <div class="diamond-amount">
+            <small>
                 100 💎
-            </div>
+            </small>
 
             <div class="price">
                 R$ 2,00
@@ -754,7 +699,10 @@ footer strong{
 
             <button
                 class="buy"
-                onclick="comprar('100 Diamantes','R$ 2,00')">
+                onclick="abrirCompra(
+                    '100 Diamantes',
+                    'R$ 2,00'
+                )">
 
                 Comprar
 
@@ -763,15 +711,17 @@ footer strong{
         </div>
 
 
-        <div class="diamond-card">
+        <div class="card diamond">
 
             <div class="diamond-icon">💎</div>
 
-            <h3>500 Diamantes</h3>
+            <h3>
+                500 Diamantes
+            </h3>
 
-            <div class="diamond-amount">
+            <small>
                 500 💎
-            </div>
+            </small>
 
             <div class="price">
                 R$ 4,00
@@ -779,7 +729,10 @@ footer strong{
 
             <button
                 class="buy"
-                onclick="comprar('500 Diamantes','R$ 4,00')">
+                onclick="abrirCompra(
+                    '500 Diamantes',
+                    'R$ 4,00'
+                )">
 
                 Comprar
 
@@ -788,15 +741,17 @@ footer strong{
         </div>
 
 
-        <div class="diamond-card">
+        <div class="card diamond">
 
             <div class="diamond-icon">💎</div>
 
-            <h3>1.000 Diamantes</h3>
+            <h3>
+                1.000 Diamantes
+            </h3>
 
-            <div class="diamond-amount">
+            <small>
                 1.000 💎
-            </div>
+            </small>
 
             <div class="price">
                 R$ 8,00
@@ -804,7 +759,10 @@ footer strong{
 
             <button
                 class="buy"
-                onclick="comprar('1.000 Diamantes','R$ 8,00')">
+                onclick="abrirCompra(
+                    '1.000 Diamantes',
+                    'R$ 8,00'
+                )">
 
                 Comprar
 
@@ -813,15 +771,17 @@ footer strong{
         </div>
 
 
-        <div class="diamond-card">
+        <div class="card diamond">
 
             <div class="diamond-icon">💎</div>
 
-            <h3>2.000 Diamantes</h3>
+            <h3>
+                2.000 Diamantes
+            </h3>
 
-            <div class="diamond-amount">
+            <small>
                 2.000 💎
-            </div>
+            </small>
 
             <div class="price">
                 R$ 15,00
@@ -829,7 +789,10 @@ footer strong{
 
             <button
                 class="buy"
-                onclick="comprar('2.000 Diamantes','R$ 15,00')">
+                onclick="abrirCompra(
+                    '2.000 Diamantes',
+                    'R$ 15,00'
+                )">
 
                 Comprar
 
@@ -838,15 +801,17 @@ footer strong{
         </div>
 
 
-        <div class="diamond-card">
+        <div class="card diamond">
 
             <div class="diamond-icon">💎</div>
 
-            <h3>5.000 Diamantes</h3>
+            <h3>
+                5.000 Diamantes
+            </h3>
 
-            <div class="diamond-amount">
+            <small>
                 5.000 💎
-            </div>
+            </small>
 
             <div class="price">
                 R$ 35,00
@@ -854,7 +819,10 @@ footer strong{
 
             <button
                 class="buy"
-                onclick="comprar('5.000 Diamantes','R$ 35,00')">
+                onclick="abrirCompra(
+                    '5.000 Diamantes',
+                    'R$ 35,00'
+                )">
 
                 Comprar
 
@@ -863,15 +831,17 @@ footer strong{
         </div>
 
 
-        <div class="diamond-card">
+        <div class="card diamond">
 
             <div class="diamond-icon">💎</div>
 
-            <h3>10.000 Diamantes</h3>
+            <h3>
+                10.000 Diamantes
+            </h3>
 
-            <div class="diamond-amount">
+            <small>
                 10.000 💎
-            </div>
+            </small>
 
             <div class="price">
                 R$ 65,00
@@ -879,7 +849,10 @@ footer strong{
 
             <button
                 class="buy"
-                onclick="comprar('10.000 Diamantes','R$ 65,00')">
+                onclick="abrirCompra(
+                    '10.000 Diamantes',
+                    'R$ 65,00'
+                )">
 
                 Comprar
 
@@ -892,102 +865,110 @@ footer strong{
 </section>
 
 
-<!-- CONTAS -->
+<!-- ITEM GRÁTIS -->
+<section id="gratis">
 
+    <div class="title">
+        🎁 <span>Item Grátis</span>
+    </div>
+
+    <div class="card free">
+
+        <div class="free-icon">
+            🎁
+        </div>
+
+        <h2>
+            Resgate seu item grátis
+        </h2>
+
+        <p style="color:#929dad;margin-top:10px">
+            Informe seu ID para continuar.
+        </p>
+
+        <button
+            class="btn"
+            onclick="abrirGratis()">
+
+            RESGATAR
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- CONTAS -->
 <section id="contas">
 
     <div class="title">
         👤 <span>Contas</span>
     </div>
 
-    <div class="accounts">
+    <div class="grid">
 
-
-        <div class="account">
+        <div class="card account">
 
             <div class="account-photo">
                 FOTO DA CONTA 1
             </div>
 
-            <div class="account-info">
+            <h3>
+                Conta Free Fire 1
+            </h3>
 
-                <h3>
-                    Conta Free Fire 1
-                </h3>
+            <p>
+                Informações da conta serão
+                adicionadas depois.
+            </p>
 
-                <p>
-                    Foto e informações
-                    serão adicionadas depois.
-                </p>
-
-                <div class="account-price">
-                    R$ --,--
-                </div>
-
-                <button class="buy">
-                    Comprar
-                </button>
-
+            <div class="price">
+                R$ --,--
             </div>
 
         </div>
 
 
-        <div class="account">
+        <div class="card account">
 
             <div class="account-photo">
                 FOTO DA CONTA 2
             </div>
 
-            <div class="account-info">
+            <h3>
+                Conta Free Fire 2
+            </h3>
 
-                <h3>
-                    Conta Free Fire 2
-                </h3>
+            <p>
+                Informações da conta serão
+                adicionadas depois.
+            </p>
 
-                <p>
-                    Foto e informações
-                    serão adicionadas depois.
-                </p>
-
-                <div class="account-price">
-                    R$ --,--
-                </div>
-
-                <button class="buy">
-                    Comprar
-                </button>
-
+            <div class="price">
+                R$ --,--
             </div>
 
         </div>
 
 
-        <div class="account">
+        <div class="card account">
 
             <div class="account-photo">
                 FOTO DA CONTA 3
             </div>
 
-            <div class="account-info">
+            <h3>
+                Conta Free Fire 3
+            </h3>
 
-                <h3>
-                    Conta Free Fire 3
-                </h3>
+            <p>
+                Informações da conta serão
+                adicionadas depois.
+            </p>
 
-                <p>
-                    Foto e informações
-                    serão adicionadas depois.
-                </p>
-
-                <div class="account-price">
-                    R$ --,--
-                </div>
-
-                <button class="buy">
-                    Comprar
-                </button>
-
+            <div class="price">
+                R$ --,--
             </div>
 
         </div>
@@ -998,8 +979,409 @@ footer strong{
 
 
 <!-- COMO FUNCIONA -->
-
-<section id="como-funciona">
+<section id="como">
 
     <div class="title">
-       
+        ⚙️ <span>Como funciona</span>
+    </div>
+
+    <div class="grid">
+
+        <div class="card info">
+
+            <div class="info-icon">
+                💎
+            </div>
+
+            <h3>
+                1. Escolha
+            </h3>
+
+            <p>
+                Escolha o produto que deseja.
+            </p>
+
+        </div>
+
+
+        <div class="card info">
+
+            <div class="info-icon">
+                🆔
+            </div>
+
+            <h3>
+                2. Informe seu ID
+            </h3>
+
+            <p>
+                Coloque corretamente o ID
+                da sua conta.
+            </p>
+
+        </div>
+
+
+        <div class="card info">
+
+            <div class="info-icon">
+                📦
+            </div>
+
+            <h3>
+                3. Receba
+            </h3>
+
+            <p>
+                Após a confirmação,
+                o pedido será processado.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SEGURANÇA -->
+<section id="seguranca">
+
+    <div class="title">
+        🛡️ <span>100% Seguro</span>
+    </div>
+
+    <div class="grid">
+
+        <div class="card info">
+
+            <div class="info-icon">
+                🛡️
+            </div>
+
+            <h3>
+                100% Seguro
+            </h3>
+
+            <p>
+                Priorizamos a segurança
+                durante o atendimento.
+            </p>
+
+        </div>
+
+
+        <div class="card info">
+
+            <div class="info-icon">
+                🔒
+            </div>
+
+            <h3>
+                Proteção
+            </h3>
+
+            <p>
+                Nunca informe sua senha
+                do Free Fire.
+            </p>
+
+        </div>
+
+
+        <div class="card info">
+
+            <div class="info-icon">
+                💬
+            </div>
+
+            <h3>
+                Suporte
+            </h3>
+
+            <p>
+                Entre no Discord para
+                receber suporte.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DISCORD -->
+<section id="discord">
+
+    <div class="discord">
+
+        <div>
+
+            <h2>
+                💬 Discord Dimas FF
+            </h2>
+
+            <p>
+                Entre no nosso Discord
+                para suporte e novidades.
+            </p>
+
+        </div>
+
+        <a
+            href="https://discord.gg/EZYSEM4dn"
+            target="_blank"
+            rel="noopener"
+            class="btn">
+
+            ENTRAR NO DISCORD
+
+        </a>
+
+    </div>
+
+</section>
+
+</div>
+
+
+<footer>
+
+    <strong>
+        DIMAS FF
+    </strong>
+
+    <p style="margin-top:8px">
+        © 2026 Dimas FF
+    </p>
+
+</footer>
+
+
+<!-- MODAL DO ID -->
+<div class="modal" id="modal">
+
+    <div class="modal-box">
+
+        <h2 id="modalTitle">
+            ID do jogador
+        </h2>
+
+        <p id="modalText">
+            Digite o ID do jogador para continuar.
+        </p>
+
+        <input
+            id="playerId"
+            type="text"
+            inputmode="numeric"
+            placeholder="Digite seu ID">
+
+        <div class="modal-actions">
+
+            <button
+                class="btn cancel"
+                onclick="fecharModal()">
+
+                Cancelar
+
+            </button>
+
+            <button
+                class="btn"
+                onclick="continuarPedido()">
+
+                Continuar
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+let produtoSelecionado = "";
+let precoSelecionado = "";
+let modoGratis = false;
+
+
+/* MENU */
+
+function openMenu(){
+
+    document
+        .getElementById("sidebar")
+        .classList.add("open");
+
+    document
+        .getElementById("overlay")
+        .classList.add("open");
+}
+
+function closeMenu(){
+
+    document
+        .getElementById("sidebar")
+        .classList.remove("open");
+
+    document
+        .getElementById("overlay")
+        .classList.remove("open");
+}
+
+
+/* COMPRA */
+
+function abrirCompra(produto,preco){
+
+    produtoSelecionado = produto;
+    precoSelecionado = preco;
+    modoGratis = false;
+
+    document
+        .getElementById("modalTitle")
+        .innerText = "ID do jogador";
+
+    document
+        .getElementById("modalText")
+        .innerText =
+        produto +
+        " — " +
+        preco +
+        ". Digite o ID para continuar.";
+
+    document
+        .getElementById("playerId")
+        .value = "";
+
+    document
+        .getElementById("modal")
+        .classList.add("show");
+
+    setTimeout(function(){
+
+        document
+            .getElementById("playerId")
+            .focus();
+
+    },100);
+}
+
+
+/* ITEM GRÁTIS */
+
+function abrirGratis(){
+
+    produtoSelecionado = "Item grátis";
+    precoSelecionado = "Grátis";
+    modoGratis = true;
+
+    document
+        .getElementById("modalTitle")
+        .innerText = "Resgatar item grátis";
+
+    document
+        .getElementById("modalText")
+        .innerText =
+        "Digite o ID do jogador para continuar.";
+
+    document
+        .getElementById("playerId")
+        .value = "";
+
+    document
+        .getElementById("modal")
+        .classList.add("show");
+
+    setTimeout(function(){
+
+        document
+            .getElementById("playerId")
+            .focus();
+
+    },100);
+}
+
+
+/* FECHAR MODAL */
+
+function fecharModal(){
+
+    document
+        .getElementById("modal")
+        .classList.remove("show");
+}
+
+
+/* CONTINUAR */
+
+function continuarPedido(){
+
+    const id =
+        document
+        .getElementById("playerId")
+        .value
+        .trim();
+
+    if(!id){
+
+        alert(
+            "Digite o ID do jogador primeiro."
+        );
+
+        document
+            .getElementById("playerId")
+            .focus();
+
+        return;
+    }
+
+    if(modoGratis){
+
+        alert(
+            "ID informado com sucesso!\n\n" +
+            "Seu pedido de item grátis foi registrado."
+        );
+
+    }else{
+
+        alert(
+            "ID informado com sucesso!\n\n" +
+            "Produto: " +
+            produtoSelecionado +
+            "\nValor: " +
+            precoSelecionado +
+            "\n\n" +
+            "A etapa de pagamento será configurada posteriormente."
+        );
+
+    }
+
+    fecharModal();
+}
+
+
+/* FECHAR MODAL AO CLICAR FORA */
+
+document
+    .getElementById("modal")
+    .addEventListener(
+        "click",
+        function(e){
+
+            if(e.target === this){
+                fecharModal();
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
