@@ -3,881 +3,400 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Dimas FF</title>
 
 <style>
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #f5f5f5;
-    color: #222;
+    background: #0b0d12;
+    color: #fff;
 }
 
-button, input {
-    font: inherit;
-}
+/* ================= HEADER ================= */
 
 header {
-    background: #fff;
-    border-bottom: 1px solid #e5e5e5;
-    height: 64px;
+    height: 70px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+
     display: flex;
     align-items: center;
-    padding: 0 5%;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    justify-content: space-between;
+
+    padding: 0 25px;
+
+    background: rgba(10, 12, 18, 0.95);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    backdrop-filter: blur(10px);
 }
 
 .logo {
-    font-weight: 800;
-    font-size: 21px;
-    margin: auto;
+    font-size: 25px;
+    font-weight: 900;
+    color: #00d9ff;
+    text-shadow: 0 0 12px #00d9ff;
 }
 
-.menu {
-    border: 0;
-    background: transparent;
-    font-size: 25px;
+.menu-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 28px;
     cursor: pointer;
 }
 
+/* ================= MENU ================= */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -290px;
+
+    width: 280px;
+    height: 100vh;
+
+    z-index: 2000;
+
+    padding: 25px;
+
+    background: #10131b;
+
+    transition: .3s;
+
+    box-shadow: 5px 0 30px rgba(0,0,0,.5);
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar h2 {
+    color: #00d9ff;
+    margin-bottom: 35px;
+}
+
+.sidebar a {
+    display: block;
+
+    padding: 16px 8px;
+
+    color: white;
+    text-decoration: none;
+
+    border-bottom: 1px solid rgba(255,255,255,.08);
+
+    transition: .2s;
+}
+
+.sidebar a:hover {
+    color: #00d9ff;
+}
+
+.close-menu {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+
+    font-size: 28px;
+
+    cursor: pointer;
+}
+
+.overlay {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,.65);
+
+    z-index: 1500;
+}
+
+.overlay.active {
+    display: block;
+}
+
+/* ================= CONTAINER ================= */
+
 .container {
-    width: min(1080px, 94%);
+    width: min(1100px, 92%);
     margin: auto;
 }
 
 section {
-    margin: 20px 0;
+    padding-top: 100px;
 }
 
-.section-title {
-    font-size: 21px;
-    font-weight: 700;
-    margin-bottom: 12px;
+.title {
+    font-size: 27px;
+    font-weight: 900;
+    margin-bottom: 25px;
+}
+
+/* ================= INÍCIO ================= */
+
+.hero {
+    min-height: 650px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding-top: 110px;
+}
+
+.hero-box {
+    width: 100%;
+    max-width: 850px;
+
+    padding: 70px 30px;
+
+    border-radius: 25px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(0,217,255,.16),
+            transparent 65%
+        );
+
+    border: 1px solid rgba(0,217,255,.25);
+}
+
+.hero h1 {
+    font-size: clamp(45px, 8vw, 90px);
+    font-weight: 1000;
+
+    color: #00d9ff;
+
+    text-shadow:
+        0 0 10px #00d9ff,
+        0 0 30px rgba(0,217,255,.6);
+}
+
+.hero p {
+    margin-top: 20px;
+    color: #bbb;
+    font-size: 18px;
+}
+
+.hero-btn {
+    display: inline-block;
+
+    margin-top: 30px;
+
+    padding: 14px 30px;
+
+    border-radius: 10px;
+
+    background: #00d9ff;
+    color: #061016;
+
+    text-decoration: none;
+
+    font-weight: 900;
+
+    box-shadow: 0 0 20px rgba(0,217,255,.45);
+}
+
+/* ================= CARDS ================= */
+
+.cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
 }
 
 .card {
-    background: #fff;
-    border: 1px solid #e3e3e3;
-    border-radius: 10px;
+    background: #121620;
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    border-radius: 16px;
+
+    padding: 22px;
+
+    transition: .25s;
 }
 
-/* seleção */
+.card:hover {
+    transform: translateY(-4px);
 
-.games {
-    display: flex;
-    gap: 10px;
-    overflow-x: auto;
+    border-color: rgba(0,217,255,.45);
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.35);
 }
 
-.game {
-    min-width: 180px;
-    padding: 14px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.game.active {
-    border: 2px solid #222;
-}
-
-.game-img {
-    width: 48px;
-    height: 48px;
-    border-radius: 8px;
-    background: #eee;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 25px;
-}
-
-/* item grátis */
-
-.free {
-    padding: 20px;
-}
-
-.free p {
-    color: #777;
-    margin: 8px 0 15px;
-}
-
-.btn {
-    border: 0;
-    background: #222;
-    color: #fff;
-    padding: 11px 22px;
-    border-radius: 7px;
-    cursor: pointer;
-}
-
-.id-form {
-    display: none;
-    margin-top: 15px;
-}
-
-.id-form.show {
-    display: block;
-}
-
-.id-form input,
-.login input {
-    width: 100%;
-    padding: 13px;
-    border: 1px solid #ccc;
-    border-radius: 7px;
-    outline: none;
-    margin-bottom: 10px;
-}
-
-/* eventos */
-
-.event {
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.event-text p {
-    color: #777;
-    margin-top: 6px;
-}
-
-.event-img {
-    width: 100px;
-    height: 70px;
-    background: #eee;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 35px;
-}
-
-/* login */
-
-.login {
-    padding: 20px;
-}
-
-.login label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 8px;
-}
-
-.login small {
-    color: #777;
-}
-
-/* diamantes */
+/* ================= DIAMANTES ================= */
 
 .diamonds {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.diamond-card {
+    text-align: center;
+
+    background: #121620;
+
+    border: 1px solid rgba(0,217,255,.15);
+
+    border-radius: 17px;
+
+    padding: 25px;
 }
 
 .diamond {
-    padding: 17px;
+    font-size: 55px;
+
+    margin-bottom: 15px;
+
+    filter:
+        drop-shadow(0 0 12px rgba(0,217,255,.7));
 }
 
-.diamond-icon {
-    height: 90px;
-    background: #f0f0f0;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 42px;
-    margin-bottom: 12px;
+.diamond-card h3 {
+    font-size: 20px;
 }
 
-.diamond h3 {
-    font-size: 17px;
-}
-
-.diamond .amount {
-    color: #777;
-    margin-top: 5px;
+.amount {
+    margin-top: 8px;
+    color: #aaa;
 }
 
 .price {
-    font-size: 20px;
-    font-weight: 700;
-    margin: 12px 0;
+    margin: 15px 0;
+
+    font-size: 24px;
+
+    font-weight: 900;
+
+    color: #00d9ff;
 }
 
-.buy {
+.buy-btn {
     width: 100%;
-    border: 0;
-    background: #222;
-    color: #fff;
-    padding: 11px;
-    border-radius: 7px;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 9px;
+
     cursor: pointer;
+
+    background: #00d9ff;
+
+    color: #061016;
+
+    font-weight: 900;
+
+    transition: .2s;
 }
 
-.buy:disabled {
-    opacity: .45;
-    cursor: not-allowed;
+.buy-btn:hover {
+    transform: scale(1.03);
+
+    box-shadow:
+        0 0 18px rgba(0,217,255,.5);
 }
 
-/* ofertas */
-
-.offers {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-}
-
-.offer {
-    padding: 15px;
-}
-
-.offer-img {
-    height: 120px;
-    background: #eee;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 42px;
-    margin-bottom: 12px;
-}
-
-.offer p {
-    color: #777;
-    margin-top: 6px;
-}
-
-/* contas */
+/* ================= CONTAS ================= */
 
 .accounts {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
 }
 
-.account {
+.account-card {
     overflow: hidden;
+
+    background: #121620;
+
+    border-radius: 16px;
+
+    border: 1px solid rgba(255,255,255,.08);
 }
 
 .account-photo {
-    height: 190px;
-    background: #eee;
+    height: 210px;
+
     display: flex;
-    justify-content: center;
     align-items: center;
-    color: #888;
-    font-size: 38px;
+    justify-content: center;
+
+    background: #191d27;
+
+    color: #777;
+
+    font-size: 20px;
 }
 
 .account-info {
-    padding: 16px;
-}
-
-.account-info p {
-    color: #777;
-    margin-top: 6px;
-}
-
-.account-price {
-    font-size: 19px;
-    font-weight: 700;
-    margin: 12px 0;
-}
-
-/* pagamento */
-
-.payment {
     padding: 20px;
 }
 
-.payment-grid {
+.account-info h3 {
+    margin-bottom: 8px;
+}
+
+.account-info p {
+    color: #999;
+}
+
+.account-price {
+    margin: 15px 0;
+
+    font-size: 22px;
+
+    font-weight: 900;
+
+    color: #00d9ff;
+}
+
+/* ================= COMO FUNCIONA ================= */
+
+.steps {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
 }
 
-.payment-method {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 15px;
+.step {
     text-align: center;
-    background: #fff;
 }
 
-.payment-method div {
-    font-size: 28px;
-    margin-bottom: 7px;
-}
-
-/* discord */
-
-.discord {
-    padding: 22px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-}
-
-.discord p {
-    color: #777;
-    margin-top: 5px;
-}
-
-.discord a {
-    text-decoration: none;
-    color: #fff;
-    background: #222;
-    padding: 12px 20px;
-    border-radius: 7px;
-}
-
-/* mensagem */
-
-.message {
-    display: none;
-    position: fixed;
-    left: 50%;
-    bottom: 25px;
-    transform: translateX(-50%);
-    background: #222;
-    color: #fff;
-    padding: 15px 20px;
-    border-radius: 8px;
-    z-index: 500;
-}
-
-.message.show {
-    display: block;
-}
-
-/* responsivo */
-
-@media(max-width:850px) {
-    .diamonds {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .offers,
-    .accounts {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media(max-width:600px) {
-    .diamonds {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .offers,
-    .accounts {
-        grid-template-columns: 1fr;
-    }
-
-    .payment-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .event,
-    .discord {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-}
-
-@media(max-width:400px) {
-    .diamonds {
-        grid-template-columns: 1fr;
-    }
-}
-</style>
-</head>
-
-<body>
-
-<header>
-    <button class="menu">☰</button>
-    <div class="logo">DIMAS FF</div>
-</header>
-
-<main class="container">
-
-<!-- SELEÇÃO DE JOGOS -->
-
-<section>
-    <div class="section-title">Seleção de jogos</div>
-
-    <div class="games">
-
-        <div class="card game active">
-            <div class="game-img">🔥</div>
-            <div>
-                <strong>Free Fire</strong>
-                <small>Recarga</small>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-
-<!-- ITEM GRÁTIS -->
-
-<section>
-    <div class="section-title">Item Grátis</div>
-
-    <div class="card free">
-
-        <h3>Resgate aqui seus itens exclusivos grátis</h3>
-
-        <p>Confira o item disponível para resgate.</p>
-
-        <button class="btn" onclick="abrirResgate()">
-            Resgatar
-        </button>
-
-        <div class="id-form" id="resgateForm">
-
-            <input
-                id="idGratis"
-                type="text"
-                inputmode="numeric"
-                placeholder="Insira o ID de jogador aqui">
-
-            <button class="btn" onclick="resgatar()">
-                Confirmar
-            </button>
-
-        </div>
-
-    </div>
-</section>
-
-
-<!-- EVENTOS -->
-
-<section>
-    <div class="section-title">Eventos especiais</div>
-
-    <div class="card event">
-
-        <div class="event-text">
-            <h3>BÔNUS NAS TENTATIVAS!</h3>
-            <p>Confira os eventos disponíveis.</p>
-        </div>
-
-        <div class="event-img">🎁</div>
-
-    </div>
-</section>
-
-
-<!-- LOGIN -->
-
-<section>
-    <div class="section-title">1 &nbsp; Login</div>
-
-    <div class="card login">
-
-        <label>ID do jogador</label>
-
-        <input
-            id="playerId"
-            type="text"
-            inputmode="numeric"
-            placeholder="Insira o ID de jogador aqui"
-            oninput="verificarID()">
-
-        <button
-            class="btn"
-            onclick="login()">
-
-            Login
-
-        </button>
-
-        <br><br>
-
-        <small>
-            Ou entre com sua conta de jogo
-        </small>
-
-    </div>
-</section>
-
-
-<!-- DIAMANTES -->
-
-<section>
-
-    <div class="section-title">
-        2 &nbsp; Valor de Recarga
-    </div>
-
-    <div class="diamonds">
-
-        <div class="card diamond">
-            <div class="diamond-icon">💎</div>
-            <h3>100 Diamantes</h3>
-            <div class="amount">100 💎</div>
-            <div class="price">R$ 2,00</div>
-            <button class="buy" disabled onclick="comprar('100 Diamantes','2,00')">
-                Comprar
-            </button>
-        </div>
-
-        <div class="card diamond">
-            <div class="diamond-icon">💎</div>
-            <h3>500 Diamantes</h3>
-            <div class="amount">500 💎</div>
-            <div class="price">R$ 4,00</div>
-            <button class="buy" disabled onclick="comprar('500 Diamantes','4,00')">
-                Comprar
-            </button>
-        </div>
-
-        <div class="card diamond">
-            <div class="diamond-icon">💎</div>
-            <h3>1.000 Diamantes</h3>
-            <div class="amount">1.000 💎</div>
-            <div class="price">R$ 8,00</div>
-            <button class="buy" disabled onclick="comprar('1.000 Diamantes','8,00')">
-                Comprar
-            </button>
-        </div>
-
-        <div class="card diamond">
-            <div class="diamond-icon">💎</div>
-            <h3>2.000 Diamantes</h3>
-            <div class="amount">2.000 💎</div>
-            <div class="price">R$ 15,00</div>
-            <button class="buy" disabled onclick="comprar('2.000 Diamantes','15,00')">
-                Comprar
-            </button>
-        </div>
-
-        <div class="card diamond">
-            <div class="diamond-icon">💎</div>
-            <h3>5.000 Diamantes</h3>
-            <div class="amount">5.000 💎</div>
-            <div class="price">R$ 35,00</div>
-            <button class="buy" disabled onclick="comprar('5.000 Diamantes','35,00')">
-                Comprar
-            </button>
-        </div>
-
-        <div class="card diamond">
-            <div class="diamond-icon">💎</div>
-            <h3>10.000 Diamantes</h3>
-            <div class="amount">10.000 💎</div>
-            <div class="price">R$ 65,00</div>
-            <button class="buy" disabled onclick="comprar('10.000 Diamantes','65,00')">
-                Comprar
-            </button>
-        </div>
-
-    </div>
-</section>
-
-
-<!-- OFERTAS -->
-
-<section>
-    <div class="section-title">Ofertas especiais</div>
-
-    <div class="offers">
-
-        <div class="card offer">
-            <div class="offer-img">📅</div>
-            <h3>Assinatura Semanal</h3>
-            <p>Oferta disponível em breve.</p>
-        </div>
-
-        <div class="card offer">
-            <div class="offer-img">📆</div>
-            <h3>Assinatura Mensal</h3>
-            <p>Oferta disponível em breve.</p>
-        </div>
-
-        <div class="card offer">
-            <div class="offer-img">🎟️</div>
-            <h3>Passe Booyah</h3>
-            <p>Oferta disponível em breve.</p>
-        </div>
-
-    </div>
-</section>
-
-
-<!-- CONTAS -->
-
-<section>
-
-    <div class="section-title">Contas</div>
-
-    <div class="accounts">
-
-        <div class="card account">
-            <div class="account-photo">FOTO 1</div>
-            <div class="account-info">
-                <h3>Conta Free Fire</h3>
-                <p>Foto e informações serão adicionadas depois.</p>
-                <div class="account-price">R$ --,--</div>
-                <button class="buy">Comprar</button>
-            </div>
-        </div>
-
-        <div class="card account">
-            <div class="account-photo">FOTO 2</div>
-            <div class="account-info">
-                <h3>Conta Free Fire</h3>
-                <p>Foto e informações serão adicionadas depois.</p>
-                <div class="account-price">R$ --,--</div>
-                <button class="buy">Comprar</button>
-            </div>
-        </div>
-
-        <div class="card account">
-            <div class="account-photo">FOTO 3</div>
-            <div class="account-info">
-                <h3>Conta Free Fire</h3>
-                <p>Foto e informações serão adicionadas depois.</p>
-                <div class="account-price">R$ --,--</div>
-                <button class="buy">Comprar</button>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-
-<!-- PAGAMENTO -->
-
-<section>
-
-    <div class="section-title">
-        3 &nbsp; Método de pagamento
-    </div>
-
-    <div class="card payment">
-
-        <div class="payment-grid">
-
-            <div class="payment-method">
-                <div>💠</div>
-                Pix
-            </div>
-
-            <div class="payment-method">
-                <div>💳</div>
-                Cartão de Crédito
-            </div>
-
-            <div class="payment-method">
-                <div>📱</div>
-                PicPay
-            </div>
-
-            <div class="payment-method">
-                <div>💰</div>
-                Mercado Pago
-            </div>
-
-        </div>
-
-        <br>
-
-        <button
-            class="btn"
-            id="paymentButton"
-            disabled
-            onclick="irPagamento()">
-
-            Compre agora
-
-        </button>
-
-    </div>
-</section>
-
-
-<!-- DISCORD -->
-
-<section>
-
-    <div class="card discord">
-
-        <div>
-            <h3>Dimas FF</h3>
-            <p>Entre no nosso Discord para novidades e suporte.</p>
-        </div>
-
-        <a
-            href="https://discord.gg/EZYSEM4dn"
-            target="_blank">
-
-            Discord
-
-        </a>
-
-    </div>
-
-</section>
-
-</main>
-
-
-<div class="message" id="message"></div>
-
-
-<script>
-
-let idJogador = "";
-let produtoSelecionado = "";
-
-
-/* ID */
-
-function verificarID() {
-
-    idJogador =
-        document.getElementById("playerId").value.trim();
-
-    const botoes =
-        document.querySelectorAll(".buy");
-
-    const pagamento =
-        document.getElementById("paymentButton");
-
-    const valido = idJogador.length > 0;
-
-    botoes.forEach(botao => {
-        botao.disabled = !valido;
-    });
-
-    pagamento.disabled = !valido;
-}
-
-
-/* LOGIN */
-
-function login() {
-
-    const id =
-        document.getElementById("playerId").value.trim();
-
-    if (!id) {
-        return;
-    }
-
-    mostrarMensagem(
-        "ID confirmado."
-    );
-}
-
-
-/* ITEM GRÁTIS */
-
-function abrirResgate() {
-
-    document
-        .getElementById("resgateForm")
-        .classList.add("show");
-}
-
-
-function resgatar() {
-
-    const id =
-        document.getElementById("idGratis").value.trim();
-
-    if (!id) {
-        return;
-    }
-
-    mostrarMensagem(
-        "ID confirmado. O item será enviado para a caixa de correio do jogo."
-    );
-}
-
-
-/* COMPRAR */
-
-function comprar(produto, preco) {
-
-    const id =
-        document.getElementById("playerId").value.trim();
-
-    if (!id) {
-        return;
-    }
-
-    produtoSelecionado = produto;
-
-    /*
-      Aqui fica preparada a próxima etapa.
-      Depois podemos ligar esta função ao Pix
-      / sistema de pagamento real.
-    */
-
-    mostrarMensagem(
-        produto + " selecionado."
-    );
-}
-
-
-/* PAGAMENTO */
-
-function irPagamento() {
-
-    const id =
-        document.getElementById("playerId").value.trim();
-
-    if (!id) {
-        return;
-    }
-
-    /*
-      Página de pagamento preparada.
-      A integração Pix pode ser colocada aqui
-      posteriormente.
-    */
-
-    mostrarMensagem(
-        "Pagamento selecionado."
-    );
-}
-
-
-/* MENSAGEM */
-
-function mostrarMensagem(texto) {
-
-    const msg =
-        document.getElementById("message");
-
-    msg.textContent = texto;
-    msg.classList.add("show");
-
-    setTimeout(() => {
-        msg.classList.remove("show");
-    }, 3000);
-}
-
-</script>
-
-</body>
-</html>
+.step-icon {
+    font-size: 42
