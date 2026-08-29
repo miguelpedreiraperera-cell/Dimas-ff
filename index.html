@@ -4,20 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#050816">
-
 <title>Dimas FF</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 body{
   font-family:Arial,Helvetica,sans-serif;
   background:#030611;
@@ -25,8 +16,6 @@ body{
   min-height:100vh;
   overflow-x:hidden;
 }
-
-/* FUNDO */
 
 body::before{
   content:"";
@@ -52,8 +41,6 @@ body::after{
   background-size:40px 40px;
 }
 
-/* HEADER */
-
 header{
   position:sticky;
   top:0;
@@ -72,11 +59,7 @@ header{
   font-size:28px;
   font-weight:900;
   letter-spacing:2px;
-  color:#fff;
-  text-shadow:
-    0 0 8px #00aaff,
-    0 0 20px #008cff,
-    0 0 40px #0066ff;
+  text-shadow:0 0 8px #00aaff,0 0 20px #008cff,0 0 40px #0066ff;
 }
 
 .menu-btn{
@@ -90,14 +73,7 @@ header{
   color:#fff;
   font-size:23px;
   cursor:pointer;
-  box-shadow:0 0 15px rgba(0,140,255,.2);
 }
-
-.menu-btn:active{
-  transform:scale(.94);
-}
-
-/* MENU */
 
 .side-menu{
   position:fixed;
@@ -113,9 +89,7 @@ header{
   box-shadow:10px 0 40px rgba(0,100,255,.18);
 }
 
-.side-menu.open{
-  left:0;
-}
+.side-menu.open{left:0}
 
 .side-menu h2{
   color:#00aaff;
@@ -138,7 +112,12 @@ header{
   border-color:#008cff;
 }
 
-/* HERO */
+section{
+  width:100%;
+  max-width:1100px;
+  margin:auto;
+  padding:70px 18px;
+}
 
 .hero{
   min-height:620px;
@@ -161,7 +140,6 @@ header{
   border-radius:999px;
   color:#7fd8ff;
   background:rgba(0,130,255,.08);
-  box-shadow:0 0 20px rgba(0,140,255,.15);
   margin-bottom:22px;
   font-size:13px;
   font-weight:bold;
@@ -173,10 +151,7 @@ header{
   font-weight:1000;
   letter-spacing:4px;
   margin-bottom:22px;
-  text-shadow:
-    0 0 10px #00aaff,
-    0 0 30px #008cff,
-    0 0 70px #004cff;
+  text-shadow:0 0 10px #00aaff,0 0 30px #008cff,0 0 70px #004cff;
 }
 
 .hero h1 span{
@@ -227,15 +202,6 @@ header{
   transform:translateY(-2px);
 }
 
-/* SEÇÕES */
-
-section{
-  width:100%;
-  max-width:1100px;
-  margin:auto;
-  padding:70px 18px;
-}
-
 .section-title{
   text-align:center;
   margin-bottom:12px;
@@ -253,8 +219,6 @@ section{
   margin-bottom:35px;
 }
 
-/* CARDS */
-
 .cards{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
@@ -266,11 +230,7 @@ section{
   overflow:hidden;
   padding:25px;
   border-radius:18px;
-  background:linear-gradient(
-    145deg,
-    rgba(9,24,50,.95),
-    rgba(3,9,22,.96)
-  );
+  background:linear-gradient(145deg,rgba(9,24,50,.95),rgba(3,9,22,.96));
   border:1px solid rgba(0,140,255,.25);
   box-shadow:0 10px 35px rgba(0,0,0,.25);
   transition:.25s;
@@ -279,22 +239,6 @@ section{
 .card:hover{
   transform:translateY(-5px);
   border-color:#008cff;
-  box-shadow:
-    0 0 25px rgba(0,140,255,.18),
-    0 15px 40px rgba(0,0,0,.3);
-}
-
-.card::before{
-  content:"";
-  position:absolute;
-  width:120px;
-  height:120px;
-  top:-60px;
-  right:-60px;
-  border-radius:50%;
-  background:#008cff;
-  filter:blur(55px);
-  opacity:.15;
 }
 
 .card-icon{
@@ -321,15 +265,10 @@ section{
 }
 
 .diamond-card{
-  position:relative;
   text-align:center;
   padding:25px 18px;
   border-radius:18px;
-  background:linear-gradient(
-    160deg,
-    rgba(8,28,58,.96),
-    rgba(2,7,18,.98)
-  );
+  background:linear-gradient(160deg,rgba(8,28,58,.96),rgba(2,7,18,.98));
   border:1px solid rgba(0,145,255,.3);
   transition:.25s;
 }
@@ -337,9 +276,7 @@ section{
 .diamond-card:hover{
   transform:translateY(-6px);
   border-color:#00aaff;
-  box-shadow:
-    0 0 25px rgba(0,140,255,.25),
-    inset 0 0 25px rgba(0,100,255,.06);
+  box-shadow:0 0 25px rgba(0,140,255,.25);
 }
 
 .diamond{
@@ -353,7 +290,7 @@ section{
   margin-bottom:7px;
 }
 
-.diamond-card .price{
+.price{
   font-size:27px;
   font-weight:900;
   color:#00b7ff;
@@ -376,54 +313,68 @@ section{
   color:#fff;
   font-weight:900;
   cursor:pointer;
-  box-shadow:0 0 18px rgba(0,130,255,.25);
 }
 
-/* FORMULÁRIO */
+/* CONTAS */
 
-.form-box{
-  max-width:600px;
-  margin:auto;
-  padding:25px;
-  border-radius:20px;
-  background:rgba(5,15,34,.9);
-  border:1px solid rgba(0,140,255,.3);
-  box-shadow:0 0 35px rgba(0,100,255,.08);
+.account-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:18px;
 }
 
-label{
-  display:block;
-  margin:15px 0 7px;
-  color:#b8c6dc;
-  font-weight:bold;
+.account-card{
+  overflow:hidden;
+  border-radius:18px;
+  background:linear-gradient(160deg,rgba(8,28,58,.96),rgba(2,7,18,.98));
+  border:1px solid rgba(0,145,255,.3);
+  transition:.25s;
 }
 
-input,
-select{
-  width:100%;
-  padding:14px;
-  border-radius:10px;
-  border:1px solid rgba(0,140,255,.3);
-  outline:none;
-  background:#050c1b;
-  color:#fff;
-  font-size:15px;
-}
-
-input:focus,
-select:focus{
+.account-card:hover{
+  transform:translateY(-6px);
   border-color:#00aaff;
-  box-shadow:0 0 12px rgba(0,140,255,.15);
+  box-shadow:0 0 25px rgba(0,140,255,.25);
 }
 
-.form-message{
-  margin-top:15px;
-  padding:12px;
-  display:none;
+.account-image{
+  width:100%;
+  height:190px;
+  object-fit:cover;
+  display:block;
+  background:#071226;
+}
+
+.account-info{
+  padding:18px;
+}
+
+.account-info h3{
+  font-size:20px;
+  margin-bottom:7px;
+}
+
+.account-info p{
+  color:#7d8ba2;
+  margin-bottom:10px;
+}
+
+.account-price{
+  color:#00b7ff;
+  font-size:24px;
+  font-weight:900;
+  margin-bottom:12px;
+}
+
+.account-btn{
+  width:100%;
+  border:0;
   border-radius:10px;
-  background:rgba(0,140,255,.08);
-  border:1px solid rgba(0,140,255,.3);
-  color:#a8dcff;
+  padding:12px;
+  background:linear-gradient(135deg,#009cff,#004cff);
+  color:#fff;
+  font-weight:900;
+  cursor:pointer;
 }
 
 /* COMO FUNCIONA */
@@ -474,9 +425,7 @@ select:focus{
   margin:auto;
   padding:35px 20px;
   border-radius:22px;
-  background:
-    radial-gradient(circle at center,rgba(0,120,255,.15),transparent 60%),
-    rgba(4,12,28,.9);
+  background:radial-gradient(circle at center,rgba(0,120,255,.15),transparent 60%),rgba(4,12,28,.9);
   border:1px solid rgba(0,140,255,.3);
 }
 
@@ -486,8 +435,6 @@ select:focus{
   margin:15px auto 25px;
   max-width:550px;
 }
-
-/* RODAPÉ */
 
 footer{
   text-align:center;
@@ -562,6 +509,34 @@ footer strong{
   margin-bottom:5px;
 }
 
+label{
+  display:block;
+  margin:15px 0 7px;
+  color:#b8c6dc;
+  font-weight:bold;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  border-radius:10px;
+  border:1px solid rgba(0,140,255,.3);
+  outline:none;
+  background:#050c1b;
+  color:#fff;
+  font-size:15px;
+}
+
+.form-message{
+  margin-top:15px;
+  padding:12px;
+  display:none;
+  border-radius:10px;
+  background:rgba(0,140,255,.08);
+  border:1px solid rgba(0,140,255,.3);
+  color:#a8dcff;
+}
+
 .warning{
   margin-top:15px;
   padding:12px;
@@ -573,45 +548,23 @@ footer strong{
   line-height:1.5;
 }
 
-/* RESPONSIVO */
-
 @media(max-width:600px){
-
-  header{
-    height:64px;
-  }
-
+  header{height:64px}
   .side-menu{
     top:64px;
     height:calc(100vh - 64px);
   }
-
-  .logo{
-    font-size:22px;
-  }
-
+  .logo{font-size:22px}
   .hero{
     min-height:570px;
     padding-top:45px;
   }
-
-  .hero h1{
-    font-size:58px;
-  }
-
-  .hero p{
-    font-size:15px;
-  }
-
-  section{
-    padding:55px 15px;
-  }
-
-  .section-title{
-    font-size:28px;
-  }
-
+  .hero h1{font-size:58px}
+  .hero p{font-size:15px}
+  section{padding:55px 15px}
+  .section-title{font-size:28px}
   .diamond-grid,
+  .account-grid,
   .cards,
   .steps{
     grid-template-columns:1fr;
@@ -626,18 +579,19 @@ footer strong{
 
 <nav class="side-menu" id="sideMenu">
 
-  <h2>Dimas FF</h2>
+  <h2>DIMAS FF</h2>
 
   <a href="#inicio" onclick="closeMenu()">🏠 Início</a>
 
   <a href="#diamantes" onclick="closeMenu()">💎 Diamantes</a>
 
+  <a href="#contas" onclick="closeMenu()">👤 Contas</a>
+
   <a href="#como-funciona" onclick="closeMenu()">⚡ Como funciona</a>
 
-  <a href="#contato" onclick="closeMenu()">💬 Contato</a>
-
-  <!-- TROQUE O LINK ABAIXO PELO SEU DISCORD DEPOIS -->
-  <a href="#" onclick="discordAlert(event)">🎮 Discord</a>
+  <a href="https://discord.gg/Y9UHDeknz" target="_blank" onclick="closeMenu()">
+    🎮 Discord
+  </a>
 
 </nav>
 
@@ -657,10 +611,9 @@ footer strong{
 
 </header>
 
+<main>
 
 <!-- INÍCIO -->
-
-<main>
 
 <section class="hero" id="inicio">
 
@@ -682,16 +635,19 @@ footer strong{
 
     <div class="hero-buttons">
 
-      <a
-        class="btn btn-primary"
-        href="#diamantes">
+      <a class="btn btn-primary" href="#diamantes">
         💎 Comprar diamantes
+      </a>
+
+      <a class="btn btn-secondary" href="#como-funciona">
+        ⚡ Como funciona
       </a>
 
       <a
         class="btn btn-secondary"
-        href="#como-funciona">
-        ⚡ Como funciona
+        href="https://discord.gg/Y9UHDeknz"
+        target="_blank">
+        🎮 Discord
       </a>
 
     </div>
@@ -716,115 +672,173 @@ footer strong{
   <div class="diamond-grid">
 
     <div class="diamond-card">
-
       <div class="diamond">💎</div>
-
       <h3>100 Diamantes</h3>
-
       <small>Pacote básico</small>
-
       <div class="price">R$ 2,00</div>
-
-      <button
-        class="buy-btn"
+      <button class="buy-btn"
         onclick="openPurchase('100 Diamantes','R$ 2,00',2)">
         COMPRAR
       </button>
-
     </div>
 
-
     <div class="diamond-card">
-
       <div class="diamond">💎</div>
-
       <h3>310 Diamantes</h3>
-
       <small>Pacote popular</small>
-
       <div class="price">R$ 3,00</div>
-
-      <button
-        class="buy-btn"
+      <button class="buy-btn"
         onclick="openPurchase('310 Diamantes','R$ 3,00',3)">
         COMPRAR
       </button>
-
     </div>
 
-
     <div class="diamond-card">
-
       <div class="diamond">💎</div>
-
       <h3>500 Diamantes</h3>
-
       <small>Mais diamantes</small>
-
       <div class="price">R$ 4,00</div>
-
-      <button
-        class="buy-btn"
+      <button class="buy-btn"
         onclick="openPurchase('500 Diamantes','R$ 4,00',4)">
         COMPRAR
       </button>
-
     </div>
 
-
     <div class="diamond-card">
-
       <div class="diamond">💎</div>
-
       <h3>1.060 Diamantes</h3>
-
       <small>Pacote especial</small>
-
       <div class="price">R$ 8,00</div>
-
-      <button
-        class="buy-btn"
+      <button class="buy-btn"
         onclick="openPurchase('1.060 Diamantes','R$ 8,00',8)">
         COMPRAR
       </button>
-
     </div>
 
-
     <div class="diamond-card">
-
       <div class="diamond">💎</div>
-
       <h3>2.180 Diamantes</h3>
-
       <small>Pacote avançado</small>
-
       <div class="price">R$ 15,00</div>
-
-      <button
-        class="buy-btn"
+      <button class="buy-btn"
         onclick="openPurchase('2.180 Diamantes','R$ 15,00',15)">
         COMPRAR
       </button>
+    </div>
+
+    <div class="diamond-card">
+      <div class="diamond">💎</div>
+      <h3>5.600 Diamantes</h3>
+      <small>Pacote máximo</small>
+      <div class="price">R$ 35,00</div>
+      <button class="buy-btn"
+        onclick="openPurchase('5.600 Diamantes','R$ 35,00',35)">
+        COMPRAR
+      </button>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CONTAS -->
+
+<section id="contas">
+
+  <h2 class="section-title">
+    Contas <span>Free Fire</span>
+  </h2>
+
+  <p class="section-subtitle">
+    Confira as contas disponíveis.
+  </p>
+
+  <div class="account-grid">
+
+    <!-- CONTA 01 -->
+    <div class="account-card">
+
+      <img
+        class="account-image"
+        src="conta1.jpg"
+        alt="Conta Free Fire 01">
+
+      <div class="account-info">
+
+        <h3>Conta #01</h3>
+
+        <p>Conta Free Fire</p>
+
+        <div class="account-price">
+          R$ 0,00
+        </div>
+
+        <button
+          class="account-btn"
+          onclick="openPurchase('Conta #01','R$ 0,00',0)">
+          COMPRAR
+        </button>
+
+      </div>
 
     </div>
 
 
-    <div class="diamond-card">
+    <!-- CONTA 02 -->
+    <div class="account-card">
 
-      <div class="diamond">💎</div>
+      <img
+        class="account-image"
+        src="conta2.jpg"
+        alt="Conta Free Fire 02">
 
-      <h3>5.600 Diamantes</h3>
+      <div class="account-info">
 
-      <small>Pacote máximo</small>
+        <h3>Conta #02</h3>
 
-      <div class="price">R$ 35,00</div>
+        <p>Conta Free Fire</p>
 
-      <button
-        class="buy-btn"
-        onclick="openPurchase('5.600 Diamantes','R$ 35,00',35)">
-        COMPRAR
-      </button>
+        <div class="account-price">
+          R$ 0,00
+        </div>
+
+        <button
+          class="account-btn"
+          onclick="openPurchase('Conta #02','R$ 0,00',0)">
+          COMPRAR
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- CONTA 03 -->
+    <div class="account-card">
+
+      <img
+        class="account-image"
+        src="conta3.jpg"
+        alt="Conta Free Fire 03">
+
+      <div class="account-info">
+
+        <h3>Conta #03</h3>
+
+        <p>Conta Free Fire</p>
+
+        <div class="account-price">
+          R$ 0,00
+        </div>
+
+        <button
+          class="account-btn"
+          onclick="openPurchase('Conta #03','R$ 0,00',0)">
+          COMPRAR
+        </button>
+
+      </div>
 
     </div>
 
@@ -848,58 +862,39 @@ footer strong{
   <div class="cards">
 
     <div class="card">
-
       <div class="card-icon">💎</div>
-
       <h3>Diamantes</h3>
-
       <p>
         Pacotes de diamantes organizados para você
         escolher facilmente.
       </p>
-
     </div>
 
-
     <div class="card">
-
       <div class="card-icon">⚡</div>
-
       <h3>Praticidade</h3>
-
       <p>
         Escolha seu pacote e siga as instruções
         apresentadas na tela.
       </p>
-
     </div>
 
-
     <div class="card">
-
       <div class="card-icon">🔐</div>
-
       <h3>Segurança</h3>
-
       <p>
-        O pagamento será integrado ao sistema
-        de pagamento quando o backend estiver configurado.
+        Pagamentos e informações serão tratados
+        pelo sistema configurado para a loja.
       </p>
-
     </div>
 
-
     <div class="card">
-
       <div class="card-icon">💬</div>
-
       <h3>Suporte</h3>
-
       <p>
         Entre em contato pelo Discord para tirar
         suas dúvidas.
       </p>
-
     </div>
 
   </div>
@@ -922,56 +917,36 @@ footer strong{
   <div class="steps">
 
     <div class="step">
-
       <div class="step-number">1</div>
-
       <h3>Escolha</h3>
-
       <p>
-        Escolha um dos pacotes de diamantes.
+        Escolha um pacote de diamantes ou uma conta.
       </p>
-
     </div>
 
-
     <div class="step">
-
       <div class="step-number">2</div>
-
       <h3>Informe seu ID</h3>
-
       <p>
         Digite corretamente o ID da sua conta Free Fire.
       </p>
-
     </div>
 
-
     <div class="step">
-
       <div class="step-number">3</div>
-
       <h3>Pagamento</h3>
-
       <p>
-        O sistema de pagamento será utilizado
-        quando estiver configurado.
+        Siga as instruções de pagamento apresentadas.
       </p>
-
     </div>
 
-
     <div class="step">
-
       <div class="step-number">4</div>
-
       <h3>Receba</h3>
-
       <p>
         Após a confirmação, siga as instruções
         para receber o produto.
       </p>
-
     </div>
 
   </div>
@@ -979,7 +954,7 @@ footer strong{
 </section>
 
 
-<!-- CONTATO -->
+<!-- CONTATO / DISCORD -->
 
 <section class="contact" id="contato">
 
@@ -994,11 +969,12 @@ footer strong{
       para receber atendimento.
     </p>
 
-    <button
+    <a
       class="btn btn-primary"
-      onclick="discordAlert(event)">
+      href="https://discord.gg/Y9UHDeknz"
+      target="_blank">
       🎮 Entrar no Discord
-    </button>
+    </a>
 
   </div>
 
@@ -1006,8 +982,6 @@ footer strong{
 
 </main>
 
-
-<!-- RODAPÉ -->
 
 <footer>
 
@@ -1037,11 +1011,10 @@ footer strong{
 
     </div>
 
-
     <div class="selected-product">
 
       <strong id="productName">
-        Pacote
+        Produto
       </strong>
 
       <span id="productPrice">
@@ -1049,7 +1022,6 @@ footer strong{
       </span>
 
     </div>
-
 
     <label for="playerId">
       ID do jogador
@@ -1062,7 +1034,6 @@ footer strong{
       placeholder="Digite seu ID do Free Fire"
       maxlength="30">
 
-
     <button
       class="btn btn-primary"
       style="width:100%;margin-top:20px"
@@ -1070,15 +1041,15 @@ footer strong{
       CONTINUAR
     </button>
 
-
-    <div class="form-message" id="formMessage"></div>
-
+    <div
+      class="form-message"
+      id="formMessage">
+    </div>
 
     <div class="warning">
-      ⚠️ O pagamento automático ainda está sendo
-      configurado. Este botão não realizará uma
-      cobrança real enquanto o backend de pagamento
-      não estiver conectado.
+      ⚠️ O pagamento automático será conectado
+      ao sistema quando a configuração do backend
+      estiver concluída.
     </div>
 
   </div>
@@ -1090,7 +1061,8 @@ footer strong{
 
 /* MENU */
 
-const sideMenu = document.getElementById("sideMenu");
+const sideMenu =
+  document.getElementById("sideMenu");
 
 function toggleMenu(){
 
@@ -1109,7 +1081,8 @@ function closeMenu(){
 
 document.addEventListener("click",function(event){
 
-  const button = document.getElementById("menuBtn");
+  const button =
+    document.getElementById("menuBtn");
 
   if(
     sideMenu.classList.contains("open") &&
@@ -1124,7 +1097,7 @@ document.addEventListener("click",function(event){
 });
 
 
-/* PRODUTO SELECIONADO */
+/* PRODUTO */
 
 let selectedProduct = "";
 let selectedPrice = "";
@@ -1136,15 +1109,20 @@ function openPurchase(product,price,amount){
   selectedPrice = price;
   selectedAmount = amount;
 
-  document.getElementById("productName").textContent = product;
+  document.getElementById("productName").textContent =
+    product;
 
-  document.getElementById("productPrice").textContent = price;
+  document.getElementById("productPrice").textContent =
+    price;
 
   document.getElementById("playerId").value = "";
 
-  document.getElementById("formMessage").style.display = "none";
+  document.getElementById("formMessage").style.display =
+    "none";
 
-  document.getElementById("purchaseModal").classList.add("show");
+  document
+    .getElementById("purchaseModal")
+    .classList.add("show");
 
 }
 
@@ -1163,14 +1141,10 @@ function closePurchase(){
 function continuePurchase(){
 
   const playerId =
-    document
-      .getElementById("playerId")
-      .value
-      .trim();
+    document.getElementById("playerId").value.trim();
 
   const message =
     document.getElementById("formMessage");
-
 
   if(!playerId){
 
@@ -1183,41 +1157,20 @@ function continuePurchase(){
 
   }
 
-
-  message.textContent =
-    "Pedido selecionado: " +
-    selectedProduct +
-    " — " +
-    selectedPrice +
-    ". O pagamento automático será conectado posteriormente.";
-
-  message.style.display = "block";
-
-}
-
-
-/* DISCORD */
-
-function discordAlert(event){
-
-  if(event){
-
-    event.preventDefault();
-
-  }
-
   /*
-    COLOQUE SEU LINK DO DISCORD AQUI DEPOIS.
-
-    Exemplo:
-
-    window.location.href =
-      "https://discord.gg/SEU-LINK";
+    Por enquanto mostramos a confirmação.
+    O Pix será conectado quando o backend
+    estiver configurado corretamente.
   */
 
-  alert(
-    "O link do Discord ainda não foi configurado."
-  );
+  message.textContent =
+    "✅ " +
+    selectedProduct +
+    " selecionado! " +
+    "ID do jogador: " +
+    playerId;
+
+  message.style.display = "block";
 
 }
 
