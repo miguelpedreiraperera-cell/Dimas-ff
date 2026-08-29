@@ -17,42 +17,53 @@ html{
 }
 
 body{
-  background:#02050d;
+  background:#02040b;
   color:#fff;
-  font-family:Arial,sans-serif;
+  font-family:Arial,Helvetica,sans-serif;
   min-height:100vh;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(0,150,255,.22),transparent 35%),
+    radial-gradient(circle at 0% 80%,rgba(0,80,255,.12),transparent 30%),
+    radial-gradient(circle at 100% 60%,rgba(0,200,255,.10),transparent 30%);
+  z-index:-1;
 }
 
 .app{
   min-height:100vh;
-  background:
-    radial-gradient(circle at 50% 5%,#07508f 0%,#061326 28%,#02040a 75%);
 }
 
 /* HEADER */
 
 header{
   height:72px;
+  position:sticky;
+  top:0;
+  z-index:100;
   display:flex;
   align-items:center;
   justify-content:center;
-  border-bottom:1px solid #008cff66;
-  background:#020711cc;
-  backdrop-filter:blur(10px);
-  position:sticky;
-  top:0;
-  z-index:20;
+  background:rgba(2,7,18,.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(0,153,255,.35);
 }
 
 .brand{
-  font-size:29px;
+  font-size:28px;
   font-weight:900;
   letter-spacing:4px;
   color:#fff;
   text-shadow:
-    0 0 10px #00aaff,
-    0 0 25px #006cff,
-    0 0 45px #006cff;
+    0 0 8px #00aaff,
+    0 0 20px #008cff,
+    0 0 40px #0066ff;
 }
 
 .menu{
@@ -63,28 +74,28 @@ header{
   height:42px;
   border:1px solid #008cff;
   border-radius:12px;
-  background:#061426;
+  background:#06152b;
   color:#fff;
-  font-size:25px;
+  font-size:27px;
   cursor:pointer;
-  box-shadow:0 0 15px #008cff55;
+  box-shadow:0 0 12px rgba(0,140,255,.3);
 }
 
 /* MENU */
 
 nav{
   position:fixed;
-  z-index:50;
+  z-index:200;
   left:0;
   top:0;
-  width:275px;
-  height:100%;
-  padding:85px 16px 20px;
-  background:#030914f5;
-  transform:translateX(-110%);
-  transition:.25s;
+  width:280px;
+  height:100vh;
+  padding:85px 18px 20px;
+  background:rgba(2,8,20,.98);
   border-right:1px solid #008cff;
-  box-shadow:10px 0 35px #008cff22;
+  box-shadow:8px 0 35px rgba(0,110,255,.25);
+  transform:translateX(-110%);
+  transition:.3s ease;
 }
 
 nav.open{
@@ -93,33 +104,34 @@ nav.open{
 
 nav button{
   width:100%;
-  padding:15px;
+  padding:16px;
   margin:7px 0;
-  background:#07172d;
-  color:#fff;
   border:1px solid #087cff;
-  border-radius:12px;
+  border-radius:13px;
+  background:#07172e;
+  color:#fff;
+  font-size:15px;
+  font-weight:bold;
   text-align:left;
   cursor:pointer;
-  font-size:15px;
+  transition:.2s;
 }
 
 nav button:hover{
-  background:#0b2445;
-  box-shadow:0 0 15px #008cff66;
+  background:#0a2345;
+  box-shadow:0 0 15px rgba(0,150,255,.4);
 }
 
-/* MAIN */
+/* CONTEÚDO */
 
 main{
-  max-width:900px;
   width:94%;
+  max-width:900px;
   margin:auto;
 }
 
 .screen{
   display:none;
-  min-height:calc(100vh - 72px);
 }
 
 .screen.active{
@@ -130,24 +142,28 @@ main{
 
 .hero{
   text-align:center;
-  padding:55px 10px 30px;
+  padding:55px 10px 35px;
 }
 
 .hero h1{
-  font-size:clamp(45px,12vw,85px);
+  font-size:clamp(48px,13vw,90px);
   font-weight:900;
-  letter-spacing:5px;
+  letter-spacing:3px;
+  margin-bottom:12px;
+  color:#fff;
   text-shadow:
-    0 0 12px #00aaff,
-    0 0 35px #0066ff,
-    0 0 65px #0055ff;
+    0 0 10px #00baff,
+    0 0 25px #008cff,
+    0 0 50px #0066ff;
 }
 
 .hero p{
-  margin-top:12px;
-  color:#b7dcff;
+  color:#a9d8ff;
   font-size:14px;
+  line-height:1.6;
 }
+
+/* CARDS PRINCIPAIS */
 
 .cards{
   display:grid;
@@ -161,195 +177,229 @@ main{
   gap:18px;
   padding:21px;
   border:1px solid #008cff;
-  border-radius:18px;
-  background:#061226;
-  box-shadow:0 0 22px #008cff22;
-  color:white;
-  cursor:pointer;
+  border-radius:20px;
+  background:linear-gradient(145deg,#081a35,#041020);
+  color:#fff;
   text-align:left;
-  transition:.2s;
+  cursor:pointer;
+  box-shadow:
+    0 0 15px rgba(0,130,255,.18),
+    inset 0 0 25px rgba(0,100,255,.04);
+  transition:.25s;
 }
 
 .card:hover{
-  transform:translateY(-3px);
-  box-shadow:0 0 30px #008cff55;
+  transform:translateY(-4px);
+  border-color:#00c8ff;
+  box-shadow:
+    0 0 25px rgba(0,170,255,.35),
+    inset 0 0 25px rgba(0,120,255,.08);
 }
 
 .icon{
-  font-size:42px;
   width:60px;
-  text-align:center;
+  min-width:60px;
+  height:60px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:16px;
+  background:#061b38;
+  font-size:34px;
+  box-shadow:0 0 18px rgba(0,140,255,.25);
 }
 
 .card h2{
+  font-size:20px;
   margin-bottom:6px;
 }
 
 .card p{
   color:#00baff;
+  font-size:13px;
 }
 
 .arrow{
   margin-left:auto;
-  font-size:34px;
+  font-size:35px;
+  color:#00baff;
 }
 
-/* BENEFITS */
+/* BENEFÍCIOS */
 
 .benefits{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   margin-top:22px;
   border:1px solid #086cc4;
-  border-radius:15px;
+  border-radius:16px;
   overflow:hidden;
 }
 
 .benefits div{
-  padding:17px 6px;
+  padding:18px 5px;
   text-align:center;
-  background:#050c18;
+  background:#050d1b;
   font-size:12px;
+  color:#9fcfff;
 }
 
 .benefits b{
   display:block;
-  margin-top:7px;
+  margin-top:8px;
+  color:#fff;
+  font-size:11px;
 }
 
-/* BUTTONS */
-
-.back{
-  margin:22px 0 15px;
-  padding:11px 15px;
-  border:1px solid #008cff;
-  border-radius:10px;
-  background:#061326;
-  color:white;
-  cursor:pointer;
-}
-
-.back:hover{
-  box-shadow:0 0 15px #008cff55;
-}
+/* TÍTULOS */
 
 .title{
   text-align:center;
-  margin-bottom:20px;
+  margin:20px 0 25px;
+  font-size:25px;
+  text-shadow:0 0 12px #008cff;
 }
 
-/* PRODUCTS */
+.back{
+  margin:22px 0 10px;
+  padding:11px 16px;
+  border:1px solid #008cff;
+  border-radius:11px;
+  background:#06152a;
+  color:#fff;
+  cursor:pointer;
+}
+
+/* PRODUTOS */
 
 .grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:15px;
+  gap:16px;
   padding-bottom:30px;
 }
 
 .product{
-  padding:20px;
+  position:relative;
+  padding:22px 18px;
   border:1px solid #008cff;
-  border-radius:16px;
-  background:#061226;
-  box-shadow:0 0 18px #008cff18;
-  transition:.2s;
+  border-radius:18px;
+  background:linear-gradient(145deg,#081a35,#041020);
+  box-shadow:0 0 18px rgba(0,130,255,.15);
+  text-align:center;
+  overflow:hidden;
+  transition:.25s;
 }
 
 .product:hover{
-  transform:translateY(-4px);
-  box-shadow:0 0 25px #008cff44;
+  transform:translateY(-5px);
+  border-color:#00c8ff;
+  box-shadow:0 0 28px rgba(0,160,255,.35);
 }
 
-.product h3{
-  margin-bottom:10px;
+.product::before{
+  content:"";
+  position:absolute;
+  width:100px;
+  height:100px;
+  left:50%;
+  top:-50px;
+  transform:translateX(-50%);
+  background:#008cff;
+  filter:blur(45px);
+  opacity:.18;
 }
 
 .diamond-icon{
-  font-size:42px;
-  margin-bottom:8px;
-  filter:drop-shadow(0 0 8px #00aaff);
+  font-size:45px;
+  margin-bottom:10px;
+  filter:drop-shadow(0 0 10px #00baff);
+}
+
+.product h3{
+  position:relative;
+  font-size:19px;
+  margin-bottom:9px;
 }
 
 .price{
-  font-size:24px;
-  font-weight:bold;
-  color:#00c0ff;
-  text-shadow:0 0 10px #008cff66;
+  position:relative;
+  font-size:25px;
+  font-weight:900;
+  color:#00c8ff;
+  text-shadow:0 0 10px #008cff;
 }
 
 .buy{
+  position:relative;
   width:100%;
-  margin-top:14px;
+  margin-top:15px;
   padding:13px;
-  border:1px solid #00aaff;
-  border-radius:10px;
-  background:linear-gradient(90deg,#087cff,#006cff);
+  border:1px solid #00baff;
+  border-radius:11px;
+  background:linear-gradient(90deg,#087cff,#00aaff);
   color:#fff;
-  font-weight:bold;
   font-size:15px;
+  font-weight:bold;
   cursor:pointer;
-  box-shadow:0 0 15px #087cff44;
+  box-shadow:0 0 15px rgba(0,140,255,.3);
   transition:.2s;
 }
 
 .buy:hover{
   transform:scale(1.02);
-  box-shadow:0 0 25px #00aaff77;
+  box-shadow:
+    0 0 20px #00aaff,
+    0 0 35px rgba(0,100,255,.4);
 }
 
 .buy:active{
   transform:scale(.98);
 }
 
-/* FORM */
+/* FORMULÁRIO */
 
 .form{
   max-width:560px;
-  margin:0 auto 30px;
+  margin:25px auto;
   padding:22px;
   border:1px solid #008cff;
-  border-radius:16px;
+  border-radius:18px;
   background:#061226;
-  box-shadow:0 0 25px #008cff22;
+  box-shadow:0 0 25px rgba(0,120,255,.15);
 }
 
-.form h2{
+.form h2,
+.form h3{
   margin-bottom:15px;
 }
 
 label{
   display:block;
-  margin:14px 0 6px;
+  margin:15px 0 7px;
+  color:#b8ddff;
 }
 
 input{
   width:100%;
   padding:13px;
-  border-radius:9px;
+  border-radius:10px;
   border:1px solid #24618d;
   background:#020711;
-  color:white;
+  color:#fff;
   outline:none;
-  font-size:15px;
 }
 
 input:focus{
   border-color:#00aaff;
-  box-shadow:0 0 10px #008cff44;
+  box-shadow:0 0 10px rgba(0,150,255,.2);
 }
-
-input::placeholder{
-  color:#6f849d;
-}
-
-/* SUMMARY */
 
 .sum{
   margin-top:18px;
   padding:15px;
   background:#030914;
-  border-radius:10px;
+  border-radius:12px;
 }
 
 .row{
@@ -362,66 +412,20 @@ input::placeholder{
 .total{
   border-top:1px solid #24618d;
   padding-top:12px;
-  margin-top:14px;
   color:#00c0ff;
   font-weight:bold;
-  font-size:18px;
 }
 
-/* PIX */
-
-.pix-page{
-  text-align:center;
-}
-
-.pix-amount{
-  font-size:30px;
-  font-weight:bold;
-  color:#00c0ff;
-  margin:15px 0;
-  text-shadow:0 0 15px #008cff66;
-}
-
-#pixQr{
-  display:none;
-  width:220px;
-  max-width:100%;
-  margin:18px auto;
-  border-radius:12px;
-  border:2px solid #008cff;
-}
-
-.pix-code{
-  text-align:center;
-  margin-top:8px;
-}
-
-#pixStatus{
-  margin-top:12px;
-  min-height:20px;
-}
-
-/* HOW */
-
-.how-list{
-  line-height:2;
-  color:#d5eaff;
-}
-
-.how-list strong{
-  color:#00c0ff;
-}
-
-/* FOOTER */
+/* RODAPÉ */
 
 footer{
   text-align:center;
-  color:#7189a5;
-  padding:30px 10px;
-  border-top:1px solid #008cff22;
+  color:#66809d;
+  padding:40px 10px;
+  font-size:12px;
 }
 
-/* MOBILE */
+/* RESPONSIVO */
 
 @media(max-width:650px){
 
@@ -441,8 +445,8 @@ footer{
     font-size:52px;
   }
 
-  .card{
-    padding:18px;
+  .brand{
+    font-size:24px;
   }
 }
 </style>
@@ -453,7 +457,7 @@ footer{
 <div class="app">
 
 <header>
-  <button class="menu" onclick="toggle()">☰</button>
+  <button class="menu" onclick="toggleMenu()">☰</button>
   <div class="brand">DIMAS FF</div>
 </header>
 
@@ -463,12 +467,20 @@ footer{
     🏠 &nbsp; Início
   </button>
 
-  <button onclick="discord()">
-    💬 &nbsp; Discord
+  <button onclick="go('diamonds')">
+    💎 &nbsp; Diamantes
+  </button>
+
+  <button onclick="go('accounts')">
+    👤 &nbsp; Contas
   </button>
 
   <button onclick="go('how')">
     ❓ &nbsp; Como funciona
+  </button>
+
+  <button onclick="discord()">
+    💬 &nbsp; Discord
   </button>
 
 </nav>
@@ -480,13 +492,19 @@ footer{
 <section id="home" class="screen active">
 
   <div class="hero">
+
     <h1>DIMAS FF</h1>
-    <p>O MELHOR PREÇO, ENTREGA RÁPIDA E SEGURA!</p>
+
+    <p>
+      O MELHOR PREÇO, ENTREGA RÁPIDA E SEGURA!
+    </p>
+
   </div>
 
   <div class="cards">
 
     <button class="card" onclick="go('diamonds')">
+
       <div class="icon">💎</div>
 
       <div>
@@ -495,9 +513,12 @@ footer{
       </div>
 
       <div class="arrow">›</div>
+
     </button>
 
+
     <button class="card" onclick="go('accounts')">
+
       <div class="icon">👤</div>
 
       <div>
@@ -506,9 +527,12 @@ footer{
       </div>
 
       <div class="arrow">›</div>
+
     </button>
 
+
     <button class="card" onclick="discord()">
+
       <div class="icon">🎟️</div>
 
       <div>
@@ -517,9 +541,11 @@ footer{
       </div>
 
       <div class="arrow">›</div>
+
     </button>
 
   </div>
+
 
   <div class="benefits">
 
@@ -557,7 +583,7 @@ footer{
   </button>
 
   <h2 class="title">
-    💎 Pacotes de Diamantes
+    💎 PACOTES DE DIAMANTES
   </h2>
 
   <div id="diamondsList" class="grid"></div>
@@ -574,7 +600,7 @@ footer{
   </button>
 
   <h2 class="title">
-    👤 Contas
+    👤 CONTAS FREE FIRE
   </h2>
 
   <div id="accountsList" class="grid"></div>
@@ -591,7 +617,7 @@ footer{
   </button>
 
   <h2 class="title">
-    Finalizar compra
+    FINALIZAR COMPRA
   </h2>
 
   <div class="form">
@@ -606,8 +632,8 @@ footer{
 
     <input
       id="uid"
-      placeholder="Digite seu ID"
-      autocomplete="off"
+      type="text"
+      placeholder="Digite seu ID do Free Fire"
     >
 
     <label>
@@ -616,14 +642,11 @@ footer{
 
     <input
       id="coupon"
+      type="text"
       placeholder="Digite o cupom"
-      autocomplete="off"
     >
 
-    <button
-      class="buy"
-      onclick="applyCoupon()"
-    >
+    <button class="buy" onclick="applyCoupon()">
       Aplicar cupom
     </button>
 
@@ -631,12 +654,12 @@ footer{
 
       <div class="row">
         <span>Produto</span>
-        <b id="sp"></b>
+        <b id="sp">-</b>
       </div>
 
       <div class="row">
         <span>Preço</span>
-        <span id="price"></span>
+        <span id="price">R$ 0,00</span>
       </div>
 
       <div class="row">
@@ -644,107 +667,16 @@ footer{
         <span id="discount">R$ 0,00</span>
       </div>
 
-      <div class="row">
-        <span>Taxa</span>
-        <span id="fee"></span>
-      </div>
-
       <div class="row total">
         <span>Total</span>
-        <span id="total"></span>
+        <span id="total">R$ 0,00</span>
       </div>
 
     </div>
 
-    <button
-      class="buy"
-      onclick="pay()"
-    >
-      💠 Pagar via Pix
+    <button class="buy" onclick="pay()">
+      💳 Pagar
     </button>
-
-  </div>
-
-</section>
-
-
-<!-- PIX -->
-
-<section id="pix" class="screen">
-
-  <button class="back" onclick="go('buy')">
-    ← Voltar
-  </button>
-
-  <div class="form pix-page">
-
-    <h2>
-      💠 Pagamento via Pix
-    </h2>
-
-    <p id="pixProduct"></p>
-
-    <div
-      id="pixAmount"
-      class="pix-amount"
-    >
-      R$ 0,00
-    </div>
-
-    <img
-      id="pixQr"
-      alt="QR Code Pix"
-    >
-
-    <p>
-      Pix Copia e Cola:
-    </p>
-
-    <input
-      id="pixCode"
-      class="pix-code"
-      readonly
-      placeholder="Aguardando Pix..."
-    >
-
-    <button
-      class="buy"
-      onclick="copyPix()"
-    >
-      📋 Copiar Pix
-    </button>
-
-    <p id="pixStatus"></p>
-
-    <button
-      id="checkPayment"
-      class="buy"
-      onclick="checkPayment()"
-    >
-      🔄 Verificar pagamento
-    </button>
-
-    <div
-      id="paymentSuccess"
-      style="display:none;margin-top:20px"
-    >
-
-      <h3>
-        ✅ Pagamento confirmado!
-      </h3>
-
-      <p style="margin-top:10px">
-        Seu pagamento foi recebido.
-      </p>
-
-      <button
-        class="buy"
-        onclick="go('home')"
-      >
-        Voltar ao site
-      </button>
-
-    </div>
 
   </div>
 
@@ -762,48 +694,39 @@ footer{
   <div class="form">
 
     <h2>
-      Como funciona?
+      ❓ Como funciona?
     </h2>
 
-    <div class="how-list">
+    <p style="margin:15px 0">
+      1. Escolha seu pacote de diamantes.
+    </p>
 
-      <p>
-        <strong>1.</strong>
-        Escolha o produto.
-      </p>
+    <p style="margin:15px 0">
+      2. Confira o preço.
+    </p>
 
-      <p>
-        <strong>2.</strong>
-        Confira o preço.
-      </p>
+    <p style="margin:15px 0">
+      3. Informe seu ID do jogador.
+    </p>
 
-      <p>
-        <strong>3.</strong>
-        Informe seu ID de jogador.
-      </p>
+    <p style="margin:15px 0">
+      4. Aplique seu cupom, quando disponível.
+    </p>
 
-      <p>
-        <strong>4.</strong>
-        Se tiver cupom, aplique.
-      </p>
+    <p style="margin:15px 0">
+      5. Clique em Pagar.
+    </p>
 
-      <p>
-        <strong>5.</strong>
-        Clique em Pagar.
-      </p>
-
-      <p>
-        <strong>6.</strong>
-        Faça o pagamento pelo Pix.
-      </p>
-
-    </div>
+    <p style="margin-top:20px;color:#00baff">
+      O sistema de pagamento será conectado posteriormente.
+    </p>
 
   </div>
 
 </section>
 
 </main>
+
 
 <footer>
   DIMAS FF — CONFIANÇA E QUALIDADE
@@ -814,27 +737,19 @@ footer{
 
 <script>
 
-/* CONFIGURAÇÕES */
-
 const CONFIG = {
 
   discordUrl:
     "https://discord.gg/Y9UHDeknz",
 
-  apiBaseUrl:
-    "https://dimas-ff.onrender.com",
-
-  fee: 0,
-
   couponCode:
     "ZERO3",
 
-  couponPercent: 10
+  couponPercent:
+    10
 
 };
 
-
-/* PACOTES DE DIAMANTES */
 
 const diamonds = [
 
@@ -853,8 +768,6 @@ const diamonds = [
 ];
 
 
-/* CONTAS */
-
 const accounts = [
 
   ["Conta #01", 0],
@@ -868,10 +781,6 @@ let current = null;
 
 let discount = 0;
 
-window.currentPaymentId = null;
-
-
-/* DINHEIRO */
 
 function money(value){
 
@@ -886,28 +795,26 @@ function money(value){
 }
 
 
-/* MENU */
+function toggleMenu(){
 
-function toggle(){
+  const nav =
+    document.getElementById("nav");
 
-  document
-    .getElementById("nav")
-    .classList
-    .toggle("open");
+  nav.classList.toggle("open");
 
 }
 
-
-/* NAVEGAÇÃO */
 
 function go(id){
 
   document
     .querySelectorAll(".screen")
-    .forEach(
-      screen =>
-        screen.classList.remove("active")
-    );
+    .forEach(function(screen){
+
+      screen.classList.remove("active");
+
+    });
+
 
   const target =
     document.getElementById(id);
@@ -918,40 +825,27 @@ function go(id){
 
   }
 
+
   document
     .getElementById("nav")
-    .classList
-    .remove("open");
+    .classList.remove("open");
 
-  window.scrollTo(0,0);
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 
 }
 
-
-/* DISCORD */
 
 function discord(){
 
-  if(
-    CONFIG.discordUrl &&
-    CONFIG.discordUrl.startsWith("http")
-  ){
-
-    window.location.href =
-      CONFIG.discordUrl;
-
-  }else{
-
-    alert(
-      "Coloque o link do Discord no CONFIG."
-    );
-
-  }
+  window.location.href =
+    CONFIG.discordUrl;
 
 }
 
-
-/* RENDERIZAR PRODUTOS */
 
 function render(){
 
@@ -960,35 +854,38 @@ function render(){
       "diamondsList"
     );
 
+
   diamondsList.innerHTML =
-    diamonds.map(
-      (product,index) => `
+    diamonds.map(function(product,index){
 
-      <article class="product">
+      return `
 
-        <div class="diamond-icon">
-          💎
-        </div>
+        <article class="product">
 
-        <h3>
-          ${product[0]}
-        </h3>
+          <div class="diamond-icon">
+            💎
+          </div>
 
-        <div class="price">
-          ${money(product[1])}
-        </div>
+          <h3>
+            ${product[0]}
+          </h3>
 
-        <button
-          class="buy"
-          onclick="buy(${index})"
-        >
-          Comprar
-        </button>
+          <div class="price">
+            ${money(product[1])}
+          </div>
 
-      </article>
+          <button
+            class="buy"
+            onclick="buy(${index})"
+          >
+            Comprar
+          </button>
 
-    `
-    ).join("");
+        </article>
+
+      `;
+
+    }).join("");
 
 
   const accountsList =
@@ -996,44 +893,42 @@ function render(){
       "accountsList"
     );
 
+
   accountsList.innerHTML =
-    accounts.map(
-      account => `
+    accounts.map(function(account){
 
-      <article class="product">
+      return `
 
-        <div class="diamond-icon">
-          👤
-        </div>
+        <article class="product">
 
-        <h3>
-          ${account[0]}
-        </h3>
+          <div class="diamond-icon">
+            👤
+          </div>
 
-        <p style="color:#9db4cc;margin-top:8px">
-          Foto e informações serão adicionadas depois.
-        </p>
+          <h3>
+            ${account[0]}
+          </h3>
 
-        <div
-          class="price"
-          style="margin-top:10px"
-        >
-          ${
-            account[1]
+          <p style="color:#9fcfff;margin:10px 0">
+            Foto e informações serão adicionadas depois.
+          </p>
+
+          <div class="price">
+            ${
+              account[1]
               ? money(account[1])
               : "Preço a definir"
-          }
-        </div>
+            }
+          </div>
 
-      </article>
+        </article>
 
-    `
-    ).join("");
+      `;
+
+    }).join("");
 
 }
 
-
-/* ESCOLHER PRODUTO */
 
 function buy(index){
 
@@ -1042,34 +937,123 @@ function buy(index){
 
   discount = 0;
 
-  document
-    .getElementById("chosen")
-    .textContent =
-      current[0];
 
-  document
-    .getElementById("sp")
-    .textContent =
-      current[0];
+  document.getElementById(
+    "chosen"
+  ).textContent =
+    current[0];
 
-  document
-    .getElementById("coupon")
-    .value = "";
 
-  document
-    .getElementById("uid")
-    .value = "";
+  document.getElementById(
+    "sp"
+  ).textContent =
+    current[0];
 
-  update();
+
+  document.getElementById(
+    "coupon"
+  ).value = "";
+
+
+  document.getElementById(
+    "uid"
+  ).value = "";
+
+
+  updateTotal();
 
   go("buy");
 
 }
 
 
-/* CUPOM */
-
 function applyCoupon(){
+
+  if(!current){
+
+    return;
+
+  }
+
+
+  const code =
+    document
+      .getElementById("coupon")
+      .value
+      .trim()
+      .toUpperCase();
+
+
+  if(code === CONFIG.couponCode){
+
+    discount =
+      current[1] *
+      CONFIG.couponPercent /
+      100;
+
+    alert(
+      "Cupom aplicado! " +
+      CONFIG.couponPercent +
+      "% de desconto."
+    );
+
+  }
+
+  else{
+
+    discount = 0;
+
+    if(code){
+
+      alert("Cupom inválido.");
+
+    }
+
+  }
+
+
+  updateTotal();
+
+}
+
+
+function updateTotal(){
+
+  if(!current){
+
+    return;
+
+  }
+
+
+  const price =
+    current[1];
+
+  const total =
+    price - discount;
+
+
+  document.getElementById(
+    "price"
+  ).textContent =
+    money(price);
+
+
+  document.getElementById(
+    "discount"
+  ).textContent =
+    money(discount);
+
+
+  document.getElementById(
+    "total"
+  ).textContent =
+    money(total);
+
+}
+
+
+function pay(){
 
   if(!current){
 
@@ -1081,100 +1065,6 @@ function applyCoupon(){
 
   }
 
-  const coupon =
-    document
-      .getElementById("coupon")
-      .value
-      .trim()
-      .toUpperCase();
-
-  if(
-    coupon ===
-    CONFIG.couponCode
-  ){
-
-    discount =
-      current[1] *
-      CONFIG.couponPercent /
-      100;
-
-    alert(
-      "✅ Cupom aplicado!"
-    );
-
-  }else{
-
-    discount = 0;
-
-    if(coupon){
-
-      alert(
-        "❌ Cupom inválido."
-      );
-
-    }
-
-  }
-
-  update();
-
-}
-
-
-/* ATUALIZAR PREÇO */
-
-function update(){
-
-  if(!current){
-
-    return;
-
-  }
-
-  const price =
-    current[1];
-
-  const total =
-    price -
-    discount +
-    CONFIG.fee;
-
-  document
-    .getElementById("price")
-    .textContent =
-      money(price);
-
-  document
-    .getElementById("discount")
-    .textContent =
-      money(discount);
-
-  document
-    .getElementById("fee")
-    .textContent =
-      money(CONFIG.fee);
-
-  document
-    .getElementById("total")
-    .textContent =
-      money(total);
-
-}
-
-
-/* PAGAMENTO */
-
-async function pay(){
-
-  if(!current){
-
-    alert(
-      "Nenhum produto selecionado."
-    );
-
-    return;
-
-  }
 
   const uid =
     document
@@ -1182,326 +1072,28 @@ async function pay(){
       .value
       .trim();
 
+
   if(!uid){
 
     alert(
-      "Digite o ID do jogador."
+      "Digite seu ID do jogador antes de continuar."
     );
+
+    document
+      .getElementById("uid")
+      .focus();
 
     return;
 
   }
 
-  const amount =
-    Number(
-      (
-        current[1] -
-        discount +
-        CONFIG.fee
-      ).toFixed(2)
-    );
 
-  const base =
-    CONFIG.apiBaseUrl
-      .replace(/\/$/,"");
-
-  const button =
-    document.querySelector(
-      '#buy .buy:last-child'
-    );
-
-  try{
-
-    if(button){
-
-      button.disabled = true;
-
-      button.textContent =
-        "Gerando Pix...";
-
-    }
-
-    const response =
-      await fetch(
-        base +
-        "/api/create-pix",
-        {
-          method:"POST",
-
-          headers:{
-            "Content-Type":
-              "application/json"
-          },
-
-          body:
-            JSON.stringify({
-
-              amount:amount,
-
-              product:
-                current[0],
-
-              playerId:
-                uid
-
-            })
-
-        }
-      );
-
-    const data =
-      await response
-        .json()
-        .catch(
-          () => ({})
-        );
-
-    if(!response.ok){
-
-      throw new Error(
-        data.error ||
-        "Não foi possível gerar o Pix."
-      );
-
-    }
-
-    if(!data.payload){
-
-      throw new Error(
-        "O servidor não retornou o Pix."
-      );
-
-    }
-
-    document
-      .getElementById("pixProduct")
-      .textContent =
-        current[0];
-
-    document
-      .getElementById("pixAmount")
-      .textContent =
-        money(amount);
-
-    document
-      .getElementById("pixCode")
-      .value =
-        data.payload;
-
-    const qr =
-      document
-        .getElementById("pixQr");
-
-    if(data.encodedImage){
-
-      qr.src =
-        "data:image/png;base64," +
-        data.encodedImage;
-
-      qr.style.display =
-        "block";
-
-    }else{
-
-      qr.style.display =
-        "none";
-
-    }
-
-    window.currentPaymentId =
-      data.paymentId;
-
-    document
-      .getElementById("pixStatus")
-      .textContent =
-        "Pix gerado. Faça o pagamento e depois verifique.";
-
-    document
-      .getElementById("paymentSuccess")
-      .style.display =
-        "none";
-
-    document
-      .getElementById("checkPayment")
-      .style.display =
-        "block";
-
-    go("pix");
-
-  }catch(error){
-
-    alert(
-      "Não foi possível gerar o Pix:\n\n" +
-      error.message
-    );
-
-  }finally{
-
-    if(button){
-
-      button.disabled =
-        false;
-
-      button.textContent =
-        "💠 Pagar via Pix";
-
-    }
-
-  }
+  alert(
+    "Pagamento será conectado nesta próxima etapa."
+  );
 
 }
 
-
-/* COPIAR PIX */
-
-async function copyPix(){
-
-  const input =
-    document.getElementById(
-      "pixCode"
-    );
-
-  if(!input.value){
-
-    alert(
-      "O Pix ainda não foi gerado."
-    );
-
-    return;
-
-  }
-
-  try{
-
-    await navigator.clipboard
-      .writeText(
-        input.value
-      );
-
-    document
-      .getElementById("pixStatus")
-      .textContent =
-        "✅ Pix copiado! Cole no aplicativo do seu banco.";
-
-  }catch(error){
-
-    input.focus();
-
-    input.select();
-
-    document.execCommand(
-      "copy"
-    );
-
-    document
-      .getElementById("pixStatus")
-      .textContent =
-        "✅ Pix copiado!";
-
-  }
-
-}
-
-
-/* VERIFICAR PAGAMENTO */
-
-async function checkPayment(){
-
-  if(!window.currentPaymentId){
-
-    alert(
-      "Nenhum pagamento encontrado."
-    );
-
-    return;
-
-  }
-
-  const base =
-    CONFIG.apiBaseUrl
-      .replace(/\/$/,"");
-
-  try{
-
-    document
-      .getElementById("pixStatus")
-      .textContent =
-        "🔄 Verificando pagamento...";
-
-    const response =
-      await fetch(
-        base +
-        "/api/payment-status/" +
-        encodeURIComponent(
-          window.currentPaymentId
-        )
-      );
-
-    const data =
-      await response
-        .json()
-        .catch(
-          () => ({})
-        );
-
-    if(!response.ok){
-
-      throw new Error(
-        data.error ||
-        "Não foi possível verificar o pagamento."
-      );
-
-    }
-
-    if(
-      data.status === "RECEIVED" ||
-      data.status === "CONFIRMED"
-    ){
-
-      document
-        .getElementById(
-          "paymentSuccess"
-        )
-        .style.display =
-          "block";
-
-      document
-        .getElementById(
-          "checkPayment"
-        )
-        .style.display =
-          "none";
-
-      document
-        .getElementById(
-          "pixStatus"
-        )
-        .textContent =
-          "✅ Pagamento confirmado!";
-
-    }else{
-
-      document
-        .getElementById(
-          "pixStatus"
-        )
-        .textContent =
-          "⏳ Pagamento ainda não confirmado. Tente novamente.";
-
-    }
-
-  }catch(error){
-
-    alert(
-      error.message
-    );
-
-  }
-
-}
-
-
-/* INICIAR SITE */
 
 render();
 
