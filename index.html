@@ -3,400 +3,1003 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Dimas FF</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #0b0d12;
-    color: #fff;
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:
+        radial-gradient(circle at 20% 10%,rgba(0,238,255,.12),transparent 30%),
+        radial-gradient(circle at 80% 40%,rgba(0,110,255,.10),transparent 35%),
+        #05070d;
+    color:#fff;
+    min-height:100vh;
 }
 
-/* ================= HEADER ================= */
+/* FUNDO */
 
-header {
-    height: 70px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 25px;
-
-    background: rgba(10, 12, 18, 0.95);
-    border-bottom: 1px solid rgba(255,255,255,.08);
-    backdrop-filter: blur(10px);
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+        linear-gradient(rgba(0,238,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(0,238,255,.025) 1px,transparent 1px);
+    background-size:45px 45px;
+    z-index:-1;
 }
 
-.logo {
-    font-size: 25px;
-    font-weight: 900;
-    color: #00d9ff;
-    text-shadow: 0 0 12px #00d9ff;
+/* HEADER */
+
+header{
+    height:72px;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(4,7,13,.82);
+    border-bottom:1px solid rgba(0,238,255,.25);
+    backdrop-filter:blur(12px);
 }
 
-.menu-btn {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 28px;
-    cursor: pointer;
+.menu-button{
+    position:absolute;
+    left:20px;
+
+    border:1px solid rgba(0,238,255,.35);
+    background:rgba(0,238,255,.07);
+    color:#00eeff;
+
+    width:44px;
+    height:44px;
+    border-radius:10px;
+
+    font-size:24px;
+    cursor:pointer;
+
+    box-shadow:0 0 15px rgba(0,238,255,.12);
 }
 
-/* ================= MENU ================= */
+.logo{
+    font-size:27px;
+    font-weight:900;
+    color:#00eeff;
 
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: -290px;
-
-    width: 280px;
-    height: 100vh;
-
-    z-index: 2000;
-
-    padding: 25px;
-
-    background: #10131b;
-
-    transition: .3s;
-
-    box-shadow: 5px 0 30px rgba(0,0,0,.5);
+    text-shadow:
+        0 0 8px #00eeff,
+        0 0 20px rgba(0,238,255,.7);
 }
 
-.sidebar.active {
-    left: 0;
+/* MENU LATERAL */
+
+.sidebar{
+    position:fixed;
+    left:-300px;
+    top:0;
+
+    width:285px;
+    height:100vh;
+
+    padding:25px 20px;
+
+    background:#080c14;
+
+    border-right:1px solid rgba(0,238,255,.3);
+
+    box-shadow:
+        5px 0 35px rgba(0,0,0,.7),
+        0 0 30px rgba(0,238,255,.08);
+
+    z-index:2000;
+
+    transition:.3s ease;
 }
 
-.sidebar h2 {
-    color: #00d9ff;
-    margin-bottom: 35px;
+.sidebar.active{
+    left:0;
 }
 
-.sidebar a {
-    display: block;
+.sidebar-title{
+    color:#00eeff;
+    font-size:25px;
+    font-weight:900;
 
-    padding: 16px 8px;
+    margin:10px 0 35px;
 
-    color: white;
-    text-decoration: none;
-
-    border-bottom: 1px solid rgba(255,255,255,.08);
-
-    transition: .2s;
+    text-shadow:0 0 12px rgba(0,238,255,.8);
 }
 
-.sidebar a:hover {
-    color: #00d9ff;
+.sidebar a{
+    display:block;
+
+    padding:15px;
+
+    margin-bottom:8px;
+
+    color:#fff;
+    text-decoration:none;
+
+    border-radius:10px;
+
+    border:1px solid transparent;
+
+    transition:.2s;
 }
 
-.close-menu {
-    position: absolute;
-    right: 20px;
-    top: 15px;
-
-    font-size: 28px;
-
-    cursor: pointer;
+.sidebar a:hover{
+    color:#00eeff;
+    background:rgba(0,238,255,.07);
+    border-color:rgba(0,238,255,.25);
+    box-shadow:0 0 15px rgba(0,238,255,.08);
 }
 
-.overlay {
-    display: none;
+.close{
+    position:absolute;
+    right:18px;
+    top:15px;
 
-    position: fixed;
-    inset: 0;
+    font-size:30px;
+    color:#fff;
 
-    background: rgba(0,0,0,.65);
-
-    z-index: 1500;
+    cursor:pointer;
 }
 
-.overlay.active {
-    display: block;
+.overlay{
+    display:none;
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.7);
+
+    z-index:1500;
 }
 
-/* ================= CONTAINER ================= */
-
-.container {
-    width: min(1100px, 92%);
-    margin: auto;
+.overlay.active{
+    display:block;
 }
 
-section {
-    padding-top: 100px;
+/* CONTAINER */
+
+.container{
+    width:min(1100px,92%);
+    margin:auto;
 }
 
-.title {
-    font-size: 27px;
-    font-weight: 900;
-    margin-bottom: 25px;
+section{
+    padding-top:105px;
 }
 
-/* ================= INÍCIO ================= */
+/* HERO */
 
-.hero {
-    min-height: 650px;
+.hero{
+    min-height:680px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    text-align: center;
-
-    padding-top: 110px;
+    text-align:center;
 }
 
-.hero-box {
-    width: 100%;
-    max-width: 850px;
+.hero-box{
+    width:100%;
+    max-width:900px;
 
-    padding: 70px 30px;
+    padding:70px 25px;
 
-    border-radius: 25px;
+    border-radius:25px;
 
     background:
         radial-gradient(
-            circle at center,
-            rgba(0,217,255,.16),
+            circle,
+            rgba(0,238,255,.12),
             transparent 65%
         );
 
-    border: 1px solid rgba(0,217,255,.25);
+    border:1px solid rgba(0,238,255,.25);
+
+    box-shadow:
+        inset 0 0 50px rgba(0,238,255,.03),
+        0 0 40px rgba(0,238,255,.06);
 }
 
-.hero h1 {
-    font-size: clamp(45px, 8vw, 90px);
-    font-weight: 1000;
+.hero h1{
+    font-size:clamp(50px,9vw,95px);
+    font-weight:1000;
 
-    color: #00d9ff;
+    color:#00eeff;
 
     text-shadow:
-        0 0 10px #00d9ff,
-        0 0 30px rgba(0,217,255,.6);
+        0 0 10px #00eeff,
+        0 0 25px #00eeff,
+        0 0 60px rgba(0,238,255,.7);
 }
 
-.hero p {
-    margin-top: 20px;
-    color: #bbb;
-    font-size: 18px;
+.hero h2{
+    margin-top:10px;
+    font-size:22px;
+    color:#ddd;
 }
 
-.hero-btn {
-    display: inline-block;
-
-    margin-top: 30px;
-
-    padding: 14px 30px;
-
-    border-radius: 10px;
-
-    background: #00d9ff;
-    color: #061016;
-
-    text-decoration: none;
-
-    font-weight: 900;
-
-    box-shadow: 0 0 20px rgba(0,217,255,.45);
+.hero p{
+    margin-top:15px;
+    color:#8f9aa8;
 }
 
-/* ================= CARDS ================= */
+.hero-button{
+    display:inline-block;
 
-.cards {
-    display: grid;
+    margin-top:30px;
 
-    grid-template-columns:
-        repeat(3, 1fr);
+    padding:14px 30px;
 
-    gap: 18px;
-}
+    color:#001015;
+    background:#00eeff;
 
-.card {
-    background: #121620;
+    text-decoration:none;
 
-    border: 1px solid rgba(255,255,255,.08);
+    font-weight:900;
 
-    border-radius: 16px;
-
-    padding: 22px;
-
-    transition: .25s;
-}
-
-.card:hover {
-    transform: translateY(-4px);
-
-    border-color: rgba(0,217,255,.45);
+    border-radius:10px;
 
     box-shadow:
-        0 8px 30px rgba(0,0,0,.35);
+        0 0 12px #00eeff,
+        0 0 30px rgba(0,238,255,.5);
 }
 
-/* ================= DIAMANTES ================= */
+/* TITULOS */
 
-.diamonds {
-    display: grid;
+.title{
+    font-size:28px;
+    font-weight:900;
 
-    grid-template-columns:
-        repeat(3, 1fr);
+    margin-bottom:22px;
 
-    gap: 18px;
+    color:#fff;
+
+    text-shadow:0 0 10px rgba(0,238,255,.25);
 }
 
-.diamond-card {
-    text-align: center;
-
-    background: #121620;
-
-    border: 1px solid rgba(0,217,255,.15);
-
-    border-radius: 17px;
-
-    padding: 25px;
+.title span{
+    color:#00eeff;
 }
 
-.diamond {
-    font-size: 55px;
+/* DIAMANTES */
 
-    margin-bottom: 15px;
+.diamonds{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.diamond-card{
+    position:relative;
+
+    padding:25px;
+
+    text-align:center;
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15,22,35,.95),
+            rgba(7,11,18,.95)
+        );
+
+    border:1px solid rgba(0,238,255,.2);
+
+    box-shadow:
+        inset 0 0 25px rgba(0,238,255,.025);
+
+    transition:.25s;
+}
+
+.diamond-card:hover{
+    transform:translateY(-6px);
+
+    border-color:#00eeff;
+
+    box-shadow:
+        0 0 12px rgba(0,238,255,.3),
+        0 0 35px rgba(0,238,255,.1);
+}
+
+.diamond-icon{
+    font-size:58px;
+
+    margin-bottom:15px;
 
     filter:
-        drop-shadow(0 0 12px rgba(0,217,255,.7));
+        drop-shadow(0 0 8px #00eeff)
+        drop-shadow(0 0 20px rgba(0,238,255,.5));
 }
 
-.diamond-card h3 {
-    font-size: 20px;
+.diamond-card h3{
+    font-size:20px;
 }
 
-.amount {
-    margin-top: 8px;
-    color: #aaa;
+.diamond-amount{
+    margin-top:7px;
+    color:#8d99a8;
 }
 
-.price {
-    margin: 15px 0;
+.price{
+    margin:15px 0;
 
-    font-size: 24px;
+    font-size:25px;
+    font-weight:900;
 
-    font-weight: 900;
+    color:#00eeff;
 
-    color: #00d9ff;
+    text-shadow:0 0 10px rgba(0,238,255,.5);
 }
 
-.buy-btn {
-    width: 100%;
+.buy{
+    width:100%;
 
-    padding: 13px;
+    border:0;
 
-    border: none;
+    padding:13px;
 
-    border-radius: 9px;
+    border-radius:9px;
 
-    cursor: pointer;
+    background:#00eeff;
 
-    background: #00d9ff;
+    color:#001015;
 
-    color: #061016;
+    font-weight:900;
 
-    font-weight: 900;
+    cursor:pointer;
 
-    transition: .2s;
+    transition:.2s;
 }
 
-.buy-btn:hover {
-    transform: scale(1.03);
+.buy:hover{
+    transform:scale(1.03);
 
     box-shadow:
-        0 0 18px rgba(0,217,255,.5);
+        0 0 12px #00eeff,
+        0 0 25px rgba(0,238,255,.5);
 }
 
-/* ================= CONTAS ================= */
+/* CONTAS */
 
-.accounts {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 18px;
+.accounts{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
 }
 
-.account-card {
-    overflow: hidden;
+.account{
+    overflow:hidden;
 
-    background: #121620;
+    background:#0c111b;
 
-    border-radius: 16px;
+    border:1px solid rgba(0,238,255,.17);
 
-    border: 1px solid rgba(255,255,255,.08);
+    border-radius:18px;
+
+    transition:.25s;
 }
 
-.account-photo {
-    height: 210px;
+.account:hover{
+    border-color:#00eeff;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: #191d27;
-
-    color: #777;
-
-    font-size: 20px;
+    box-shadow:
+        0 0 25px rgba(0,238,255,.12);
 }
 
-.account-info {
-    padding: 20px;
+.account-photo{
+    height:210px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #101722,
+            #080b12
+        );
+
+    color:#596574;
+
+    font-size:20px;
 }
 
-.account-info h3 {
-    margin-bottom: 8px;
+.account-info{
+    padding:20px;
 }
 
-.account-info p {
-    color: #999;
+.account-info p{
+    color:#8993a1;
+    margin-top:8px;
 }
 
-.account-price {
-    margin: 15px 0;
+.account-price{
+    color:#00eeff;
 
-    font-size: 22px;
+    font-size:23px;
+    font-weight:900;
 
-    font-weight: 900;
-
-    color: #00d9ff;
+    margin:15px 0;
 }
 
-/* ================= COMO FUNCIONA ================= */
+/* COMO FUNCIONA */
 
-.steps {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 18px;
+.steps{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
 }
 
-.step {
-    text-align: center;
+.step{
+    padding:28px;
+
+    text-align:center;
+
+    background:#0c111b;
+
+    border:1px solid rgba(0,238,255,.16);
+
+    border-radius:17px;
 }
 
-.step-icon {
-    font-size: 42
+.step-icon{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+.step p{
+    color:#8993a1;
+
+    line-height:1.5;
+
+    margin-top:10px;
+}
+
+/* SEGURANÇA */
+
+.security{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.security-card{
+    padding:28px;
+
+    text-align:center;
+
+    background:#0c111b;
+
+    border:1px solid rgba(0,238,255,.16);
+
+    border-radius:17px;
+}
+
+.security-icon{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+.security-card p{
+    margin-top:10px;
+    color:#8993a1;
+    line-height:1.5;
+}
+
+/* DISCORD */
+
+.discord{
+    padding:35px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:space-between;
+
+    gap:20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,238,255,.10),
+            rgba(9,13,22,.95)
+        );
+
+    border:1px solid rgba(0,238,255,.3);
+
+    border-radius:20px;
+
+    box-shadow:
+        0 0 30px rgba(0,238,255,.05);
+}
+
+.discord h2{
+    color:#00eeff;
+
+    text-shadow:
+        0 0 10px rgba(0,238,255,.5);
+}
+
+.discord p{
+    margin-top:8px;
+    color:#8993a1;
+}
+
+.discord-button{
+    display:inline-block;
+
+    padding:14px 25px;
+
+    background:#00eeff;
+
+    color:#001015;
+
+    border-radius:9px;
+
+    text-decoration:none;
+
+    font-weight:900;
+
+    box-shadow:
+        0 0 15px rgba(0,238,255,.4);
+}
+
+/* FOOTER */
+
+footer{
+    margin-top:100px;
+
+    padding:35px 20px;
+
+    text-align:center;
+
+    background:#030509;
+
+    border-top:1px solid rgba(0,238,255,.18);
+
+    color:#697481;
+}
+
+footer strong{
+    color:#00eeff;
+
+    text-shadow:0 0 8px rgba(0,238,255,.5);
+}
+
+/* RESPONSIVO */
+
+@media(max-width:850px){
+
+    .diamonds,
+    .accounts,
+    .steps,
+    .security{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:560px){
+
+    .diamonds,
+    .accounts,
+    .steps,
+    .security{
+        grid-template-columns:1fr;
+    }
+
+    .discord{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .hero{
+        min-height:580px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- MENU -->
+
+<div class="sidebar" id="sidebar">
+
+    <div class="close" onclick="closeMenu()">×</div>
+
+    <div class="sidebar-title">
+        DIMAS FF
+    </div>
+
+    <a href="#inicio" onclick="closeMenu()">
+        🏠 Início
+    </a>
+
+    <a href="#diamantes" onclick="closeMenu()">
+        💎 Diamantes
+    </a>
+
+    <a href="#contas" onclick="closeMenu()">
+        👤 Contas
+    </a>
+
+    <a href="#como-funciona" onclick="closeMenu()">
+        ⚙️ Como funciona
+    </a>
+
+    <a href="#seguranca" onclick="closeMenu()">
+        🛡️ Segurança
+    </a>
+
+    <a href="#discord" onclick="closeMenu()">
+        💬 Discord
+    </a>
+
+</div>
+
+<div
+    class="overlay"
+    id="overlay"
+    onclick="closeMenu()">
+</div>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <button
+        class="menu-button"
+        onclick="openMenu()">
+
+        ☰
+
+    </button>
+
+    <div class="logo">
+        DIMAS FF
+    </div>
+
+</header>
+
+
+<!-- INÍCIO -->
+
+<section
+    class="hero"
+    id="inicio">
+
+    <div class="container">
+
+        <div class="hero-box">
+
+            <h1>
+                DIMAS FF
+            </h1>
+
+            <h2>
+                Sua loja de Free Fire
+            </h2>
+
+            <p>
+                Diamantes, contas e novidades.
+            </p>
+
+            <a
+                href="#diamantes"
+                class="hero-button">
+
+                VER DIAMANTES
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<div class="container">
+
+
+<!-- DIAMANTES -->
+
+<section id="diamantes">
+
+    <div class="title">
+        💎 <span>Diamantes</span>
+    </div>
+
+    <div class="diamonds">
+
+
+        <div class="diamond-card">
+
+            <div class="diamond-icon">💎</div>
+
+            <h3>100 Diamantes</h3>
+
+            <div class="diamond-amount">
+                100 💎
+            </div>
+
+            <div class="price">
+                R$ 2,00
+            </div>
+
+            <button
+                class="buy"
+                onclick="comprar('100 Diamantes','R$ 2,00')">
+
+                Comprar
+
+            </button>
+
+        </div>
+
+
+        <div class="diamond-card">
+
+            <div class="diamond-icon">💎</div>
+
+            <h3>500 Diamantes</h3>
+
+            <div class="diamond-amount">
+                500 💎
+            </div>
+
+            <div class="price">
+                R$ 4,00
+            </div>
+
+            <button
+                class="buy"
+                onclick="comprar('500 Diamantes','R$ 4,00')">
+
+                Comprar
+
+            </button>
+
+        </div>
+
+
+        <div class="diamond-card">
+
+            <div class="diamond-icon">💎</div>
+
+            <h3>1.000 Diamantes</h3>
+
+            <div class="diamond-amount">
+                1.000 💎
+            </div>
+
+            <div class="price">
+                R$ 8,00
+            </div>
+
+            <button
+                class="buy"
+                onclick="comprar('1.000 Diamantes','R$ 8,00')">
+
+                Comprar
+
+            </button>
+
+        </div>
+
+
+        <div class="diamond-card">
+
+            <div class="diamond-icon">💎</div>
+
+            <h3>2.000 Diamantes</h3>
+
+            <div class="diamond-amount">
+                2.000 💎
+            </div>
+
+            <div class="price">
+                R$ 15,00
+            </div>
+
+            <button
+                class="buy"
+                onclick="comprar('2.000 Diamantes','R$ 15,00')">
+
+                Comprar
+
+            </button>
+
+        </div>
+
+
+        <div class="diamond-card">
+
+            <div class="diamond-icon">💎</div>
+
+            <h3>5.000 Diamantes</h3>
+
+            <div class="diamond-amount">
+                5.000 💎
+            </div>
+
+            <div class="price">
+                R$ 35,00
+            </div>
+
+            <button
+                class="buy"
+                onclick="comprar('5.000 Diamantes','R$ 35,00')">
+
+                Comprar
+
+            </button>
+
+        </div>
+
+
+        <div class="diamond-card">
+
+            <div class="diamond-icon">💎</div>
+
+            <h3>10.000 Diamantes</h3>
+
+            <div class="diamond-amount">
+                10.000 💎
+            </div>
+
+            <div class="price">
+                R$ 65,00
+            </div>
+
+            <button
+                class="buy"
+                onclick="comprar('10.000 Diamantes','R$ 65,00')">
+
+                Comprar
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CONTAS -->
+
+<section id="contas">
+
+    <div class="title">
+        👤 <span>Contas</span>
+    </div>
+
+    <div class="accounts">
+
+
+        <div class="account">
+
+            <div class="account-photo">
+                FOTO DA CONTA 1
+            </div>
+
+            <div class="account-info">
+
+                <h3>
+                    Conta Free Fire 1
+                </h3>
+
+                <p>
+                    Foto e informações
+                    serão adicionadas depois.
+                </p>
+
+                <div class="account-price">
+                    R$ --,--
+                </div>
+
+                <button class="buy">
+                    Comprar
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="account">
+
+            <div class="account-photo">
+                FOTO DA CONTA 2
+            </div>
+
+            <div class="account-info">
+
+                <h3>
+                    Conta Free Fire 2
+                </h3>
+
+                <p>
+                    Foto e informações
+                    serão adicionadas depois.
+                </p>
+
+                <div class="account-price">
+                    R$ --,--
+                </div>
+
+                <button class="buy">
+                    Comprar
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="account">
+
+            <div class="account-photo">
+                FOTO DA CONTA 3
+            </div>
+
+            <div class="account-info">
+
+                <h3>
+                    Conta Free Fire 3
+                </h3>
+
+                <p>
+                    Foto e informações
+                    serão adicionadas depois.
+                </p>
+
+                <div class="account-price">
+                    R$ --,--
+                </div>
+
+                <button class="buy">
+                    Comprar
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- COMO FUNCIONA -->
+
+<section id="como-funciona">
+
+    <div class="title">
+       
