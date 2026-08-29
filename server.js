@@ -7,6 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
+
 const ASAAS_API_KEY = process.env.ASAAS_API_KEY;
 
 const ASAAS_URL = (
@@ -15,6 +16,10 @@ const ASAAS_URL = (
 ).replace(/\/$/, "");
 
 async function asaasRequest(path, options = {}) {
+  if (!ASAAS_API_KEY) {
+    throw new Error("A chave da API do Asaas não foi configurada no Render.");
+  }
+
   const response = await fetch(`${ASAAS_URL}${path}`, {
     ...options,
     headers: {
@@ -37,6 +42,19 @@ async function asaasRequest(path, options = {}) {
   return data;
 }
 
+
+/* TESTE DO SERVIDOR */
+
+app.get("/health", (req, res) => {
+  res.json({
+    online: true,
+    service: "Dimas FF"
+  });
+});
+
+
+/* CRIAR PAGAMENTO PIX */
+
 app.post("/api/create-pix", async (req, res) => {
   try {
     const { amount, product, playerId } = req.body;
@@ -55,6 +73,15 @@ app.post("/api/create-pix", async (req, res) => {
       });
     }
 
+    if (!product) {
+      return res.status(400).json({
+        error: "Produto não informado."
+      });
+    }
+
+
+    /* CRIAR CLIENTE */
+
     const customer = await asaasRequest("/customers", {
       method: "POST",
       body: JSON.stringify({
@@ -62,6 +89,9 @@ app.post("/api/create-pix", async (req, res) => {
         externalReference: `dimas-ff-${playerId}`
       })
     });
+
+
+    /* CRIAR COBRANÇA PIX */
 
     const payment = await asaasRequest("/payments", {
       method: "POST",
@@ -75,12 +105,16 @@ app.post("/api/create-pix", async (req, res) => {
       })
     });
 
+
+    /* PEGAR QR CODE PIX */
+
     const pix = await asaasRequest(
       `/payments/${payment.id}/pixQrCode`,
       {
         method: "GET"
       }
     );
+
 
     res.json({
       paymentId: payment.id,
@@ -92,16 +126,23 @@ app.post("/api/create-pix", async (req, res) => {
     });
 
   } catch (error) {
-    console.error(error);
+
+    console.error("Erro ao criar Pix:", error);
 
     res.status(500).json({
       error: error.message || "Erro ao criar pagamento."
     });
+
   }
 });
 
+
+/* VERIFICAR PAGAMENTO */
+
 app.get("/api/payment-status/:paymentId", async (req, res) => {
+
   try {
+
     const payment = await asaasRequest(
       `/payments/${encodeURIComponent(req.params.paymentId)}`,
       {
@@ -115,21 +156,26 @@ app.get("/api/payment-status/:paymentId", async (req, res) => {
     });
 
   } catch (error) {
-    console.error(error);
+
+    console.error("Erro ao verificar pagamento:", error);
 
     res.status(500).json({
-      error: error.message || "Erro ao consultar pagamento."
+      error:
+        error.message ||
+        "Erro ao consultar pagamento."
     });
+
   }
+
 });
 
-app.get("/health", (req, res) => {
-  res.json({
-    online: true,
-    service: "Dimas FF"
-  });
-});
 
-app.listen(PORT, () => {
-  console.log(`Dimas FF backend rodando na porta ${PORT}`);
+/* INICIAR SERVIDOR */
+
+app.listen(PORT, "0.0.0.0", () => {
+
+  console.log(
+    `Dimas FF backend rodando na porta ${PORT}`
+  );
+
 });
