@@ -707,6 +707,14 @@ footer strong{
         ⚡ Como funciona
       </a>
 
+      <a
+        class="btn btn-secondary"
+        href="https://discord.gg/42aTVc5Z5y"
+        target="_blank"
+        rel="noopener">
+        🎮 Discord
+      </a>
+
     </div>
 
   </div>
@@ -838,7 +846,6 @@ footer strong{
 
     </div>
 
-
     <div class="account-card">
 
       <img
@@ -946,8 +953,8 @@ footer strong{
 
     <div class="step">
       <div class="step-number">2</div>
-      <h3>Informe seu ID</h3>
-      <p>Digite corretamente o ID da sua conta Free Fire.</p>
+      <h3>Informe seus dados</h3>
+      <p>Digite corretamente o ID e o CPF solicitados.</p>
     </div>
 
     <div class="step">
@@ -1039,6 +1046,23 @@ footer strong{
       inputmode="numeric"
       placeholder="Digite seu ID do Free Fire"
       maxlength="30">
+
+    <label for="cpf">
+      CPF do cliente
+    </label>
+
+    <input
+      id="cpf"
+      type="text"
+      inputmode="numeric"
+      autocomplete="off"
+      placeholder="Digite seu CPF"
+      maxlength="14">
+
+    <div class="warning">
+      🔒 O CPF é necessário para criar a cobrança no
+      ambiente de pagamento.
+    </div>
 
     <button
       class="btn btn-primary"
@@ -1135,17 +1159,11 @@ footer strong{
 
 const CONFIG = {
 
-  /*
-    URL DO SEU BACKEND NO RENDER
-  */
   apiBaseUrl:
     "https://dimas-ff.onrender.com",
 
-  /*
-    SEU DISCORD
-  */
   discordUrl:
-    "https://discord.gg/Y9UHDeknz"
+    "https://discord.gg/42aTVc5Z5y"
 
 };
 
@@ -1176,8 +1194,11 @@ function discord(event){
     event.preventDefault();
   }
 
-  window.location.href =
-    CONFIG.discordUrl;
+  window.open(
+    CONFIG.discordUrl,
+    "_blank",
+    "noopener"
+  );
 
 }
 
@@ -1214,6 +1235,10 @@ function openPurchase(
   ).value = "";
 
   document.getElementById(
+    "cpf"
+  ).value = "";
+
+  document.getElementById(
     "formMessage"
   ).style.display = "none";
 
@@ -1235,6 +1260,62 @@ function closePurchase(){
 }
 
 
+/* FORMATAR CPF */
+
+function formatCPF(value){
+
+  let numbers =
+    String(value)
+      .replace(/\D/g,"")
+      .slice(0,11);
+
+  if(numbers.length > 9){
+
+    return numbers.replace(
+      /(\d{3})(\d{3})(\d{3})(\d{0,2})/,
+      "$1.$2.$3-$4"
+    );
+
+  }
+
+  if(numbers.length > 6){
+
+    return numbers.replace(
+      /(\d{3})(\d{3})(\d{0,3})/,
+      "$1.$2.$3"
+    );
+
+  }
+
+  if(numbers.length > 3){
+
+    return numbers.replace(
+      /(\d{3})(\d{0,3})/,
+      "$1.$2"
+    );
+
+  }
+
+  return numbers;
+
+}
+
+
+/* FORMATAR CPF ENQUANTO DIGITA */
+
+document
+  .getElementById("cpf")
+  .addEventListener(
+    "input",
+    function(){
+
+      this.value =
+        formatCPF(this.value);
+
+    }
+  );
+
+
 /* CONTINUAR E GERAR PIX */
 
 async function continuePurchase(){
@@ -1244,15 +1325,43 @@ async function continuePurchase(){
       "playerId"
     ).value.trim();
 
+  const cpfInput =
+    document.getElementById(
+      "cpf"
+    ).value.trim();
+
+  const cpf =
+    cpfInput.replace(
+      /\D/g,
+      ""
+    );
+
   const message =
     document.getElementById(
       "formMessage"
     );
 
+
+  /* VALIDAR ID */
+
   if(!playerId){
 
     message.textContent =
       "Digite o ID do jogador para continuar.";
+
+    message.style.display =
+      "block";
+
+    return;
+  }
+
+
+  /* VALIDAR CPF */
+
+  if(cpf.length !== 11){
+
+    message.textContent =
+      "Digite um CPF válido com 11 números.";
 
     message.style.display =
       "block";
@@ -1297,7 +1406,10 @@ async function continuePurchase(){
               selectedProduct,
 
             playerId:
-              playerId
+              playerId,
+
+            cpf:
+              cpf
 
           })
         }
