@@ -106,56 +106,85 @@ app.post("/api/create-pix", async (req, res) => {
       amount,
       product,
       playerId,
-      cpf
+
+      // Aceita os dois nomes
+      cpf,
+      cpfCnpj
+
     } = req.body;
 
 
-    /* VALOR */
+    /* =========================
+       VALOR
+    ========================= */
 
     const value = Number(amount);
 
-    if (!Number.isFinite(value) || value <= 0) {
+    if (!Number.isFinite(value) || value < 5) {
 
       return res.status(400).json({
-        error: "Valor do pagamento inválido."
+        error:
+          "O valor mínimo para gerar o Pix é R$ 5,00."
       });
 
     }
 
 
-    /* ID DO JOGADOR */
+    /* =========================
+       ID DO JOGADOR
+    ========================= */
 
     if (!playerId) {
 
       return res.status(400).json({
-        error: "ID do jogador não informado."
+        error:
+          "ID do jogador não informado."
       });
 
     }
 
 
-    /* CPF */
+    /* =========================
+       CPF / CNPJ
+    ========================= */
 
-    if (!cpf) {
+    // Aceita tanto "cpf" quanto "cpfCnpj"
+    const document =
+      cpf ||
+      cpfCnpj ||
+      "";
+
+
+    if (!document) {
 
       return res.status(400).json({
-        error: "CPF não informado."
+        error:
+          "CPF ou CNPJ não informado."
       });
 
     }
 
 
-    /* LIMPA O CPF */
+    /* =========================
+       LIMPAR DOCUMENTO
+    ========================= */
 
-    const cleanCpf = String(cpf).replace(/\D/g, "");
+    const cleanCpfCnpj =
+      String(document).replace(/\D/g, "");
 
 
-    /* CPF DEVE TER 11 DÍGITOS */
+    /* =========================
+       VALIDAR CPF / CNPJ
+    ========================= */
 
-    if (cleanCpf.length !== 11) {
+    if (
+      cleanCpfCnpj.length !== 11 &&
+      cleanCpfCnpj.length !== 14
+    ) {
 
       return res.status(400).json({
-        error: "CPF inválido. Digite os 11 números."
+        error:
+          "CPF ou CNPJ inválido."
       });
 
     }
@@ -165,66 +194,76 @@ app.post("/api/create-pix", async (req, res) => {
        CRIAR CLIENTE
     ========================= */
 
-    const customer = await asaasRequest(
-      "/customers",
-      {
-        method: "POST",
+    const customer =
+      await asaasRequest(
+        "/customers",
+        {
+          method: "POST",
 
-        body: JSON.stringify({
+          body: JSON.stringify({
 
-          name: `Cliente Dimas FF - ${playerId}`,
+            name:
+              `Cliente Dimas FF - ${playerId}`,
 
-          cpfCnpj: cleanCpf,
+            cpfCnpj:
+              cleanCpfCnpj,
 
-          externalReference:
-            `dimas-ff-${playerId}-${Date.now()}`
-        })
-      }
-    );
+            externalReference:
+              `dimas-ff-${playerId}-${Date.now()}`
+          })
+        }
+      );
 
 
     /* =========================
        CRIAR COBRANÇA PIX
     ========================= */
 
-    const payment = await asaasRequest(
-      "/payments",
-      {
-        method: "POST",
+    const payment =
+      await asaasRequest(
+        "/payments",
+        {
+          method: "POST",
 
-        body: JSON.stringify({
+          body: JSON.stringify({
 
-          customer: customer.id,
+            customer:
+              customer.id,
 
-          billingType: "PIX",
+            billingType:
+              "PIX",
 
-          value: Number(value.toFixed(2)),
+            value:
+              Number(value.toFixed(2)),
 
-          dueDate:
-            new Date()
-              .toISOString()
-              .slice(0, 10),
+            dueDate:
+              new Date()
+                .toISOString()
+                .slice(0, 10),
 
-          description:
-            `${product} - ID ${playerId}`,
+            description:
+              `${product} - ID ${playerId}`,
 
-          externalReference:
-            `DIMAS-FF-${Date.now()}`
-        })
-      }
-    );
+            externalReference:
+              `DIMAS-FF-${Date.now()}`
+          })
+        }
+      );
 
 
     /* =========================
        OBTER QR CODE PIX
     ========================= */
 
-    const pix = await asaasRequest(
-      `/payments/${encodeURIComponent(payment.id)}/pixQrCode`,
-      {
-        method: "GET"
-      }
-    );
+    const pix =
+      await asaasRequest(
+        `/payments/${encodeURIComponent(
+          payment.id
+        )}/pixQrCode`,
+        {
+          method: "GET"
+        }
+      );
 
 
     /* =========================
@@ -235,19 +274,26 @@ app.post("/api/create-pix", async (req, res) => {
 
       success: true,
 
-      paymentId: payment.id,
+      paymentId:
+        payment.id,
 
-      status: payment.status,
+      status:
+        payment.status,
 
-      amount: value,
+      amount:
+        value,
 
-      product: product,
+      product:
+        product,
 
-      playerId: playerId,
+      playerId:
+        playerId,
 
-      payload: pix.payload,
+      payload:
+        pix.payload,
 
-      encodedImage: pix.encodedImage,
+      encodedImage:
+        pix.encodedImage,
 
       expirationDate:
         pix.expirationDate
@@ -296,9 +342,11 @@ app.get(
 
       res.json({
 
-        paymentId: payment.id,
+        paymentId:
+          payment.id,
 
-        status: payment.status
+        status:
+          payment.status
       });
 
 
@@ -330,9 +378,11 @@ app.get("/health", (req, res) => {
 
   res.json({
 
-    online: true,
+    online:
+      true,
 
-    service: "Dimas FF",
+    service:
+      "Dimas FF",
 
     environment:
       ASAAS_URL.includes("sandbox")
