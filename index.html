@@ -13,143 +13,84 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f5f5;
     color: #222;
 }
 
-button,
-input {
+button, input {
     font: inherit;
 }
 
-/* TOPO */
-
 header {
-    height: 64px;
     background: #fff;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #e5e5e5;
+    height: 64px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 0 5%;
     position: sticky;
     top: 0;
     z-index: 100;
 }
 
-.menu-btn {
+.logo {
+    font-weight: 800;
+    font-size: 21px;
+    margin: auto;
+}
+
+.menu {
     border: 0;
     background: transparent;
     font-size: 25px;
     cursor: pointer;
 }
 
-.logo {
-    font-size: 22px;
-    font-weight: bold;
-}
-
-/* MENU */
-
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: -290px;
-    width: 280px;
-    height: 100vh;
-    background: white;
-    z-index: 300;
-    padding: 25px;
-    transition: .3s;
-    box-shadow: 4px 0 20px rgba(0,0,0,.15);
-}
-
-.sidebar.active {
-    left: 0;
-}
-
-.sidebar h2 {
-    margin-bottom: 30px;
-}
-
-.sidebar a {
-    display: block;
-    text-decoration: none;
-    color: #222;
-    padding: 15px 8px;
-    border-bottom: 1px solid #eee;
-}
-
-.close {
-    float: right;
-    font-size: 25px;
-    cursor: pointer;
-}
-
-.overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.45);
-    z-index: 200;
-    display: none;
-}
-
-.overlay.active {
-    display: block;
-}
-
-/* CONTEÚDO */
-
 .container {
-    width: min(1100px, 92%);
+    width: min(1080px, 94%);
     margin: auto;
 }
 
 section {
-    margin: 22px 0;
+    margin: 20px 0;
 }
 
-.title {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 14px;
+.section-title {
+    font-size: 21px;
+    font-weight: 700;
+    margin-bottom: 12px;
 }
 
-/* BANNER */
-
-.banner {
-    margin-top: 20px;
-    background: #e9e9e9;
-    border-radius: 12px;
-    padding: 35px;
-}
-
-.banner h1 {
-    font-size: 38px;
-}
-
-.banner p {
-    margin-top: 8px;
-    color: #666;
-}
-
-/* JOGO */
-
-.game-card {
-    background: white;
-    border: 1px solid #ddd;
+.card {
+    background: #fff;
+    border: 1px solid #e3e3e3;
     border-radius: 10px;
-    padding: 16px;
-    width: 220px;
+}
+
+/* seleção */
+
+.games {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+}
+
+.game {
+    min-width: 180px;
+    padding: 14px;
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
-.game-icon {
-    width: 50px;
-    height: 50px;
+.game.active {
+    border: 2px solid #222;
+}
+
+.game-img {
+    width: 48px;
+    height: 48px;
     border-radius: 8px;
     background: #eee;
     display: flex;
@@ -158,94 +99,121 @@ section {
     font-size: 25px;
 }
 
-/* ITEM GRÁTIS */
+/* item grátis */
 
-.free-item {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
+.free {
     padding: 20px;
 }
 
-.free-item p {
+.free p {
+    color: #777;
     margin: 8px 0 15px;
-    color: #666;
 }
 
-.primary-btn {
+.btn {
     border: 0;
     background: #222;
-    color: white;
-    padding: 11px 20px;
+    color: #fff;
+    padding: 11px 22px;
     border-radius: 7px;
     cursor: pointer;
 }
 
-/* ID */
-
-.id-area {
+.id-form {
     display: none;
     margin-top: 15px;
 }
 
-.id-area.active {
+.id-form.show {
     display: block;
 }
 
-.id-area input {
+.id-form input,
+.login input {
     width: 100%;
     padding: 13px;
     border: 1px solid #ccc;
     border-radius: 7px;
-    margin-bottom: 10px;
     outline: none;
-}
-
-/* LOGIN */
-
-.login-box {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 20px;
-}
-
-.login-box input {
-    width: 100%;
-    padding: 13px;
-    border: 1px solid #ccc;
-    border-radius: 7px;
-    margin: 10px 0;
-    outline: none;
-}
-
-/* DIAMANTES */
-
-.diamonds {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-}
-
-.diamond {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 20px;
-}
-
-.diamond-icon {
-    font-size: 38px;
     margin-bottom: 10px;
 }
 
-.diamond h3 {
+/* eventos */
+
+.event {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.event-text p {
+    color: #777;
+    margin-top: 6px;
+}
+
+.event-img {
+    width: 100px;
+    height: 70px;
+    background: #eee;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+}
+
+/* login */
+
+.login {
+    padding: 20px;
+}
+
+.login label {
+    display: block;
+    font-weight: 600;
     margin-bottom: 8px;
 }
 
+.login small {
+    color: #777;
+}
+
+/* diamantes */
+
+.diamonds {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.diamond {
+    padding: 17px;
+}
+
+.diamond-icon {
+    height: 90px;
+    background: #f0f0f0;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 42px;
+    margin-bottom: 12px;
+}
+
+.diamond h3 {
+    font-size: 17px;
+}
+
+.diamond .amount {
+    color: #777;
+    margin-top: 5px;
+}
+
 .price {
-    font-size: 21px;
-    font-weight: bold;
+    font-size: 20px;
+    font-weight: 700;
     margin: 12px 0;
 }
 
@@ -253,181 +221,169 @@ section {
     width: 100%;
     border: 0;
     background: #222;
-    color: white;
-    padding: 12px;
+    color: #fff;
+    padding: 11px;
     border-radius: 7px;
     cursor: pointer;
 }
 
-/* OFERTAS */
+.buy:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
+/* ofertas */
 
 .offers {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
+    gap: 12px;
 }
 
 .offer {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 18px;
+    padding: 15px;
 }
 
-.offer-image {
-    height: 100px;
+.offer-img {
+    height: 120px;
     background: #eee;
     border-radius: 8px;
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-size: 40px;
+    align-items: center;
+    font-size: 42px;
     margin-bottom: 12px;
 }
 
-/* CONTAS */
+.offer p {
+    color: #777;
+    margin-top: 6px;
+}
+
+/* contas */
 
 .accounts {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
+    gap: 12px;
 }
 
 .account {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
     overflow: hidden;
 }
 
-.account-image {
-    height: 180px;
+.account-photo {
+    height: 190px;
     background: #eee;
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-size: 40px;
+    align-items: center;
     color: #888;
+    font-size: 38px;
 }
 
 .account-info {
-    padding: 17px;
+    padding: 16px;
+}
+
+.account-info p {
+    color: #777;
+    margin-top: 6px;
 }
 
 .account-price {
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 19px;
+    font-weight: 700;
     margin: 12px 0;
 }
 
-/* INFORMAÇÕES */
-
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-}
-
-.info {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 20px;
-}
-
-.info-icon {
-    font-size: 30px;
-    margin-bottom: 10px;
-}
-
-.info p {
-    color: #666;
-    line-height: 1.5;
-}
-
-/* DISCORD */
-
-.discord {
-    background: #eee;
-    border-radius: 10px;
-    padding: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-}
-
-.discord a {
-    background: #222;
-    color: white;
-    text-decoration: none;
-    padding: 12px 20px;
-    border-radius: 7px;
-}
-
-/* PAGAMENTO */
+/* pagamento */
 
 .payment {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
     padding: 20px;
 }
 
 .payment-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+    gap: 10px;
 }
 
-.payment-item {
+.payment-method {
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 16px;
+    padding: 15px;
     text-align: center;
+    background: #fff;
 }
 
-/* FOOTER */
-
-footer {
-    margin-top: 35px;
-    background: #222;
-    color: white;
-    padding: 30px 5%;
+.payment-method div {
+    font-size: 28px;
+    margin-bottom: 7px;
 }
 
-.footer-content {
-    width: min(1100px, 92%);
-    margin: auto;
+/* discord */
+
+.discord {
+    padding: 22px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    gap: 15px;
 }
 
-/* RESPONSIVO */
+.discord p {
+    color: #777;
+    margin-top: 5px;
+}
 
-@media(max-width:800px) {
+.discord a {
+    text-decoration: none;
+    color: #fff;
+    background: #222;
+    padding: 12px 20px;
+    border-radius: 7px;
+}
 
+/* mensagem */
+
+.message {
+    display: none;
+    position: fixed;
+    left: 50%;
+    bottom: 25px;
+    transform: translateX(-50%);
+    background: #222;
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    z-index: 500;
+}
+
+.message.show {
+    display: block;
+}
+
+/* responsivo */
+
+@media(max-width:850px) {
+    .diamonds {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .offers,
+    .accounts {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width:600px) {
     .diamonds {
         grid-template-columns: repeat(2, 1fr);
     }
 
     .offers,
-    .accounts,
-    .info-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .payment-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media(max-width:550px) {
-
-    .diamonds,
-    .offers,
-    .accounts,
-    .info-grid {
+    .accounts {
         grid-template-columns: 1fr;
     }
 
@@ -435,14 +391,16 @@ footer {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .event,
     .discord {
-        flex-direction: column;
         align-items: flex-start;
-    }
-
-    .footer-content {
         flex-direction: column;
-        gap: 20px;
+    }
+}
+
+@media(max-width:400px) {
+    .diamonds {
+        grid-template-columns: 1fr;
     }
 }
 </style>
@@ -450,522 +408,259 @@ footer {
 
 <body>
 
-<!-- MENU -->
-
-<nav class="sidebar" id="sidebar">
-
-    <span class="close" onclick="closeMenu()">×</span>
-
-    <h2>Dimas FF</h2>
-
-    <a href="#inicio" onclick="closeMenu()">Início</a>
-    <a href="#diamantes" onclick="closeMenu()">Diamantes</a>
-    <a href="#contas" onclick="closeMenu()">Contas</a>
-    <a href="#como" onclick="closeMenu()">Como funciona</a>
-    <a href="#seguranca" onclick="closeMenu()">Segurança</a>
-    <a href="#discord" onclick="closeMenu()">Discord</a>
-
-</nav>
-
-<div class="overlay" id="overlay" onclick="closeMenu()"></div>
-
-
-<!-- HEADER -->
-
 <header>
-
-    <button class="menu-btn" onclick="openMenu()">☰</button>
-
-    <div class="logo">Dimas FF</div>
-
-    <div></div>
-
+    <button class="menu">☰</button>
+    <div class="logo">DIMAS FF</div>
 </header>
 
+<main class="container">
 
-<main id="inicio">
-
-<div class="container">
-
-
-<!-- BANNER -->
-
-<section class="banner">
-
-    <h1>Dimas FF</h1>
-
-    <p>Recargas e produtos para Free Fire</p>
-
-</section>
-
-
-<!-- JOGO -->
+<!-- SELEÇÃO DE JOGOS -->
 
 <section>
+    <div class="section-title">Seleção de jogos</div>
 
-    <div class="title">
-        Seleção de jogos
-    </div>
+    <div class="games">
 
-    <div class="game-card">
-
-        <div class="game-icon">🔥</div>
-
-        <div>
-            <strong>Free Fire</strong>
-            <small>Recarga</small>
+        <div class="card game active">
+            <div class="game-img">🔥</div>
+            <div>
+                <strong>Free Fire</strong>
+                <small>Recarga</small>
+            </div>
         </div>
 
     </div>
-
 </section>
 
 
 <!-- ITEM GRÁTIS -->
 
 <section>
+    <div class="section-title">Item Grátis</div>
 
-    <div class="title">
-        Item grátis
-    </div>
+    <div class="card free">
 
-    <div class="free-item">
+        <h3>Resgate aqui seus itens exclusivos grátis</h3>
 
-        <h3>Item grátis</h3>
+        <p>Confira o item disponível para resgate.</p>
 
-        <p>
-            Informe seu ID para solicitar o item.
-        </p>
-
-        <button
-            class="primary-btn"
-            onclick="mostrarIdGratis()">
-
+        <button class="btn" onclick="abrirResgate()">
             Resgatar
-
         </button>
 
-        <div class="id-area" id="idGratis">
+        <div class="id-form" id="resgateForm">
 
             <input
-                id="gratisId"
+                id="idGratis"
                 type="text"
                 inputmode="numeric"
-                placeholder="Digite seu ID de jogador">
+                placeholder="Insira o ID de jogador aqui">
 
-            <button
-                class="primary-btn"
-                onclick="resgatarItem()">
-
-                Confirmar ID
-
+            <button class="btn" onclick="resgatar()">
+                Confirmar
             </button>
 
         </div>
 
     </div>
+</section>
 
+
+<!-- EVENTOS -->
+
+<section>
+    <div class="section-title">Eventos especiais</div>
+
+    <div class="card event">
+
+        <div class="event-text">
+            <h3>BÔNUS NAS TENTATIVAS!</h3>
+            <p>Confira os eventos disponíveis.</p>
+        </div>
+
+        <div class="event-img">🎁</div>
+
+    </div>
 </section>
 
 
 <!-- LOGIN -->
 
 <section>
+    <div class="section-title">1 &nbsp; Login</div>
 
-    <div class="title">
-        Login
-    </div>
-
-    <div class="login-box">
+    <div class="card login">
 
         <label>ID do jogador</label>
 
         <input
-            id="loginId"
+            id="playerId"
             type="text"
             inputmode="numeric"
-            placeholder="Digite seu ID de jogador">
+            placeholder="Insira o ID de jogador aqui"
+            oninput="verificarID()">
 
         <button
-            class="primary-btn"
-            onclick="fazerLogin()">
+            class="btn"
+            onclick="login()">
 
             Login
 
         </button>
 
-    </div>
+        <br><br>
 
+        <small>
+            Ou entre com sua conta de jogo
+        </small>
+
+    </div>
 </section>
 
 
 <!-- DIAMANTES -->
 
-<section id="diamantes">
+<section>
 
-    <div class="title">
-        Valor de recarga
+    <div class="section-title">
+        2 &nbsp; Valor de Recarga
     </div>
 
     <div class="diamonds">
 
-
-        <div class="diamond">
-
+        <div class="card diamond">
             <div class="diamond-icon">💎</div>
-
             <h3>100 Diamantes</h3>
-
-            <p>100 💎</p>
-
+            <div class="amount">100 💎</div>
             <div class="price">R$ 2,00</div>
-
-            <button
-                class="buy"
-                onclick="comprar('100 Diamantes','R$ 2,00')">
-
+            <button class="buy" disabled onclick="comprar('100 Diamantes','2,00')">
                 Comprar
-
             </button>
-
         </div>
 
-
-        <div class="diamond">
-
+        <div class="card diamond">
             <div class="diamond-icon">💎</div>
-
             <h3>500 Diamantes</h3>
-
-            <p>500 💎</p>
-
+            <div class="amount">500 💎</div>
             <div class="price">R$ 4,00</div>
-
-            <button
-                class="buy"
-                onclick="comprar('500 Diamantes','R$ 4,00')">
-
+            <button class="buy" disabled onclick="comprar('500 Diamantes','4,00')">
                 Comprar
-
             </button>
-
         </div>
 
-
-        <div class="diamond">
-
+        <div class="card diamond">
             <div class="diamond-icon">💎</div>
-
             <h3>1.000 Diamantes</h3>
-
-            <p>1.000 💎</p>
-
+            <div class="amount">1.000 💎</div>
             <div class="price">R$ 8,00</div>
-
-            <button
-                class="buy"
-                onclick="comprar('1.000 Diamantes','R$ 8,00')">
-
+            <button class="buy" disabled onclick="comprar('1.000 Diamantes','8,00')">
                 Comprar
-
             </button>
-
         </div>
 
-
-        <div class="diamond">
-
+        <div class="card diamond">
             <div class="diamond-icon">💎</div>
-
             <h3>2.000 Diamantes</h3>
-
-            <p>2.000 💎</p>
-
+            <div class="amount">2.000 💎</div>
             <div class="price">R$ 15,00</div>
-
-            <button
-                class="buy"
-                onclick="comprar('2.000 Diamantes','R$ 15,00')">
-
+            <button class="buy" disabled onclick="comprar('2.000 Diamantes','15,00')">
                 Comprar
-
             </button>
-
         </div>
 
-
-        <div class="diamond">
-
+        <div class="card diamond">
             <div class="diamond-icon">💎</div>
-
             <h3>5.000 Diamantes</h3>
-
-            <p>5.000 💎</p>
-
+            <div class="amount">5.000 💎</div>
             <div class="price">R$ 35,00</div>
-
-            <button
-                class="buy"
-                onclick="comprar('5.000 Diamantes','R$ 35,00')">
-
+            <button class="buy" disabled onclick="comprar('5.000 Diamantes','35,00')">
                 Comprar
-
             </button>
-
         </div>
 
-
-        <div class="diamond">
-
+        <div class="card diamond">
             <div class="diamond-icon">💎</div>
-
             <h3>10.000 Diamantes</h3>
-
-            <p>10.000 💎</p>
-
+            <div class="amount">10.000 💎</div>
             <div class="price">R$ 65,00</div>
-
-            <button
-                class="buy"
-                onclick="comprar('10.000 Diamantes','R$ 65,00')">
-
+            <button class="buy" disabled onclick="comprar('10.000 Diamantes','65,00')">
                 Comprar
-
             </button>
-
         </div>
 
     </div>
-
 </section>
 
 
 <!-- OFERTAS -->
 
 <section>
-
-    <div class="title">
-        Ofertas especiais
-    </div>
+    <div class="section-title">Ofertas especiais</div>
 
     <div class="offers">
 
-        <div class="offer">
-            <div class="offer-image">🎁</div>
-            <h3>Oferta especial</h3>
-            <p>Confira as ofertas disponíveis.</p>
+        <div class="card offer">
+            <div class="offer-img">📅</div>
+            <h3>Assinatura Semanal</h3>
+            <p>Oferta disponível em breve.</p>
         </div>
 
-        <div class="offer">
-            <div class="offer-image">🔥</div>
-            <h3>Promoção</h3>
-            <p>Novidades e promoções.</p>
+        <div class="card offer">
+            <div class="offer-img">📆</div>
+            <h3>Assinatura Mensal</h3>
+            <p>Oferta disponível em breve.</p>
         </div>
 
-        <div class="offer">
-            <div class="offer-image">💎</div>
-            <h3>Oferta</h3>
-            <p>Confira os produtos.</p>
+        <div class="card offer">
+            <div class="offer-img">🎟️</div>
+            <h3>Passe Booyah</h3>
+            <p>Oferta disponível em breve.</p>
         </div>
 
     </div>
-
 </section>
 
 
 <!-- CONTAS -->
 
-<section id="contas">
+<section>
 
-    <div class="title">
-        Contas
-    </div>
+    <div class="section-title">Contas</div>
 
     <div class="accounts">
 
-
-        <div class="account">
-
-            <div class="account-image">
-                FOTO 1
-            </div>
-
+        <div class="card account">
+            <div class="account-photo">FOTO 1</div>
             <div class="account-info">
-
-                <h3>Conta Free Fire 1</h3>
-
-                <p>
-                    Informações da conta serão
-                    adicionadas depois.
-                </p>
-
-                <div class="account-price">
-                    R$ --,--
-                </div>
-
-                <button class="buy">
-                    Comprar
-                </button>
-
+                <h3>Conta Free Fire</h3>
+                <p>Foto e informações serão adicionadas depois.</p>
+                <div class="account-price">R$ --,--</div>
+                <button class="buy">Comprar</button>
             </div>
-
         </div>
 
-
-        <div class="account">
-
-            <div class="account-image">
-                FOTO 2
-            </div>
-
+        <div class="card account">
+            <div class="account-photo">FOTO 2</div>
             <div class="account-info">
-
-                <h3>Conta Free Fire 2</h3>
-
-                <p>
-                    Informações da conta serão
-                    adicionadas depois.
-                </p>
-
-                <div class="account-price">
-                    R$ --,--
-                </div>
-
-                <button class="buy">
-                    Comprar
-                </button>
-
+                <h3>Conta Free Fire</h3>
+                <p>Foto e informações serão adicionadas depois.</p>
+                <div class="account-price">R$ --,--</div>
+                <button class="buy">Comprar</button>
             </div>
-
         </div>
 
-
-        <div class="account">
-
-            <div class="account-image">
-                FOTO 3
-            </div>
-
+        <div class="card account">
+            <div class="account-photo">FOTO 3</div>
             <div class="account-info">
-
-                <h3>Conta Free Fire 3</h3>
-
-                <p>
-                    Informações da conta serão
-                    adicionadas depois.
-                </p>
-
-                <div class="account-price">
-                    R$ --,--
-                </div>
-
-                <button class="buy">
-                    Comprar
-                </button>
-
+                <h3>Conta Free Fire</h3>
+                <p>Foto e informações serão adicionadas depois.</p>
+                <div class="account-price">R$ --,--</div>
+                <button class="buy">Comprar</button>
             </div>
-
         </div>
 
     </div>
-
-</section>
-
-
-<!-- COMO FUNCIONA -->
-
-<section id="como">
-
-    <div class="title">
-        Como funciona
-    </div>
-
-    <div class="info-grid">
-
-        <div class="info">
-            <div class="info-icon">💎</div>
-            <h3>Escolha</h3>
-            <p>
-                Escolha o produto desejado.
-            </p>
-        </div>
-
-        <div class="info">
-            <div class="info-icon">🆔</div>
-            <h3>Informe o ID</h3>
-            <p>
-                Informe o ID do jogador
-                corretamente.
-            </p>
-        </div>
-
-        <div class="info">
-            <div class="info-icon">📦</div>
-            <h3>Recebimento</h3>
-            <p>
-                Após a confirmação, o item
-                poderá ser enviado para o jogo.
-            </p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- SEGURANÇA -->
-
-<section id="seguranca">
-
-    <div class="title">
-        Segurança
-    </div>
-
-    <div class="info-grid">
-
-        <div class="info">
-
-            <div class="info-icon">🛡️</div>
-
-            <h3>100% de segurança</h3>
-
-            <p>
-                Trabalhamos para manter
-                suas informações protegidas.
-            </p>
-
-        </div>
-
-
-        <div class="info">
-
-            <div class="info-icon">🔒</div>
-
-            <h3>Proteção</h3>
-
-            <p>
-                Nunca informe sua senha
-                do jogo.
-            </p>
-
-        </div>
-
-
-        <div class="info">
-
-            <div class="info-icon">💬</div>
-
-            <h3>Suporte</h3>
-
-            <p>
-                Entre no Discord para
-                receber atendimento.
-            </p>
-
-        </div>
-
-    </div>
-
 </section>
 
 
@@ -973,59 +668,68 @@ footer {
 
 <section>
 
-    <div class="title">
-        Método de pagamento
+    <div class="section-title">
+        3 &nbsp; Método de pagamento
     </div>
 
-    <div class="payment">
+    <div class="card payment">
 
         <div class="payment-grid">
 
-            <div class="payment-item">
-                💠<br>
-                PIX
+            <div class="payment-method">
+                <div>💠</div>
+                Pix
             </div>
 
-            <div class="payment-item">
-                💳<br>
-                Cartão
+            <div class="payment-method">
+                <div>💳</div>
+                Cartão de Crédito
             </div>
 
-            <div class="payment-item">
-                📱<br>
-                Carteira
+            <div class="payment-method">
+                <div>📱</div>
+                PicPay
             </div>
 
-            <div class="payment-item">
-                🏦<br>
-                Outros
+            <div class="payment-method">
+                <div>💰</div>
+                Mercado Pago
             </div>
 
         </div>
 
-    </div>
+        <br>
 
+        <button
+            class="btn"
+            id="paymentButton"
+            disabled
+            onclick="irPagamento()">
+
+            Compre agora
+
+        </button>
+
+    </div>
 </section>
 
 
 <!-- DISCORD -->
 
-<section id="discord">
+<section>
 
-    <div class="discord">
+    <div class="card discord">
 
         <div>
-            <h2>Discord Dimas FF</h2>
-            <p>
-                Promoções, novidades e suporte.
-            </p>
+            <h3>Dimas FF</h3>
+            <p>Entre no nosso Discord para novidades e suporte.</p>
         </div>
 
         <a
             href="https://discord.gg/EZYSEM4dn"
             target="_blank">
 
-            Entrar no Discord
+            Discord
 
         </a>
 
@@ -1033,159 +737,144 @@ footer {
 
 </section>
 
-
-</div>
-
 </main>
 
 
-<!-- FOOTER -->
-
-<footer>
-
-    <div class="footer-content">
-
-        <div>
-            <strong>Dimas FF</strong>
-            <p style="margin-top:8px;">
-                Recargas e produtos para Free Fire.
-            </p>
-        </div>
-
-        <div>
-            <a
-                href="https://discord.gg/EZYSEM4dn"
-                target="_blank"
-                style="color:white;">
-
-                Discord
-
-            </a>
-        </div>
-
-    </div>
-
-</footer>
+<div class="message" id="message"></div>
 
 
 <script>
 
-/* MENU */
-
-function openMenu() {
-    document
-        .getElementById("sidebar")
-        .classList.add("active");
-
-    document
-        .getElementById("overlay")
-        .classList.add("active");
-}
-
-function closeMenu() {
-    document
-        .getElementById("sidebar")
-        .classList.remove("active");
-
-    document
-        .getElementById("overlay")
-        .classList.remove("active");
-}
+let idJogador = "";
+let produtoSelecionado = "";
 
 
-/* ITEM GRÁTIS */
+/* ID */
 
-function mostrarIdGratis() {
+function verificarID() {
 
-    document
-        .getElementById("idGratis")
-        .classList.add("active");
+    idJogador =
+        document.getElementById("playerId").value.trim();
 
-    document
-        .getElementById("gratisId")
-        .focus();
-}
+    const botoes =
+        document.querySelectorAll(".buy");
 
+    const pagamento =
+        document.getElementById("paymentButton");
 
-function resgatarItem() {
+    const valido = idJogador.length > 0;
 
-    const id =
-        document
-        .getElementById("gratisId")
-        .value
-        .trim();
+    botoes.forEach(botao => {
+        botao.disabled = !valido;
+    });
 
-    if (!id) {
-
-        alert("Digite o ID do jogador.");
-
-        return;
-    }
-
-    alert(
-        "ID confirmado!\n\n" +
-        "O item será enviado para a " +
-        "caixa de correio do jogo."
-    );
+    pagamento.disabled = !valido;
 }
 
 
 /* LOGIN */
 
-function fazerLogin() {
+function login() {
 
     const id =
-        document
-        .getElementById("loginId")
-        .value
-        .trim();
+        document.getElementById("playerId").value.trim();
 
     if (!id) {
-
-        alert("Digite o ID do jogador.");
-
         return;
     }
 
-    alert(
-        "ID confirmado!\n\n" +
-        "Agora você pode escolher o produto desejado."
+    mostrarMensagem(
+        "ID confirmado."
     );
 }
 
 
-/* DIAMANTES */
+/* ITEM GRÁTIS */
+
+function abrirResgate() {
+
+    document
+        .getElementById("resgateForm")
+        .classList.add("show");
+}
+
+
+function resgatar() {
+
+    const id =
+        document.getElementById("idGratis").value.trim();
+
+    if (!id) {
+        return;
+    }
+
+    mostrarMensagem(
+        "ID confirmado. O item será enviado para a caixa de correio do jogo."
+    );
+}
+
+
+/* COMPRAR */
 
 function comprar(produto, preco) {
 
     const id =
-        document
-        .getElementById("loginId")
-        .value
-        .trim();
+        document.getElementById("playerId").value.trim();
 
     if (!id) {
-
-        alert(
-            "Digite seu ID no campo de Login primeiro."
-        );
-
-        document
-            .getElementById("loginId")
-            .focus();
-
         return;
     }
 
-    alert(
-        "Produto selecionado!\n\n" +
-        produto +
-        "\n" +
-        preco +
-        "\n\n" +
-        "ID: " +
-        id
+    produtoSelecionado = produto;
+
+    /*
+      Aqui fica preparada a próxima etapa.
+      Depois podemos ligar esta função ao Pix
+      / sistema de pagamento real.
+    */
+
+    mostrarMensagem(
+        produto + " selecionado."
     );
+}
+
+
+/* PAGAMENTO */
+
+function irPagamento() {
+
+    const id =
+        document.getElementById("playerId").value.trim();
+
+    if (!id) {
+        return;
+    }
+
+    /*
+      Página de pagamento preparada.
+      A integração Pix pode ser colocada aqui
+      posteriormente.
+    */
+
+    mostrarMensagem(
+        "Pagamento selecionado."
+    );
+}
+
+
+/* MENSAGEM */
+
+function mostrarMensagem(texto) {
+
+    const msg =
+        document.getElementById("message");
+
+    msg.textContent = texto;
+    msg.classList.add("show");
+
+    setTimeout(() => {
+        msg.classList.remove("show");
+    }, 3000);
 }
 
 </script>
