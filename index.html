@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050816">
+
 <title>Dimas FF</title>
 
 <style>
@@ -17,48 +19,59 @@ html{
 }
 
 body{
-  background:#02040b;
-  color:#fff;
   font-family:Arial,Helvetica,sans-serif;
+  background:#030611;
+  color:#fff;
   min-height:100vh;
   overflow-x:hidden;
 }
+
+/* FUNDO */
 
 body::before{
   content:"";
   position:fixed;
   inset:0;
-  pointer-events:none;
+  z-index:-2;
   background:
-    radial-gradient(circle at 50% 0%,rgba(0,150,255,.22),transparent 35%),
-    radial-gradient(circle at 0% 80%,rgba(0,80,255,.12),transparent 30%),
-    radial-gradient(circle at 100% 60%,rgba(0,200,255,.10),transparent 30%);
-  z-index:-1;
+    radial-gradient(circle at 20% 10%,rgba(0,140,255,.22),transparent 30%),
+    radial-gradient(circle at 80% 25%,rgba(0,80,255,.18),transparent 32%),
+    radial-gradient(circle at 50% 90%,rgba(0,180,255,.12),transparent 35%),
+    #030611;
 }
 
-.app{
-  min-height:100vh;
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(0,140,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,140,255,.035) 1px,transparent 1px);
+  background-size:40px 40px;
 }
 
 /* HEADER */
 
 header{
-  height:72px;
   position:sticky;
   top:0;
-  z-index:100;
+  z-index:1000;
+  height:70px;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:rgba(2,7,18,.92);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(0,153,255,.35);
+  padding:0 18px;
+  background:rgba(3,7,18,.88);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(0,150,255,.35);
 }
 
-.brand{
+.logo{
   font-size:28px;
   font-weight:900;
-  letter-spacing:4px;
+  letter-spacing:2px;
   color:#fff;
   text-shadow:
     0 0 8px #00aaff,
@@ -66,387 +79,542 @@ header{
     0 0 40px #0066ff;
 }
 
-.menu{
+.menu-btn{
   position:absolute;
-  left:14px;
-  top:15px;
-  width:46px;
-  height:42px;
+  left:16px;
+  width:44px;
+  height:44px;
   border:1px solid #008cff;
   border-radius:12px;
-  background:#06152b;
+  background:rgba(0,100,255,.12);
   color:#fff;
-  font-size:27px;
+  font-size:23px;
   cursor:pointer;
-  box-shadow:0 0 12px rgba(0,140,255,.3);
+  box-shadow:0 0 15px rgba(0,140,255,.2);
+}
+
+.menu-btn:active{
+  transform:scale(.94);
 }
 
 /* MENU */
 
-nav{
+.side-menu{
   position:fixed;
-  z-index:200;
-  left:0;
-  top:0;
-  width:280px;
-  height:100vh;
-  padding:85px 18px 20px;
-  background:rgba(2,8,20,.98);
+  top:70px;
+  left:-280px;
+  width:260px;
+  height:calc(100vh - 70px);
+  z-index:999;
+  padding:22px;
+  background:rgba(3,8,20,.97);
   border-right:1px solid #008cff;
-  box-shadow:8px 0 35px rgba(0,110,255,.25);
-  transform:translateX(-110%);
   transition:.3s ease;
+  box-shadow:10px 0 40px rgba(0,100,255,.18);
 }
 
-nav.open{
-  transform:translateX(0);
+.side-menu.open{
+  left:0;
 }
 
-nav button{
-  width:100%;
-  padding:16px;
-  margin:7px 0;
-  border:1px solid #087cff;
-  border-radius:13px;
-  background:#07172e;
-  color:#fff;
-  font-size:15px;
-  font-weight:bold;
-  text-align:left;
-  cursor:pointer;
-  transition:.2s;
+.side-menu h2{
+  color:#00aaff;
+  margin-bottom:20px;
 }
 
-nav button:hover{
-  background:#0a2345;
-  box-shadow:0 0 15px rgba(0,150,255,.4);
-}
-
-/* CONTEÚDO */
-
-main{
-  width:94%;
-  max-width:900px;
-  margin:auto;
-}
-
-.screen{
-  display:none;
-}
-
-.screen.active{
+.side-menu a{
   display:block;
+  padding:14px;
+  margin:8px 0;
+  border-radius:10px;
+  color:#fff;
+  text-decoration:none;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(0,140,255,.12);
 }
 
-/* HOME */
+.side-menu a:hover{
+  background:rgba(0,140,255,.15);
+  border-color:#008cff;
+}
+
+/* HERO */
 
 .hero{
+  min-height:620px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   text-align:center;
-  padding:55px 10px 35px;
+  padding:70px 20px 50px;
+}
+
+.hero-content{
+  width:100%;
+  max-width:850px;
+}
+
+.badge{
+  display:inline-block;
+  padding:8px 16px;
+  border:1px solid #008cff;
+  border-radius:999px;
+  color:#7fd8ff;
+  background:rgba(0,130,255,.08);
+  box-shadow:0 0 20px rgba(0,140,255,.15);
+  margin-bottom:22px;
+  font-size:13px;
+  font-weight:bold;
 }
 
 .hero h1{
-  font-size:clamp(48px,13vw,90px);
-  font-weight:900;
-  letter-spacing:3px;
-  margin-bottom:12px;
-  color:#fff;
+  font-size:clamp(48px,13vw,100px);
+  line-height:.95;
+  font-weight:1000;
+  letter-spacing:4px;
+  margin-bottom:22px;
   text-shadow:
-    0 0 10px #00baff,
-    0 0 25px #008cff,
-    0 0 50px #0066ff;
+    0 0 10px #00aaff,
+    0 0 30px #008cff,
+    0 0 70px #004cff;
+}
+
+.hero h1 span{
+  color:#00aaff;
 }
 
 .hero p{
-  color:#a9d8ff;
-  font-size:14px;
+  max-width:650px;
+  margin:auto;
+  color:#aab8d0;
+  font-size:17px;
   line-height:1.6;
 }
 
-/* CARDS PRINCIPAIS */
+.hero-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+  margin-top:30px;
+}
+
+.btn{
+  border:none;
+  border-radius:12px;
+  padding:15px 24px;
+  font-size:15px;
+  font-weight:800;
+  cursor:pointer;
+  text-decoration:none;
+  display:inline-block;
+  transition:.2s;
+}
+
+.btn-primary{
+  color:#fff;
+  background:linear-gradient(135deg,#008cff,#004cff);
+  box-shadow:0 0 25px rgba(0,130,255,.35);
+}
+
+.btn-secondary{
+  color:#fff;
+  background:rgba(255,255,255,.05);
+  border:1px solid #007fff;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+/* SEÇÕES */
+
+section{
+  width:100%;
+  max-width:1100px;
+  margin:auto;
+  padding:70px 18px;
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:12px;
+  font-size:34px;
+}
+
+.section-title span{
+  color:#00aaff;
+  text-shadow:0 0 18px #008cff;
+}
+
+.section-subtitle{
+  text-align:center;
+  color:#8290a8;
+  margin-bottom:35px;
+}
+
+/* CARDS */
 
 .cards{
   display:grid;
-  gap:16px;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:18px;
 }
 
 .card{
-  width:100%;
-  display:flex;
-  align-items:center;
-  gap:18px;
-  padding:21px;
-  border:1px solid #008cff;
-  border-radius:20px;
-  background:linear-gradient(145deg,#081a35,#041020);
-  color:#fff;
-  text-align:left;
-  cursor:pointer;
-  box-shadow:
-    0 0 15px rgba(0,130,255,.18),
-    inset 0 0 25px rgba(0,100,255,.04);
+  position:relative;
+  overflow:hidden;
+  padding:25px;
+  border-radius:18px;
+  background:linear-gradient(
+    145deg,
+    rgba(9,24,50,.95),
+    rgba(3,9,22,.96)
+  );
+  border:1px solid rgba(0,140,255,.25);
+  box-shadow:0 10px 35px rgba(0,0,0,.25);
   transition:.25s;
 }
 
 .card:hover{
-  transform:translateY(-4px);
-  border-color:#00c8ff;
+  transform:translateY(-5px);
+  border-color:#008cff;
   box-shadow:
-    0 0 25px rgba(0,170,255,.35),
-    inset 0 0 25px rgba(0,120,255,.08);
+    0 0 25px rgba(0,140,255,.18),
+    0 15px 40px rgba(0,0,0,.3);
 }
 
-.icon{
-  width:60px;
-  min-width:60px;
-  height:60px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:16px;
-  background:#061b38;
-  font-size:34px;
-  box-shadow:0 0 18px rgba(0,140,255,.25);
+.card::before{
+  content:"";
+  position:absolute;
+  width:120px;
+  height:120px;
+  top:-60px;
+  right:-60px;
+  border-radius:50%;
+  background:#008cff;
+  filter:blur(55px);
+  opacity:.15;
 }
 
-.card h2{
+.card-icon{
+  font-size:40px;
+  margin-bottom:15px;
+}
+
+.card h3{
+  margin-bottom:8px;
   font-size:20px;
-  margin-bottom:6px;
 }
 
 .card p{
-  color:#00baff;
-  font-size:13px;
+  color:#8f9db4;
+  line-height:1.5;
 }
 
-.arrow{
-  margin-left:auto;
-  font-size:35px;
-  color:#00baff;
-}
+/* DIAMANTES */
 
-/* BENEFÍCIOS */
-
-.benefits{
+.diamond-grid{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  margin-top:22px;
-  border:1px solid #086cc4;
-  border-radius:16px;
-  overflow:hidden;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:18px;
 }
 
-.benefits div{
-  padding:18px 5px;
-  text-align:center;
-  background:#050d1b;
-  font-size:12px;
-  color:#9fcfff;
-}
-
-.benefits b{
-  display:block;
-  margin-top:8px;
-  color:#fff;
-  font-size:11px;
-}
-
-/* TÍTULOS */
-
-.title{
-  text-align:center;
-  margin:20px 0 25px;
-  font-size:25px;
-  text-shadow:0 0 12px #008cff;
-}
-
-.back{
-  margin:22px 0 10px;
-  padding:11px 16px;
-  border:1px solid #008cff;
-  border-radius:11px;
-  background:#06152a;
-  color:#fff;
-  cursor:pointer;
-}
-
-/* PRODUTOS */
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:16px;
-  padding-bottom:30px;
-}
-
-.product{
+.diamond-card{
   position:relative;
-  padding:22px 18px;
-  border:1px solid #008cff;
-  border-radius:18px;
-  background:linear-gradient(145deg,#081a35,#041020);
-  box-shadow:0 0 18px rgba(0,130,255,.15);
   text-align:center;
-  overflow:hidden;
+  padding:25px 18px;
+  border-radius:18px;
+  background:linear-gradient(
+    160deg,
+    rgba(8,28,58,.96),
+    rgba(2,7,18,.98)
+  );
+  border:1px solid rgba(0,145,255,.3);
   transition:.25s;
 }
 
-.product:hover{
-  transform:translateY(-5px);
-  border-color:#00c8ff;
-  box-shadow:0 0 28px rgba(0,160,255,.35);
-}
-
-.product::before{
-  content:"";
-  position:absolute;
-  width:100px;
-  height:100px;
-  left:50%;
-  top:-50px;
-  transform:translateX(-50%);
-  background:#008cff;
-  filter:blur(45px);
-  opacity:.18;
-}
-
-.diamond-icon{
-  font-size:45px;
-  margin-bottom:10px;
-  filter:drop-shadow(0 0 10px #00baff);
-}
-
-.product h3{
-  position:relative;
-  font-size:19px;
-  margin-bottom:9px;
-}
-
-.price{
-  position:relative;
-  font-size:25px;
-  font-weight:900;
-  color:#00c8ff;
-  text-shadow:0 0 10px #008cff;
-}
-
-.buy{
-  position:relative;
-  width:100%;
-  margin-top:15px;
-  padding:13px;
-  border:1px solid #00baff;
-  border-radius:11px;
-  background:linear-gradient(90deg,#087cff,#00aaff);
-  color:#fff;
-  font-size:15px;
-  font-weight:bold;
-  cursor:pointer;
-  box-shadow:0 0 15px rgba(0,140,255,.3);
-  transition:.2s;
-}
-
-.buy:hover{
-  transform:scale(1.02);
+.diamond-card:hover{
+  transform:translateY(-6px);
+  border-color:#00aaff;
   box-shadow:
-    0 0 20px #00aaff,
-    0 0 35px rgba(0,100,255,.4);
+    0 0 25px rgba(0,140,255,.25),
+    inset 0 0 25px rgba(0,100,255,.06);
 }
 
-.buy:active{
-  transform:scale(.98);
+.diamond{
+  font-size:58px;
+  margin-bottom:12px;
+  filter:drop-shadow(0 0 14px #008cff);
+}
+
+.diamond-card h3{
+  font-size:23px;
+  margin-bottom:7px;
+}
+
+.diamond-card .price{
+  font-size:27px;
+  font-weight:900;
+  color:#00b7ff;
+  text-shadow:0 0 15px #008cff;
+  margin:12px 0;
+}
+
+.diamond-card small{
+  display:block;
+  color:#7d8ba2;
+  margin-bottom:15px;
+}
+
+.buy-btn{
+  width:100%;
+  border:0;
+  border-radius:10px;
+  padding:13px;
+  background:linear-gradient(135deg,#009cff,#004cff);
+  color:#fff;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 0 18px rgba(0,130,255,.25);
 }
 
 /* FORMULÁRIO */
 
-.form{
-  max-width:560px;
-  margin:25px auto;
-  padding:22px;
-  border:1px solid #008cff;
-  border-radius:18px;
-  background:#061226;
-  box-shadow:0 0 25px rgba(0,120,255,.15);
-}
-
-.form h2,
-.form h3{
-  margin-bottom:15px;
+.form-box{
+  max-width:600px;
+  margin:auto;
+  padding:25px;
+  border-radius:20px;
+  background:rgba(5,15,34,.9);
+  border:1px solid rgba(0,140,255,.3);
+  box-shadow:0 0 35px rgba(0,100,255,.08);
 }
 
 label{
   display:block;
   margin:15px 0 7px;
-  color:#b8ddff;
-}
-
-input{
-  width:100%;
-  padding:13px;
-  border-radius:10px;
-  border:1px solid #24618d;
-  background:#020711;
-  color:#fff;
-  outline:none;
-}
-
-input:focus{
-  border-color:#00aaff;
-  box-shadow:0 0 10px rgba(0,150,255,.2);
-}
-
-.sum{
-  margin-top:18px;
-  padding:15px;
-  background:#030914;
-  border-radius:12px;
-}
-
-.row{
-  display:flex;
-  justify-content:space-between;
-  gap:15px;
-  margin:9px 0;
-}
-
-.total{
-  border-top:1px solid #24618d;
-  padding-top:12px;
-  color:#00c0ff;
+  color:#b8c6dc;
   font-weight:bold;
+}
+
+input,
+select{
+  width:100%;
+  padding:14px;
+  border-radius:10px;
+  border:1px solid rgba(0,140,255,.3);
+  outline:none;
+  background:#050c1b;
+  color:#fff;
+  font-size:15px;
+}
+
+input:focus,
+select:focus{
+  border-color:#00aaff;
+  box-shadow:0 0 12px rgba(0,140,255,.15);
+}
+
+.form-message{
+  margin-top:15px;
+  padding:12px;
+  display:none;
+  border-radius:10px;
+  background:rgba(0,140,255,.08);
+  border:1px solid rgba(0,140,255,.3);
+  color:#a8dcff;
+}
+
+/* COMO FUNCIONA */
+
+.steps{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+}
+
+.step{
+  padding:25px;
+  text-align:center;
+  border-radius:18px;
+  background:rgba(7,17,36,.8);
+  border:1px solid rgba(0,140,255,.22);
+}
+
+.step-number{
+  width:48px;
+  height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 15px;
+  border-radius:50%;
+  background:#008cff;
+  font-size:20px;
+  font-weight:900;
+  box-shadow:0 0 20px rgba(0,140,255,.45);
+}
+
+.step p{
+  color:#8997ad;
+  margin-top:8px;
+  line-height:1.5;
+}
+
+/* CONTATO */
+
+.contact{
+  text-align:center;
+  padding-bottom:90px;
+}
+
+.contact-box{
+  max-width:700px;
+  margin:auto;
+  padding:35px 20px;
+  border-radius:22px;
+  background:
+    radial-gradient(circle at center,rgba(0,120,255,.15),transparent 60%),
+    rgba(4,12,28,.9);
+  border:1px solid rgba(0,140,255,.3);
+}
+
+.contact-box p{
+  color:#8f9db4;
+  line-height:1.6;
+  margin:15px auto 25px;
+  max-width:550px;
 }
 
 /* RODAPÉ */
 
 footer{
   text-align:center;
-  color:#66809d;
-  padding:40px 10px;
-  font-size:12px;
+  padding:30px 18px;
+  border-top:1px solid rgba(0,140,255,.18);
+  color:#65738a;
+  font-size:13px;
+}
+
+footer strong{
+  color:#00aaff;
+}
+
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:2000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  background:rgba(0,0,0,.75);
+  backdrop-filter:blur(7px);
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:100%;
+  max-width:500px;
+  padding:25px;
+  border-radius:20px;
+  background:#071226;
+  border:1px solid #008cff;
+  box-shadow:0 0 45px rgba(0,130,255,.25);
+}
+
+.modal-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:20px;
+}
+
+.close{
+  width:36px;
+  height:36px;
+  border:0;
+  border-radius:8px;
+  background:rgba(255,255,255,.07);
+  color:#fff;
+  font-size:20px;
+  cursor:pointer;
+}
+
+.selected-product{
+  padding:18px;
+  margin-bottom:18px;
+  border-radius:12px;
+  background:rgba(0,130,255,.08);
+  border:1px solid rgba(0,140,255,.25);
+}
+
+.selected-product strong{
+  display:block;
+  color:#00aaff;
+  font-size:22px;
+  margin-bottom:5px;
+}
+
+.warning{
+  margin-top:15px;
+  padding:12px;
+  border-radius:10px;
+  background:rgba(255,170,0,.06);
+  border:1px solid rgba(255,170,0,.2);
+  color:#d8c28e;
+  font-size:13px;
+  line-height:1.5;
 }
 
 /* RESPONSIVO */
 
-@media(max-width:650px){
+@media(max-width:600px){
 
-  .grid{
-    grid-template-columns:1fr;
+  header{
+    height:64px;
   }
 
-  .benefits{
-    grid-template-columns:repeat(2,1fr);
+  .side-menu{
+    top:64px;
+    height:calc(100vh - 64px);
+  }
+
+  .logo{
+    font-size:22px;
   }
 
   .hero{
+    min-height:570px;
     padding-top:45px;
   }
 
   .hero h1{
-    font-size:52px;
+    font-size:58px;
   }
 
-  .brand{
-    font-size:24px;
+  .hero p{
+    font-size:15px;
+  }
+
+  section{
+    padding:55px 15px;
+  }
+
+  .section-title{
+    font-size:28px;
+  }
+
+  .diamond-grid,
+  .cards,
+  .steps{
+    grid-template-columns:1fr;
   }
 }
 </style>
@@ -454,119 +622,78 @@ footer{
 
 <body>
 
-<div class="app">
+<!-- MENU LATERAL -->
 
-<header>
-  <button class="menu" onclick="toggleMenu()">☰</button>
-  <div class="brand">DIMAS FF</div>
-</header>
+<nav class="side-menu" id="sideMenu">
 
-<nav id="nav">
+  <h2>Dimas FF</h2>
 
-  <button onclick="go('home')">
-    🏠 &nbsp; Início
-  </button>
+  <a href="#inicio" onclick="closeMenu()">🏠 Início</a>
 
-  <button onclick="go('diamonds')">
-    💎 &nbsp; Diamantes
-  </button>
+  <a href="#diamantes" onclick="closeMenu()">💎 Diamantes</a>
 
-  <button onclick="go('accounts')">
-    👤 &nbsp; Contas
-  </button>
+  <a href="#como-funciona" onclick="closeMenu()">⚡ Como funciona</a>
 
-  <button onclick="go('how')">
-    ❓ &nbsp; Como funciona
-  </button>
+  <a href="#contato" onclick="closeMenu()">💬 Contato</a>
 
-  <button onclick="discord()">
-    💬 &nbsp; Discord
-  </button>
+  <!-- TROQUE O LINK ABAIXO PELO SEU DISCORD DEPOIS -->
+  <a href="#" onclick="discordAlert(event)">🎮 Discord</a>
 
 </nav>
 
-<main>
+<!-- CABEÇALHO -->
+
+<header>
+
+  <button
+    class="menu-btn"
+    id="menuBtn"
+    onclick="toggleMenu()"
+    aria-label="Abrir menu">
+    ☰
+  </button>
+
+  <div class="logo">DIMAS FF</div>
+
+</header>
+
 
 <!-- INÍCIO -->
 
-<section id="home" class="screen active">
+<main>
 
-  <div class="hero">
+<section class="hero" id="inicio">
 
-    <h1>DIMAS FF</h1>
+  <div class="hero-content">
+
+    <div class="badge">
+      ⚡ LOJA DIGITAL FREE FIRE
+    </div>
+
+    <h1>
+      DIMAS <span>FF</span>
+    </h1>
 
     <p>
-      O MELHOR PREÇO, ENTREGA RÁPIDA E SEGURA!
+      Sua loja de diamantes Free Fire com visual neon,
+      atendimento e uma experiência simples para escolher
+      seu pacote.
     </p>
 
-  </div>
+    <div class="hero-buttons">
 
-  <div class="cards">
+      <a
+        class="btn btn-primary"
+        href="#diamantes">
+        💎 Comprar diamantes
+      </a>
 
-    <button class="card" onclick="go('diamonds')">
+      <a
+        class="btn btn-secondary"
+        href="#como-funciona">
+        ⚡ Como funciona
+      </a>
 
-      <div class="icon">💎</div>
-
-      <div>
-        <h2>DIAMANTES</h2>
-        <p>RECARGAS NA HORA!</p>
-      </div>
-
-      <div class="arrow">›</div>
-
-    </button>
-
-
-    <button class="card" onclick="go('accounts')">
-
-      <div class="icon">👤</div>
-
-      <div>
-        <h2>CONTAS</h2>
-        <p>CONTAS UPADAS!</p>
-      </div>
-
-      <div class="arrow">›</div>
-
-    </button>
-
-
-    <button class="card" onclick="discord()">
-
-      <div class="icon">🎟️</div>
-
-      <div>
-        <h2>CUPONS</h2>
-        <p>VEJA OS CUPONS NO DISCORD!</p>
-      </div>
-
-      <div class="arrow">›</div>
-
-    </button>
-
-  </div>
-
-
-  <div class="benefits">
-
-    <div>
-      🛡️
-      <b>100% SEGURO</b>
-    </div>
-
-    <div>
-      ⚡
-      <b>ENTREGA RÁPIDA</b>
-    </div>
-
-    <div>
-      🎧
-      <b>SUPORTE</b>
-    </div>
-
-    <div>
-      ★
-      <b>MELHORES PREÇOS</b>
     </div>
 
   </div>
@@ -576,107 +703,204 @@ footer{
 
 <!-- DIAMANTES -->
 
-<section id="diamonds" class="screen">
+<section id="diamantes">
 
-  <button class="back" onclick="go('home')">
-    ← Voltar
-  </button>
-
-  <h2 class="title">
-    💎 PACOTES DE DIAMANTES
+  <h2 class="section-title">
+    Pacotes de <span>Diamantes</span>
   </h2>
 
-  <div id="diamondsList" class="grid"></div>
+  <p class="section-subtitle">
+    Escolha o pacote que deseja comprar.
+  </p>
 
-</section>
+  <div class="diamond-grid">
 
+    <div class="diamond-card">
 
-<!-- CONTAS -->
+      <div class="diamond">💎</div>
 
-<section id="accounts" class="screen">
+      <h3>100 Diamantes</h3>
 
-  <button class="back" onclick="go('home')">
-    ← Voltar
-  </button>
+      <small>Pacote básico</small>
 
-  <h2 class="title">
-    👤 CONTAS FREE FIRE
-  </h2>
+      <div class="price">R$ 2,00</div>
 
-  <div id="accountsList" class="grid"></div>
-
-</section>
-
-
-<!-- COMPRA -->
-
-<section id="buy" class="screen">
-
-  <button class="back" onclick="go('diamonds')">
-    ← Voltar
-  </button>
-
-  <h2 class="title">
-    FINALIZAR COMPRA
-  </h2>
-
-  <div class="form">
-
-    <h3 id="chosen">
-      Produto
-    </h3>
-
-    <label>
-      ID do jogador
-    </label>
-
-    <input
-      id="uid"
-      type="text"
-      placeholder="Digite seu ID do Free Fire"
-    >
-
-    <label>
-      Cupom de desconto
-    </label>
-
-    <input
-      id="coupon"
-      type="text"
-      placeholder="Digite o cupom"
-    >
-
-    <button class="buy" onclick="applyCoupon()">
-      Aplicar cupom
-    </button>
-
-    <div class="sum">
-
-      <div class="row">
-        <span>Produto</span>
-        <b id="sp">-</b>
-      </div>
-
-      <div class="row">
-        <span>Preço</span>
-        <span id="price">R$ 0,00</span>
-      </div>
-
-      <div class="row">
-        <span>Desconto</span>
-        <span id="discount">R$ 0,00</span>
-      </div>
-
-      <div class="row total">
-        <span>Total</span>
-        <span id="total">R$ 0,00</span>
-      </div>
+      <button
+        class="buy-btn"
+        onclick="openPurchase('100 Diamantes','R$ 2,00',2)">
+        COMPRAR
+      </button>
 
     </div>
 
-    <button class="buy" onclick="pay()">
-      💳 Pagar
-    </button>
+
+    <div class="diamond-card">
+
+      <div class="diamond">💎</div>
+
+      <h3>310 Diamantes</h3>
+
+      <small>Pacote popular</small>
+
+      <div class="price">R$ 3,00</div>
+
+      <button
+        class="buy-btn"
+        onclick="openPurchase('310 Diamantes','R$ 3,00',3)">
+        COMPRAR
+      </button>
+
+    </div>
+
+
+    <div class="diamond-card">
+
+      <div class="diamond">💎</div>
+
+      <h3>500 Diamantes</h3>
+
+      <small>Mais diamantes</small>
+
+      <div class="price">R$ 4,00</div>
+
+      <button
+        class="buy-btn"
+        onclick="openPurchase('500 Diamantes','R$ 4,00',4)">
+        COMPRAR
+      </button>
+
+    </div>
+
+
+    <div class="diamond-card">
+
+      <div class="diamond">💎</div>
+
+      <h3>1.060 Diamantes</h3>
+
+      <small>Pacote especial</small>
+
+      <div class="price">R$ 8,00</div>
+
+      <button
+        class="buy-btn"
+        onclick="openPurchase('1.060 Diamantes','R$ 8,00',8)">
+        COMPRAR
+      </button>
+
+    </div>
+
+
+    <div class="diamond-card">
+
+      <div class="diamond">💎</div>
+
+      <h3>2.180 Diamantes</h3>
+
+      <small>Pacote avançado</small>
+
+      <div class="price">R$ 15,00</div>
+
+      <button
+        class="buy-btn"
+        onclick="openPurchase('2.180 Diamantes','R$ 15,00',15)">
+        COMPRAR
+      </button>
+
+    </div>
+
+
+    <div class="diamond-card">
+
+      <div class="diamond">💎</div>
+
+      <h3>5.600 Diamantes</h3>
+
+      <small>Pacote máximo</small>
+
+      <div class="price">R$ 35,00</div>
+
+      <button
+        class="buy-btn"
+        onclick="openPurchase('5.600 Diamantes','R$ 35,00',35)">
+        COMPRAR
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- BENEFÍCIOS -->
+
+<section>
+
+  <h2 class="section-title">
+    Por que escolher a <span>Dimas FF?</span>
+  </h2>
+
+  <p class="section-subtitle">
+    Tudo organizado em um só lugar.
+  </p>
+
+  <div class="cards">
+
+    <div class="card">
+
+      <div class="card-icon">💎</div>
+
+      <h3>Diamantes</h3>
+
+      <p>
+        Pacotes de diamantes organizados para você
+        escolher facilmente.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="card-icon">⚡</div>
+
+      <h3>Praticidade</h3>
+
+      <p>
+        Escolha seu pacote e siga as instruções
+        apresentadas na tela.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="card-icon">🔐</div>
+
+      <h3>Segurança</h3>
+
+      <p>
+        O pagamento será integrado ao sistema
+        de pagamento quando o backend estiver configurado.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="card-icon">💬</div>
+
+      <h3>Suporte</h3>
+
+      <p>
+        Entre em contato pelo Discord para tirar
+        suas dúvidas.
+      </p>
+
+    </div>
 
   </div>
 
@@ -685,41 +909,96 @@ footer{
 
 <!-- COMO FUNCIONA -->
 
-<section id="how" class="screen">
+<section id="como-funciona">
 
-  <button class="back" onclick="go('home')">
-    ← Voltar
-  </button>
+  <h2 class="section-title">
+    Como <span>funciona?</span>
+  </h2>
 
-  <div class="form">
+  <p class="section-subtitle">
+    Processo simples em poucos passos.
+  </p>
 
-    <h2>
-      ❓ Como funciona?
+  <div class="steps">
+
+    <div class="step">
+
+      <div class="step-number">1</div>
+
+      <h3>Escolha</h3>
+
+      <p>
+        Escolha um dos pacotes de diamantes.
+      </p>
+
+    </div>
+
+
+    <div class="step">
+
+      <div class="step-number">2</div>
+
+      <h3>Informe seu ID</h3>
+
+      <p>
+        Digite corretamente o ID da sua conta Free Fire.
+      </p>
+
+    </div>
+
+
+    <div class="step">
+
+      <div class="step-number">3</div>
+
+      <h3>Pagamento</h3>
+
+      <p>
+        O sistema de pagamento será utilizado
+        quando estiver configurado.
+      </p>
+
+    </div>
+
+
+    <div class="step">
+
+      <div class="step-number">4</div>
+
+      <h3>Receba</h3>
+
+      <p>
+        Após a confirmação, siga as instruções
+        para receber o produto.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CONTATO -->
+
+<section class="contact" id="contato">
+
+  <div class="contact-box">
+
+    <h2 class="section-title">
+      Fale com a <span>Dimas FF</span>
     </h2>
 
-    <p style="margin:15px 0">
-      1. Escolha seu pacote de diamantes.
+    <p>
+      Precisa de ajuda? Entre no nosso Discord
+      para receber atendimento.
     </p>
 
-    <p style="margin:15px 0">
-      2. Confira o preço.
-    </p>
-
-    <p style="margin:15px 0">
-      3. Informe seu ID do jogador.
-    </p>
-
-    <p style="margin:15px 0">
-      4. Aplique seu cupom, quando disponível.
-    </p>
-
-    <p style="margin:15px 0">
-      5. Clique em Pagar.
-    </p>
-
-    <p style="margin-top:20px;color:#00baff">
-      O sistema de pagamento será conectado posteriormente.
-    </p>
+    <button
+      class="btn btn-primary"
+      onclick="discordAlert(event)">
+      🎮 Entrar no Discord
+    </button>
 
   </div>
 
@@ -728,374 +1007,234 @@ footer{
 </main>
 
 
+<!-- RODAPÉ -->
+
 <footer>
-  DIMAS FF — CONFIANÇA E QUALIDADE
+
+  <p>
+    © 2026 <strong>Dimas FF</strong>.
+    Todos os direitos reservados.
+  </p>
+
 </footer>
+
+
+<!-- MODAL DE COMPRA -->
+
+<div class="modal" id="purchaseModal">
+
+  <div class="modal-box">
+
+    <div class="modal-top">
+
+      <h2>💎 Comprar</h2>
+
+      <button
+        class="close"
+        onclick="closePurchase()">
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="selected-product">
+
+      <strong id="productName">
+        Pacote
+      </strong>
+
+      <span id="productPrice">
+        R$ 0,00
+      </span>
+
+    </div>
+
+
+    <label for="playerId">
+      ID do jogador
+    </label>
+
+    <input
+      id="playerId"
+      type="text"
+      inputmode="numeric"
+      placeholder="Digite seu ID do Free Fire"
+      maxlength="30">
+
+
+    <button
+      class="btn btn-primary"
+      style="width:100%;margin-top:20px"
+      onclick="continuePurchase()">
+      CONTINUAR
+    </button>
+
+
+    <div class="form-message" id="formMessage"></div>
+
+
+    <div class="warning">
+      ⚠️ O pagamento automático ainda está sendo
+      configurado. Este botão não realizará uma
+      cobrança real enquanto o backend de pagamento
+      não estiver conectado.
+    </div>
+
+  </div>
 
 </div>
 
 
 <script>
 
-const CONFIG = {
+/* MENU */
 
-  discordUrl:
-    "https://discord.gg/Y9UHDeknz",
-
-  couponCode:
-    "ZERO3",
-
-  couponPercent:
-    10
-
-};
-
-
-const diamonds = [
-
-  ["100 Diamantes", 2],
-
-  ["500 Diamantes", 4],
-
-  ["1.000 Diamantes", 8],
-
-  ["2.000 Diamantes", 15],
-
-  ["5.000 Diamantes", 35],
-
-  ["10.000 Diamantes", 65]
-
-];
-
-
-const accounts = [
-
-  ["Conta #01", 0],
-
-  ["Conta #02", 0]
-
-];
-
-
-let current = null;
-
-let discount = 0;
-
-
-function money(value){
-
-  return Number(value).toLocaleString(
-    "pt-BR",
-    {
-      style:"currency",
-      currency:"BRL"
-    }
-  );
-
-}
-
+const sideMenu = document.getElementById("sideMenu");
 
 function toggleMenu(){
 
-  const nav =
-    document.getElementById("nav");
+  sideMenu.classList.toggle("open");
 
-  nav.classList.toggle("open");
+}
+
+function closeMenu(){
+
+  sideMenu.classList.remove("open");
 
 }
 
 
-function go(id){
+/* FECHAR MENU AO CLICAR FORA */
+
+document.addEventListener("click",function(event){
+
+  const button = document.getElementById("menuBtn");
+
+  if(
+    sideMenu.classList.contains("open") &&
+    !sideMenu.contains(event.target) &&
+    !button.contains(event.target)
+  ){
+
+    closeMenu();
+
+  }
+
+});
+
+
+/* PRODUTO SELECIONADO */
+
+let selectedProduct = "";
+let selectedPrice = "";
+let selectedAmount = 0;
+
+function openPurchase(product,price,amount){
+
+  selectedProduct = product;
+  selectedPrice = price;
+  selectedAmount = amount;
+
+  document.getElementById("productName").textContent = product;
+
+  document.getElementById("productPrice").textContent = price;
+
+  document.getElementById("playerId").value = "";
+
+  document.getElementById("formMessage").style.display = "none";
+
+  document.getElementById("purchaseModal").classList.add("show");
+
+}
+
+
+function closePurchase(){
 
   document
-    .querySelectorAll(".screen")
-    .forEach(function(screen){
-
-      screen.classList.remove("active");
-
-    });
-
-
-  const target =
-    document.getElementById(id);
-
-  if(target){
-
-    target.classList.add("active");
-
-  }
-
-
-  document
-    .getElementById("nav")
-    .classList.remove("open");
-
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+    .getElementById("purchaseModal")
+    .classList.remove("show");
 
 }
 
 
-function discord(){
+/* CONTINUAR */
 
-  window.location.href =
-    CONFIG.discordUrl;
+function continuePurchase(){
 
-}
-
-
-function render(){
-
-  const diamondsList =
-    document.getElementById(
-      "diamondsList"
-    );
-
-
-  diamondsList.innerHTML =
-    diamonds.map(function(product,index){
-
-      return `
-
-        <article class="product">
-
-          <div class="diamond-icon">
-            💎
-          </div>
-
-          <h3>
-            ${product[0]}
-          </h3>
-
-          <div class="price">
-            ${money(product[1])}
-          </div>
-
-          <button
-            class="buy"
-            onclick="buy(${index})"
-          >
-            Comprar
-          </button>
-
-        </article>
-
-      `;
-
-    }).join("");
-
-
-  const accountsList =
-    document.getElementById(
-      "accountsList"
-    );
-
-
-  accountsList.innerHTML =
-    accounts.map(function(account){
-
-      return `
-
-        <article class="product">
-
-          <div class="diamond-icon">
-            👤
-          </div>
-
-          <h3>
-            ${account[0]}
-          </h3>
-
-          <p style="color:#9fcfff;margin:10px 0">
-            Foto e informações serão adicionadas depois.
-          </p>
-
-          <div class="price">
-            ${
-              account[1]
-              ? money(account[1])
-              : "Preço a definir"
-            }
-          </div>
-
-        </article>
-
-      `;
-
-    }).join("");
-
-}
-
-
-function buy(index){
-
-  current =
-    diamonds[index];
-
-  discount = 0;
-
-
-  document.getElementById(
-    "chosen"
-  ).textContent =
-    current[0];
-
-
-  document.getElementById(
-    "sp"
-  ).textContent =
-    current[0];
-
-
-  document.getElementById(
-    "coupon"
-  ).value = "";
-
-
-  document.getElementById(
-    "uid"
-  ).value = "";
-
-
-  updateTotal();
-
-  go("buy");
-
-}
-
-
-function applyCoupon(){
-
-  if(!current){
-
-    return;
-
-  }
-
-
-  const code =
+  const playerId =
     document
-      .getElementById("coupon")
-      .value
-      .trim()
-      .toUpperCase();
-
-
-  if(code === CONFIG.couponCode){
-
-    discount =
-      current[1] *
-      CONFIG.couponPercent /
-      100;
-
-    alert(
-      "Cupom aplicado! " +
-      CONFIG.couponPercent +
-      "% de desconto."
-    );
-
-  }
-
-  else{
-
-    discount = 0;
-
-    if(code){
-
-      alert("Cupom inválido.");
-
-    }
-
-  }
-
-
-  updateTotal();
-
-}
-
-
-function updateTotal(){
-
-  if(!current){
-
-    return;
-
-  }
-
-
-  const price =
-    current[1];
-
-  const total =
-    price - discount;
-
-
-  document.getElementById(
-    "price"
-  ).textContent =
-    money(price);
-
-
-  document.getElementById(
-    "discount"
-  ).textContent =
-    money(discount);
-
-
-  document.getElementById(
-    "total"
-  ).textContent =
-    money(total);
-
-}
-
-
-function pay(){
-
-  if(!current){
-
-    alert(
-      "Escolha um produto primeiro."
-    );
-
-    return;
-
-  }
-
-
-  const uid =
-    document
-      .getElementById("uid")
+      .getElementById("playerId")
       .value
       .trim();
 
+  const message =
+    document.getElementById("formMessage");
 
-  if(!uid){
 
-    alert(
-      "Digite seu ID do jogador antes de continuar."
-    );
+  if(!playerId){
 
-    document
-      .getElementById("uid")
-      .focus();
+    message.textContent =
+      "Digite o ID do jogador para continuar.";
+
+    message.style.display = "block";
 
     return;
 
   }
 
 
+  message.textContent =
+    "Pedido selecionado: " +
+    selectedProduct +
+    " — " +
+    selectedPrice +
+    ". O pagamento automático será conectado posteriormente.";
+
+  message.style.display = "block";
+
+}
+
+
+/* DISCORD */
+
+function discordAlert(event){
+
+  if(event){
+
+    event.preventDefault();
+
+  }
+
+  /*
+    COLOQUE SEU LINK DO DISCORD AQUI DEPOIS.
+
+    Exemplo:
+
+    window.location.href =
+      "https://discord.gg/SEU-LINK";
+  */
+
   alert(
-    "Pagamento será conectado nesta próxima etapa."
+    "O link do Discord ainda não foi configurado."
   );
 
 }
 
 
-render();
+/* FECHAR MODAL CLICANDO FORA */
+
+document
+  .getElementById("purchaseModal")
+  .addEventListener("click",function(event){
+
+    if(event.target === this){
+
+      closePurchase();
+
+    }
+
+  });
 
 </script>
 
