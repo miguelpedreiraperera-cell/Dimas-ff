@@ -1,13 +1,9 @@
 {
-  "name": "dimas-ff-asaas",
+  "name": "dimas-ff-backend",
   "version": "1.0.0",
-  "description": "Backend de pagamentos Pix do Dimas FF",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
-  },
-  "engines": {
-    "node": ">=18"
   },
   "dependencies": {
     "cors": "^2.8.5",
