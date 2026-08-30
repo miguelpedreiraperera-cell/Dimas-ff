@@ -17,26 +17,12 @@ const ASAAS_URL = (
 
 
 /* =========================
-   CONFIGURAÇÃO DO CUPOM
-========================= */
-
-const COUPON_CODE = "ZERO3";
-
-const COUPON_DISCOUNT = 0.10;
-
-const COUPON_MINIMUM = 7;
-
-const MIN_PAYMENT = 5;
-
-
-/* =========================
-   REQUISIÇÃO PARA O ASAAS
+   REQUISIÇÃO ASAAS
 ========================= */
 
 async function asaasRequest(path, options = {}) {
 
   if (!ASAAS_API_KEY) {
-
     throw new Error(
       "ASAAS_API_KEY não foi configurada no Render."
     );
@@ -57,8 +43,8 @@ async function asaasRequest(path, options = {}) {
   );
 
   const data =
-    await response.json()
-      .catch(() => ({}));
+    await response.json().catch(() => ({}));
+
 
   if (!response.ok) {
 
@@ -87,7 +73,7 @@ async function asaasRequest(path, options = {}) {
 
 
 /* =========================
-   TESTE DO ASAAS
+   TESTE ASAAS
 ========================= */
 
 app.get(
@@ -104,6 +90,7 @@ app.get(
           }
         );
 
+
       res.json({
 
         success: true,
@@ -118,7 +105,9 @@ app.get(
 
         customers:
           data?.totalCount ?? null
+
       });
+
 
     } catch (error) {
 
@@ -127,14 +116,18 @@ app.get(
         error
       );
 
+
       res.status(500).json({
 
         success: false,
 
         error:
           error.message
+
       });
+
     }
+
   }
 );
 
@@ -154,6 +147,7 @@ app.post(
         product,
         playerId,
         cpf,
+        cpfCnpj,
         coupon
       } = req.body;
 
@@ -162,24 +156,29 @@ app.post(
          VALOR ORIGINAL
       ========================= */
 
-      const originalAmount =
+      const originalValue =
         Number(amount);
 
+
       if(
-        !Number.isFinite(originalAmount) ||
-        originalAmount <= 0
+        !Number.isFinite(
+          originalValue
+        ) ||
+        originalValue <= 0
       ){
 
         return res.status(400).json({
 
           error:
             "Valor do pagamento inválido."
+
         });
+
       }
 
 
       /* =========================
-         ID DO JOGADOR
+         ID
       ========================= */
 
       if(!playerId){
@@ -188,121 +187,135 @@ app.post(
 
           error:
             "ID do jogador não informado."
+
         });
+
       }
 
 
       /* =========================
-         CPF
+         CPF / CNPJ
       ========================= */
 
-      if(!cpf){
+      const document =
+        String(
+          cpfCnpj || cpf || ""
+        )
+        .replace(/\D/g,"");
+
+
+      if(!document){
 
         return res.status(400).json({
 
           error:
-            "CPF ou CNPJ não informado."
+            "CPF não informado."
+
         });
+
       }
 
 
-      const cleanCpf =
-        String(cpf)
-          .replace(/\D/g,"");
-
-
       if(
-        cleanCpf.length !== 11 &&
-        cleanCpf.length !== 14
+        document.length !== 11 &&
+        document.length !== 14
       ){
 
         return res.status(400).json({
 
           error:
             "CPF ou CNPJ inválido."
+
         });
+
       }
 
 
       /* =========================
-         CUPOM
+         CUPOM ZERO3
+         10% DE DESCONTO
+         MÍNIMO ORIGINAL R$ 7,00
       ========================= */
 
-      const normalizedCoupon =
-        String(coupon || "")
-          .trim()
-          .toUpperCase();
+      let finalValue =
+        originalValue;
+
+      let discount = 0;
+
+      let couponUsed = null;
 
 
-      let finalAmount =
-        originalAmount;
+      const couponCode =
+        String(
+          coupon || ""
+        )
+        .trim()
+        .toUpperCase();
 
-      let discountAmount = 0;
 
-      let couponApplied = false;
+      if(
+        couponCode === "ZERO3"
+      ){
 
-
-      if(normalizedCoupon){
-
-        if(
-          normalizedCoupon !==
-          COUPON_CODE
-        ){
-
-          return res.status(400).json({
-
-            error:
-              "Cupom inválido."
-          });
-        }
-
+        /*
+         * O mínimo é verificado
+         * ANTES do desconto.
+         *
+         * R$ 7,00 pode usar ZERO3.
+         */
 
         if(
-          originalAmount <
-          COUPON_MINIMUM
+          originalValue < 7
         ){
 
           return res.status(400).json({
 
             error:
               "O cupom ZERO3 só pode ser usado em compras de R$ 7,00 ou mais."
+
           });
+
         }
 
 
-        discountAmount =
+        discount =
           Number(
             (
-              originalAmount *
-              COUPON_DISCOUNT
+              originalValue * 0.10
             ).toFixed(2)
           );
 
 
-        finalAmount =
+        finalValue =
           Number(
             (
-              originalAmount -
-              discountAmount
+              originalValue -
+              discount
             ).toFixed(2)
           );
 
 
-        couponApplied = true;
+        couponUsed =
+          "ZERO3";
+
       }
 
 
       /* =========================
-         VALOR MÍNIMO DO PIX
+         SEGURANÇA
       ========================= */
 
-      if(finalAmount < MIN_PAYMENT){
+      if(
+        finalValue <= 0
+      ){
 
         return res.status(400).json({
 
           error:
-            "O valor final da cobrança não pode ser menor que R$ 5,00."
+            "Valor final inválido."
+
         });
+
       }
 
 
@@ -314,7 +327,9 @@ app.post(
         await asaasRequest(
           "/customers",
           {
-            method: "POST",
+
+            method:
+              "POST",
 
             body:
               JSON.stringify({
@@ -323,11 +338,13 @@ app.post(
                   `Cliente Dimas FF - ${playerId}`,
 
                 cpfCnpj:
-                  cleanCpf,
+                  document,
 
                 externalReference:
                   `dimas-ff-${playerId}-${Date.now()}`
+
               })
+
           }
         );
 
@@ -340,7 +357,9 @@ app.post(
         await asaasRequest(
           "/payments",
           {
-            method: "POST",
+
+            method:
+              "POST",
 
             body:
               JSON.stringify({
@@ -352,7 +371,7 @@ app.post(
                   "PIX",
 
                 value:
-                  finalAmount,
+                  finalValue,
 
                 dueDate:
                   new Date()
@@ -360,13 +379,15 @@ app.post(
                     .slice(0,10),
 
                 description:
-                  couponApplied
-                    ? `${product} - ID ${playerId} - Cupom ZERO3 10%`
+                  couponUsed
+                    ? `${product} - ID ${playerId} - Cupom ZERO3 - 10% OFF`
                     : `${product} - ID ${playerId}`,
 
                 externalReference:
                   `DIMAS-FF-${Date.now()}`
+
               })
+
           }
         );
 
@@ -381,7 +402,10 @@ app.post(
             payment.id
           )}/pixQrCode`,
           {
-            method: "GET"
+
+            method:
+              "GET"
+
           }
         );
 
@@ -392,7 +416,8 @@ app.post(
 
       res.json({
 
-        success: true,
+        success:
+          true,
 
         paymentId:
           payment.id,
@@ -401,21 +426,16 @@ app.post(
           payment.status,
 
         originalAmount:
-          originalAmount,
+          originalValue,
 
         discount:
-          discountAmount,
+          discount,
 
         amount:
-          finalAmount,
-
-        couponApplied:
-          couponApplied,
+          finalValue,
 
         coupon:
-          couponApplied
-            ? COUPON_CODE
-            : null,
+          couponUsed,
 
         product:
           product,
@@ -431,29 +451,34 @@ app.post(
 
         expirationDate:
           pix.expirationDate
+
       });
 
 
-    } catch(error){
+    } catch (error) {
 
       console.error(
         "Erro ao criar Pix:",
         error
       );
 
+
       res.status(500).json({
 
         error:
           error.message ||
           "Não foi possível gerar o Pix."
+
       });
+
     }
+
   }
 );
 
 
 /* =========================
-   CONSULTAR PAGAMENTO
+   STATUS DO PAGAMENTO
 ========================= */
 
 app.get(
@@ -468,7 +493,10 @@ app.get(
             req.params.paymentId
           )}`,
           {
-            method: "GET"
+
+            method:
+              "GET"
+
           }
         );
 
@@ -480,23 +508,28 @@ app.get(
 
         status:
           payment.status
+
       });
 
 
-    } catch(error){
+    } catch (error) {
 
       console.error(
         "Erro ao consultar pagamento:",
         error
       );
 
+
       res.status(500).json({
 
         error:
           error.message ||
           "Erro ao consultar pagamento."
+
       });
+
     }
+
   }
 );
 
@@ -511,7 +544,8 @@ app.get(
 
     res.json({
 
-      online: true,
+      online:
+        true,
 
       service:
         "Dimas FF",
@@ -520,7 +554,9 @@ app.get(
         ASAAS_URL.includes("sandbox")
           ? "Sandbox"
           : "Produção"
+
     });
+
   }
 );
 
@@ -545,8 +581,5 @@ app.listen(
       }`
     );
 
-    console.log(
-      `Cupom ${COUPON_CODE}: 10% de desconto a partir de R$ ${COUPON_MINIMUM.toFixed(2)}`
-    );
   }
 );
