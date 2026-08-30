@@ -4,11 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#050816">
+
 <title>Dimas FF</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
 
 body{
   font-family:Arial,Helvetica,sans-serif;
@@ -42,15 +50,17 @@ body::after{
   background-size:40px 40px;
 }
 
+/* HEADER */
+
 header{
   position:sticky;
   top:0;
   z-index:1000;
-  height:70px;
+  min-height:70px;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:0 18px;
+  padding:10px 18px;
   background:rgba(3,7,18,.88);
   backdrop-filter:blur(14px);
   border-bottom:1px solid rgba(0,150,255,.35);
@@ -61,7 +71,10 @@ header{
   font-weight:900;
   letter-spacing:2px;
   color:#fff;
-  text-shadow:0 0 8px #00aaff,0 0 20px #008cff,0 0 40px #0066ff;
+  text-shadow:
+    0 0 8px #00aaff,
+    0 0 20px #008cff,
+    0 0 40px #0066ff;
 }
 
 .menu-btn{
@@ -77,6 +90,8 @@ header{
   cursor:pointer;
 }
 
+/* MENU */
+
 .side-menu{
   position:fixed;
   top:70px;
@@ -91,7 +106,9 @@ header{
   box-shadow:10px 0 40px rgba(0,100,255,.18);
 }
 
-.side-menu.open{left:0}
+.side-menu.open{
+  left:0;
+}
 
 .side-menu h2{
   color:#00aaff;
@@ -109,8 +126,10 @@ header{
   border:1px solid rgba(0,140,255,.12);
 }
 
+/* HERO */
+
 .hero{
-  min-height:620px;
+  min-height:560px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -142,10 +161,15 @@ header{
   font-weight:1000;
   letter-spacing:4px;
   margin-bottom:22px;
-  text-shadow:0 0 10px #00aaff,0 0 30px #008cff,0 0 70px #004cff;
+  text-shadow:
+    0 0 10px #00aaff,
+    0 0 30px #008cff,
+    0 0 70px #004cff;
 }
 
-.hero h1 span{color:#00aaff}
+.hero h1 span{
+  color:#00aaff;
+}
 
 .hero p{
   max-width:650px;
@@ -175,6 +199,10 @@ header{
   transition:.2s;
 }
 
+.btn:hover{
+  transform:translateY(-2px);
+}
+
 .btn-primary{
   color:#fff;
   background:linear-gradient(135deg,#008cff,#004cff);
@@ -186,6 +214,8 @@ header{
   background:rgba(255,255,255,.05);
   border:1px solid #007fff;
 }
+
+/* SEÇÕES */
 
 section{
   width:100%;
@@ -211,26 +241,85 @@ section{
   margin-bottom:35px;
 }
 
-.cards,
-.diamond-grid,
-.account-grid,
-.steps{
+/* MENU PRINCIPAL EM FORMATO PEDIDO */
+
+.quick-nav{
+  width:100%;
+  max-width:850px;
+  margin:0 auto 35px;
+  padding:10px;
+}
+
+.quick-top{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+}
+
+.quick-bottom{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-top:18px;
+}
+
+.quick-card{
+  width:190px;
+  min-height:78px;
+  padding:15px;
+  border-radius:16px;
+  text-decoration:none;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  background:linear-gradient(
+    145deg,
+    rgba(9,24,50,.96),
+    rgba(3,9,22,.98)
+  );
+  border:1px solid rgba(0,140,255,.35);
+  box-shadow:0 8px 25px rgba(0,0,0,.25);
+  transition:.25s;
+  font-weight:900;
+}
+
+.quick-card:hover{
+  transform:translateY(-4px);
+  border-color:#00aaff;
+  box-shadow:0 0 25px rgba(0,140,255,.25);
+}
+
+.quick-icon{
+  font-size:30px;
+}
+
+.coupon-card{
+  width:250px;
+}
+
+/* CARDS */
+
+.cards{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
   gap:18px;
 }
 
-.card,
-.diamond-card,
-.account-card,
-.step{
-  border-radius:18px;
-  background:linear-gradient(145deg,rgba(9,24,50,.95),rgba(3,9,22,.96));
-  border:1px solid rgba(0,140,255,.25);
-}
-
 .card{
+  position:relative;
+  overflow:hidden;
   padding:25px;
+  border-radius:18px;
+  background:linear-gradient(
+    145deg,
+    rgba(9,24,50,.95),
+    rgba(3,9,22,.96)
+  );
+  border:1px solid rgba(0,140,255,.25);
+  box-shadow:0 10px 35px rgba(0,0,0,.25);
 }
 
 .card-icon{
@@ -243,16 +332,29 @@ section{
   font-size:20px;
 }
 
-.card p,
-.account-card p,
-.step p{
+.card p{
   color:#8f9db4;
   line-height:1.5;
+}
+
+/* DIAMANTES */
+
+.diamond-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:18px;
 }
 
 .diamond-card{
   text-align:center;
   padding:25px 18px;
+  border-radius:18px;
+  background:linear-gradient(
+    160deg,
+    rgba(8,28,58,.96),
+    rgba(2,7,18,.98)
+  );
+  border:1px solid rgba(0,145,255,.3);
   transition:.25s;
 }
 
@@ -298,8 +400,23 @@ section{
   cursor:pointer;
 }
 
+/* CONTAS */
+
+.account-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+}
+
 .account-card{
   padding:18px;
+  border-radius:18px;
+  background:linear-gradient(
+    160deg,
+    rgba(8,28,58,.96),
+    rgba(2,7,18,.98)
+  );
+  border:1px solid rgba(0,145,255,.3);
 }
 
 .account-image{
@@ -324,144 +441,20 @@ section{
   margin:10px 0;
 }
 
-.coupon-section{
-  text-align:center;
-}
-
-.coupon-box{
-  max-width:650px;
-  margin:auto;
-  padding:35px 22px;
-  border-radius:22px;
-  background:
-    radial-gradient(circle at center,rgba(0,120,255,.18),transparent 60%),
-    rgba(4,12,28,.95);
-  border:1px solid rgba(0,140,255,.4);
-  box-shadow:0 0 35px rgba(0,100,255,.12);
-}
-
-.coupon-icon{
-  font-size:60px;
-  margin-bottom:12px;
-}
-
-.coupon-code{
-  display:inline-block;
-  margin:18px 0;
-  padding:12px 22px;
-  border-radius:12px;
-  border:1px dashed #00aaff;
-  color:#00c0ff;
-  font-size:24px;
-  font-weight:900;
-  letter-spacing:3px;
-}
-
-.coupon-box p{
-  color:#91a0b8;
-  line-height:1.6;
-}
-
-.form-box{
-  max-width:600px;
-  margin:auto;
-  padding:25px;
-  border-radius:20px;
-  background:rgba(5,15,34,.9);
-  border:1px solid rgba(0,140,255,.3);
-}
-
-label{
-  display:block;
-  margin:15px 0 7px;
-  color:#b8c6dc;
-  font-weight:bold;
-}
-
-input{
-  width:100%;
-  padding:14px;
-  border-radius:10px;
-  border:1px solid rgba(0,140,255,.3);
-  outline:none;
-  background:#050c1b;
-  color:#fff;
-  font-size:15px;
-}
-
-.warning{
-  margin-top:15px;
-  padding:12px;
-  border-radius:10px;
-  background:rgba(255,170,0,.06);
-  border:1px solid rgba(255,170,0,.2);
-  color:#d8c28e;
-  font-size:13px;
-  line-height:1.5;
-}
-
-.coupon-input-box{
-  margin-top:18px;
-  padding:15px;
-  border-radius:12px;
-  background:rgba(0,130,255,.06);
-  border:1px solid rgba(0,140,255,.18);
-}
-
-.coupon-input-box label{
-  margin-top:0;
-}
-
-.apply-coupon{
-  width:100%;
-  margin-top:10px;
-  padding:12px;
-  border:1px solid #008cff;
-  border-radius:10px;
-  background:rgba(0,140,255,.1);
-  color:#fff;
-  font-weight:900;
-  cursor:pointer;
-}
-
-.coupon-result{
-  min-height:22px;
-  margin-top:10px;
-  font-size:14px;
-  line-height:1.4;
-}
-
-.discount-info{
-  display:none;
-  margin-top:14px;
-  padding:14px;
-  border-radius:12px;
-  background:rgba(0,200,120,.06);
-  border:1px solid rgba(0,200,120,.2);
-}
-
-.discount-line{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  margin:5px 0;
-  color:#aebbd0;
-}
-
-.discount-final{
-  color:#00cfff;
-  font-size:20px;
-  font-weight:900;
-}
+/* COMO FUNCIONA */
 
 .steps{
+  display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
 }
 
 .step{
   padding:25px;
   text-align:center;
+  border-radius:18px;
   background:rgba(7,17,36,.8);
+  border:1px solid rgba(0,140,255,.22);
 }
 
 .step-number{
@@ -477,6 +470,60 @@ input{
   font-weight:900;
   box-shadow:0 0 20px rgba(0,140,255,.45);
 }
+
+.step p{
+  color:#8997ad;
+  margin-top:8px;
+  line-height:1.5;
+}
+
+/* CUPOM */
+
+.coupon-section{
+  text-align:center;
+}
+
+.coupon-box{
+  max-width:600px;
+  margin:auto;
+  padding:35px 25px;
+  border-radius:22px;
+  background:
+    radial-gradient(circle at center,rgba(0,120,255,.15),transparent 60%),
+    rgba(4,12,28,.95);
+  border:1px solid rgba(0,140,255,.4);
+  box-shadow:0 0 35px rgba(0,100,255,.12);
+}
+
+.coupon-icon{
+  font-size:55px;
+  margin-bottom:12px;
+}
+
+.coupon-box h2{
+  color:#00b7ff;
+  margin-bottom:10px;
+}
+
+.coupon-box p{
+  color:#9aa9bf;
+  line-height:1.6;
+  margin-bottom:20px;
+}
+
+.coupon-code{
+  display:inline-block;
+  padding:12px 25px;
+  border-radius:12px;
+  border:1px dashed #00aaff;
+  color:#fff;
+  background:rgba(0,140,255,.08);
+  font-size:22px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+/* CONTATO */
 
 .contact{
   text-align:center;
@@ -501,15 +548,7 @@ input{
   max-width:550px;
 }
 
-footer{
-  text-align:center;
-  padding:30px 18px;
-  border-top:1px solid rgba(0,140,255,.18);
-  color:#65738a;
-  font-size:13px;
-}
-
-footer strong{color:#00aaff}
+/* FORMULÁRIO / MODAL */
 
 .modal{
   position:fixed;
@@ -524,7 +563,9 @@ footer strong{color:#00aaff}
   overflow-y:auto;
 }
 
-.modal.show{display:flex}
+.modal.show{
+  display:flex;
+}
 
 .modal-box{
   width:100%;
@@ -569,18 +610,33 @@ footer strong{color:#00aaff}
   margin-bottom:5px;
 }
 
-.price-old{
-  color:#7d8ba2;
-  text-decoration:line-through;
-  display:none;
+label{
+  display:block;
+  margin:15px 0 7px;
+  color:#b8c6dc;
+  font-weight:bold;
 }
 
-.price-final{
-  display:block;
-  color:#00c0ff;
-  font-size:20px;
-  font-weight:900;
-  margin-top:5px;
+input{
+  width:100%;
+  padding:14px;
+  border-radius:10px;
+  border:1px solid rgba(0,140,255,.3);
+  outline:none;
+  background:#050c1b;
+  color:#fff;
+  font-size:15px;
+}
+
+.warning{
+  margin-top:15px;
+  padding:12px;
+  border-radius:10px;
+  background:rgba(255,170,0,.06);
+  border:1px solid rgba(255,170,0,.2);
+  color:#d8c28e;
+  font-size:13px;
+  line-height:1.5;
 }
 
 .form-message{
@@ -593,6 +649,44 @@ footer strong{color:#00aaff}
   color:#a8dcff;
   line-height:1.5;
 }
+
+/* CUPOM NO PAGAMENTO */
+
+.coupon-input-box{
+  margin-top:18px;
+  padding:15px;
+  border-radius:12px;
+  background:rgba(0,140,255,.05);
+  border:1px solid rgba(0,140,255,.2);
+}
+
+.coupon-input-box label{
+  margin-top:0;
+}
+
+.discount-info{
+  display:none;
+  margin-top:10px;
+  padding:10px;
+  border-radius:9px;
+  background:rgba(0,200,120,.08);
+  border:1px solid rgba(0,200,120,.25);
+  color:#8ff0c1;
+  font-size:13px;
+}
+
+.discount-error{
+  display:none;
+  margin-top:10px;
+  padding:10px;
+  border-radius:9px;
+  background:rgba(255,80,80,.08);
+  border:1px solid rgba(255,80,80,.25);
+  color:#ffaaaa;
+  font-size:13px;
+}
+
+/* PIX */
 
 .pix-box{
   max-width:560px;
@@ -632,26 +726,72 @@ footer strong{color:#00aaff}
   line-height:1.5;
 }
 
+/* RODAPÉ */
+
+footer{
+  text-align:center;
+  padding:30px 18px;
+  border-top:1px solid rgba(0,140,255,.18);
+  color:#65738a;
+  font-size:13px;
+}
+
+footer strong{
+  color:#00aaff;
+}
+
+/* RESPONSIVO */
+
 @media(max-width:600px){
-  header{height:64px}
+
+  header{
+    min-height:64px;
+  }
 
   .side-menu{
     top:64px;
     height:calc(100vh - 64px);
   }
 
-  .logo{font-size:22px}
+  .logo{
+    font-size:22px;
+  }
 
   .hero{
-    min-height:570px;
+    min-height:520px;
     padding-top:45px;
   }
 
-  .hero h1{font-size:58px}
+  .hero h1{
+    font-size:58px;
+  }
 
-  section{padding:55px 15px}
+  section{
+    padding:55px 15px;
+  }
 
-  .section-title{font-size:28px}
+  .section-title{
+    font-size:28px;
+  }
+
+  .quick-top{
+    gap:10px;
+  }
+
+  .quick-card{
+    width:calc(50% - 5px);
+    min-height:72px;
+    padding:12px 7px;
+    font-size:13px;
+  }
+
+  .quick-icon{
+    font-size:25px;
+  }
+
+  .coupon-card{
+    width:230px;
+  }
 
   .diamond-grid,
   .cards,
@@ -665,30 +805,58 @@ footer strong{color:#00aaff}
 
 <body>
 
+<!-- MENU LATERAL -->
+
 <nav class="side-menu" id="sideMenu">
+
   <h2>Dimas FF</h2>
 
   <a href="#inicio" onclick="closeMenu()">🏠 Início</a>
+
   <a href="#diamantes" onclick="closeMenu()">💎 Diamantes</a>
+
   <a href="#contas" onclick="closeMenu()">👤 Contas</a>
-  <a href="#cupom" onclick="closeMenu()">🎁 Cupom de desconto</a>
+
+  <a href="#cupom" onclick="closeMenu()">🎁 Cupom Especial</a>
+
   <a href="#contato" onclick="closeMenu()">💬 Contato</a>
+
   <a href="#" onclick="discord(event)">🎮 Discord</a>
+
 </nav>
 
+
+<!-- HEADER -->
+
 <header>
-  <button class="menu-btn" id="menuBtn" onclick="toggleMenu()">☰</button>
+
+  <button
+    class="menu-btn"
+    id="menuBtn"
+    onclick="toggleMenu()">
+    ☰
+  </button>
+
   <div class="logo">DIMAS FF</div>
+
 </header>
+
 
 <main>
 
+<!-- INÍCIO -->
+
 <section class="hero" id="inicio">
+
   <div class="hero-content">
 
-    <div class="badge">⚡ LOJA DIGITAL FREE FIRE</div>
+    <div class="badge">
+      ⚡ LOJA DIGITAL FREE FIRE
+    </div>
 
-    <h1>DIMAS <span>FF</span></h1>
+    <h1>
+      DIMAS <span>FF</span>
+    </h1>
 
     <p>
       Sua loja de diamantes Free Fire com visual neon,
@@ -696,18 +864,73 @@ footer strong{color:#00aaff}
       seu pacote.
     </p>
 
+
+    <!-- MENU CENTRAL -->
+
+    <div class="quick-nav">
+
+      <div class="quick-top">
+
+        <a
+          class="quick-card"
+          href="#diamantes">
+
+          <span class="quick-icon">💎</span>
+          <span>DIAMANTES</span>
+
+        </a>
+
+
+        <a
+          class="quick-card"
+          href="#contas">
+
+          <span class="quick-icon">👤</span>
+          <span>CONTAS</span>
+
+        </a>
+
+      </div>
+
+
+      <div class="quick-bottom">
+
+        <a
+          class="quick-card coupon-card"
+          href="#cupom">
+
+          <span class="quick-icon">🎁</span>
+          <span>CUPOM ESPECIAL</span>
+
+        </a>
+
+      </div>
+
+    </div>
+
+
     <div class="hero-buttons">
-      <a class="btn btn-primary" href="#diamantes">
+
+      <a
+        class="btn btn-primary"
+        href="#diamantes">
         💎 Comprar diamantes
       </a>
 
-      <a class="btn btn-secondary" href="#cupom">
-        🎁 Cupom especial
-      </a>
+      <button
+        class="btn btn-secondary"
+        onclick="discord(event)">
+        🎮 Discord
+      </button>
+
     </div>
 
   </div>
+
 </section>
+
+
+<!-- DIAMANTES -->
 
 <section id="diamantes">
 
@@ -719,76 +942,177 @@ footer strong{color:#00aaff}
     Escolha o pacote que deseja comprar.
   </p>
 
+
   <div class="diamond-grid">
 
+
     <div class="diamond-card">
+
       <div class="diamond">💎</div>
+
       <h3>100 Diamantes</h3>
+
       <small>Pacote básico</small>
-      <div class="price">R$ 5,00</div>
-      <button class="buy-btn"
-        onclick="openPurchase('100 Diamantes','R$ 5,00',5)">
+
+      <div class="price">
+        R$ 5,00
+      </div>
+
+      <button
+        class="buy-btn"
+        onclick="openPurchase(
+          '100 Diamantes',
+          'R$ 5,00',
+          5
+        )">
+
         COMPRAR
+
       </button>
+
     </div>
 
+
     <div class="diamond-card">
+
       <div class="diamond">💎</div>
+
       <h3>310 Diamantes</h3>
+
       <small>Pacote popular</small>
-      <div class="price">R$ 7,00</div>
-      <button class="buy-btn"
-        onclick="openPurchase('310 Diamantes','R$ 7,00',7)">
+
+      <div class="price">
+        R$ 7,00
+      </div>
+
+      <button
+        class="buy-btn"
+        onclick="openPurchase(
+          '310 Diamantes',
+          'R$ 7,00',
+          7
+        )">
+
         COMPRAR
+
       </button>
+
     </div>
 
+
     <div class="diamond-card">
+
       <div class="diamond">💎</div>
+
       <h3>500 Diamantes</h3>
+
       <small>Mais diamantes</small>
-      <div class="price">R$ 10,00</div>
-      <button class="buy-btn"
-        onclick="openPurchase('500 Diamantes','R$ 10,00',10)">
+
+      <div class="price">
+        R$ 10,00
+      </div>
+
+      <button
+        class="buy-btn"
+        onclick="openPurchase(
+          '500 Diamantes',
+          'R$ 10,00',
+          10
+        )">
+
         COMPRAR
+
       </button>
+
     </div>
 
+
     <div class="diamond-card">
+
       <div class="diamond">💎</div>
+
       <h3>1.060 Diamantes</h3>
+
       <small>Pacote especial</small>
-      <div class="price">R$ 15,00</div>
-      <button class="buy-btn"
-        onclick="openPurchase('1.060 Diamantes','R$ 15,00',15)">
+
+      <div class="price">
+        R$ 15,00
+      </div>
+
+      <button
+        class="buy-btn"
+        onclick="openPurchase(
+          '1.060 Diamantes',
+          'R$ 15,00',
+          15
+        )">
+
         COMPRAR
+
       </button>
+
     </div>
 
+
     <div class="diamond-card">
+
       <div class="diamond">💎</div>
+
       <h3>2.180 Diamantes</h3>
+
       <small>Pacote avançado</small>
-      <div class="price">R$ 25,00</div>
-      <button class="buy-btn"
-        onclick="openPurchase('2.180 Diamantes','R$ 25,00',25)">
+
+      <div class="price">
+        R$ 25,00
+      </div>
+
+      <button
+        class="buy-btn"
+        onclick="openPurchase(
+          '2.180 Diamantes',
+          'R$ 25,00',
+          25
+        )">
+
         COMPRAR
+
       </button>
+
     </div>
 
+
     <div class="diamond-card">
+
       <div class="diamond">💎</div>
+
       <h3>5.600 Diamantes</h3>
+
       <small>Pacote máximo</small>
-      <div class="price">R$ 50,00</div>
-      <button class="buy-btn"
-        onclick="openPurchase('5.600 Diamantes','R$ 50,00',50)">
+
+      <div class="price">
+        R$ 50,00
+      </div>
+
+      <button
+        class="buy-btn"
+        onclick="openPurchase(
+          '5.600 Diamantes',
+          'R$ 50,00',
+          50
+        )">
+
         COMPRAR
+
       </button>
+
     </div>
 
   </div>
+
 </section>
+
+
+<!-- CONTAS -->
 
 <section id="contas">
 
@@ -800,74 +1124,113 @@ footer strong{color:#00aaff}
     Confira as contas disponíveis.
   </p>
 
+
   <div class="account-grid">
 
+
     <div class="account-card">
-      <img class="account-image"
+
+      <img
+        class="account-image"
         src=""
         alt="Imagem da Conta 01"
         onerror="this.style.display='none'">
 
       <h3>Conta #01</h3>
 
-      <p>
+      <p style="color:#8f9db4">
         Informações da conta serão adicionadas.
       </p>
 
-      <div class="account-price">R$ 0,00</div>
+      <div class="account-price">
+        R$ 0,00
+      </div>
 
-      <button class="buy-btn" onclick="accountMessage()">
+      <button
+        class="buy-btn"
+        onclick="accountMessage()">
+
         COMPRAR
+
       </button>
+
     </div>
 
+
     <div class="account-card">
-      <img class="account-image"
+
+      <img
+        class="account-image"
         src=""
         alt="Imagem da Conta 02"
         onerror="this.style.display='none'">
 
       <h3>Conta #02</h3>
 
-      <p>
+      <p style="color:#8f9db4">
         Informações da conta serão adicionadas.
       </p>
 
-      <div class="account-price">R$ 0,00</div>
+      <div class="account-price">
+        R$ 0,00
+      </div>
 
-      <button class="buy-btn" onclick="accountMessage()">
+      <button
+        class="buy-btn"
+        onclick="accountMessage()">
+
         COMPRAR
+
       </button>
+
     </div>
 
   </div>
+
 </section>
 
-<section id="cupom" class="coupon-section">
+
+<!-- CUPOM -->
+
+<section
+  id="cupom"
+  class="coupon-section">
 
   <h2 class="section-title">
-    <span>Cupom de desconto</span> especial
+    <span>Cupom Especial</span>
   </h2>
 
   <p class="section-subtitle">
-    Use o cupom ZERO3 nas compras elegíveis.
+    Use o cupom disponível nas compras elegíveis.
   </p>
+
 
   <div class="coupon-box">
 
-    <div class="coupon-icon">🎁</div>
+    <div class="coupon-icon">
+      🎁
+    </div>
 
-    <h2>Cupom Especial</h2>
-
-    <div class="coupon-code">ZERO3</div>
+    <h2>
+      CUPOM DE DESCONTO
+    </h2>
 
     <p>
-      Ganhe <strong>10% de desconto</strong>
-      em compras de <strong>R$ 7,00 ou mais</strong>.
+      Use o código abaixo para receber
+      <strong>10% de desconto</strong>
+      em compras de R$ 7,00 ou mais.
     </p>
 
+    <div class="coupon-code">
+      ZERO3
+    </div>
+
   </div>
+
 </section>
+
+
+<!-- BENEFÍCIOS -->
 
 <section>
 
@@ -879,46 +1242,78 @@ footer strong{color:#00aaff}
     Tudo organizado em um só lugar.
   </p>
 
+
   <div class="cards">
 
     <div class="card">
-      <div class="card-icon">💎</div>
+
+      <div class="card-icon">
+        💎
+      </div>
+
       <h3>Diamantes</h3>
+
       <p>
         Pacotes de diamantes organizados para você
         escolher facilmente.
       </p>
+
     </div>
 
-    <div class="card">
-      <div class="card-icon">🎁</div>
-      <h3>Desconto</h3>
-      <p>
-        Use o cupom ZERO3 para receber 10% de desconto
-        em compras a partir de R$ 7,00.
-      </p>
-    </div>
 
     <div class="card">
-      <div class="card-icon">⚡</div>
+
+      <div class="card-icon">
+        ⚡
+      </div>
+
       <h3>Praticidade</h3>
+
       <p>
         Escolha seu pacote e siga as instruções
         apresentadas na tela.
       </p>
+
     </div>
 
+
     <div class="card">
-      <div class="card-icon">💬</div>
+
+      <div class="card-icon">
+        🔐
+      </div>
+
+      <h3>Segurança</h3>
+
+      <p>
+        Pagamento processado pelo sistema conectado
+        ao serviço de pagamento.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="card-icon">
+        💬
+      </div>
+
       <h3>Suporte</h3>
+
       <p>
         Entre em contato pelo Discord para tirar
         suas dúvidas.
       </p>
+
     </div>
 
   </div>
+
 </section>
+
+
+<!-- COMO FUNCIONA -->
 
 <section id="como-funciona">
 
@@ -930,42 +1325,80 @@ footer strong{color:#00aaff}
     Processo simples em poucos passos.
   </p>
 
+
   <div class="steps">
 
     <div class="step">
-      <div class="step-number">1</div>
+
+      <div class="step-number">
+        1
+      </div>
+
       <h3>Escolha</h3>
-      <p>Escolha um dos pacotes de diamantes.</p>
+
+      <p>
+        Escolha um dos pacotes de diamantes.
+      </p>
+
     </div>
 
+
     <div class="step">
-      <div class="step-number">2</div>
+
+      <div class="step-number">
+        2
+      </div>
+
       <h3>Informe seus dados</h3>
+
       <p>
-        Digite o ID do Free Fire e o CPF/CNPJ
+        Digite o ID do Free Fire e o CPF
         necessário para o pagamento.
       </p>
+
     </div>
 
+
     <div class="step">
-      <div class="step-number">3</div>
+
+      <div class="step-number">
+        3
+      </div>
+
       <h3>Pagamento</h3>
-      <p>Gere seu Pix e realize o pagamento.</p>
+
+      <p>
+        Gere seu Pix e realize o pagamento.
+      </p>
+
     </div>
 
+
     <div class="step">
-      <div class="step-number">4</div>
+
+      <div class="step-number">
+        4
+      </div>
+
       <h3>Receba</h3>
+
       <p>
         Após a confirmação, siga as instruções
         para receber.
       </p>
+
     </div>
 
   </div>
+
 </section>
 
-<section class="contact" id="contato">
+
+<!-- CONTATO -->
+
+<section
+  class="contact"
+  id="contato">
 
   <div class="contact-box">
 
@@ -978,45 +1411,68 @@ footer strong{color:#00aaff}
       para receber atendimento.
     </p>
 
-    <button class="btn btn-primary" onclick="discord(event)">
+    <button
+      class="btn btn-primary"
+      onclick="discord(event)">
+
       🎮 Entrar no Discord
+
     </button>
 
   </div>
+
 </section>
 
 </main>
 
+
 <footer>
+
   <p>
     © 2026 <strong>Dimas FF</strong>.
     Todos os direitos reservados.
   </p>
+
 </footer>
 
-<div class="modal" id="purchaseModal">
+
+<!-- MODAL DE COMPRA -->
+
+<div
+  class="modal"
+  id="purchaseModal">
 
   <div class="modal-box">
 
     <div class="modal-top">
-      <h2>💎 Comprar</h2>
 
-      <button class="close" onclick="closePurchase()">×</button>
+      <h2>
+        💎 Comprar
+      </h2>
+
+      <button
+        class="close"
+        onclick="closePurchase()">
+        ×
+      </button>
+
     </div>
+
 
     <div class="selected-product">
 
-      <strong id="productName">Pacote</strong>
+      <strong id="productName">
+        Pacote
+      </strong>
 
-      <span id="productPrice">R$ 0,00</span>
-
-      <span class="price-old" id="priceOld"></span>
-
-      <span class="price-final" id="priceFinal">
+      <span id="productPrice">
         R$ 0,00
       </span>
 
     </div>
+
+
+    <!-- ID -->
 
     <label for="playerId">
       👤 ID do jogador
@@ -1029,81 +1485,77 @@ footer strong{color:#00aaff}
       placeholder="Digite seu ID do Free Fire"
       maxlength="30">
 
+
+    <!-- CPF -->
+
     <label for="cpfCnpj">
-      🪪 CPF ou CNPJ
+      🪪 CPF
     </label>
 
     <input
       id="cpfCnpj"
       type="text"
       inputmode="numeric"
-      placeholder="Digite seu CPF ou CNPJ"
-      maxlength="18"
+      placeholder="Digite seu CPF"
+      maxlength="14"
       autocomplete="off">
+
+
+    <!-- CUPOM -->
 
     <div class="coupon-input-box">
 
-      <label for="couponCode">
+      <label for="coupon">
         🎁 Cupom de desconto
       </label>
 
       <input
-        id="couponCode"
+        id="coupon"
         type="text"
         placeholder="Digite seu cupom"
-        maxlength="30"
-        autocomplete="off">
+        maxlength="20"
+        autocomplete="off"
+        oninput="this.value=this.value.toUpperCase()">
 
       <button
-        class="apply-coupon"
-        type="button"
+        class="btn btn-secondary"
+        style="width:100%;margin-top:10px"
         onclick="applyCoupon()">
+
         APLICAR CUPOM
+
       </button>
 
-      <div
-        class="coupon-result"
-        id="couponResult">
-      </div>
 
       <div
         class="discount-info"
         id="discountInfo">
+      </div>
 
-        <div class="discount-line">
-          <span>Valor original:</span>
-          <strong id="originalValue">R$ 0,00</strong>
-        </div>
 
-        <div class="discount-line">
-          <span>Desconto ZERO3:</span>
-          <strong id="discountValue">R$ 0,00</strong>
-        </div>
-
-        <div class="discount-line">
-          <span>Total:</span>
-          <strong
-            class="discount-final"
-            id="finalValue">
-            R$ 0,00
-          </strong>
-        </div>
-
+      <div
+        class="discount-error"
+        id="discountError">
       </div>
 
     </div>
 
+
     <div class="warning">
-      🔒 O CPF/CNPJ é utilizado para identificar
+      🔒 O CPF é utilizado para identificar
       o cliente na cobrança Pix do sistema de pagamento.
     </div>
+
 
     <button
       class="btn btn-primary"
       style="width:100%;margin-top:20px"
       onclick="continuePurchase()">
+
       💳 GERAR PIX
+
     </button>
+
 
     <div
       class="form-message"
@@ -1111,31 +1563,56 @@ footer strong{color:#00aaff}
     </div>
 
   </div>
+
 </div>
 
-<div class="modal" id="pixModal">
+
+<!-- PIX -->
+
+<div
+  class="modal"
+  id="pixModal">
 
   <div class="pix-box">
 
     <div class="modal-top">
 
-      <h2>💠 Pagamento Pix</h2>
+      <h2>
+        💠 Pagamento Pix
+      </h2>
 
-      <button class="close" onclick="closePix()">×</button>
+      <button
+        class="close"
+        onclick="closePix()">
+        ×
+      </button>
 
     </div>
 
-    <p id="pixProduct">Produto</p>
 
-    <div class="pix-amount" id="pixAmount">
+    <p id="pixProduct">
+      Produto
+    </p>
+
+
+    <div
+      class="pix-amount"
+      id="pixAmount">
       R$ 0,00
     </div>
 
-    <img id="pixQr" alt="QR Code Pix">
+
+    <img
+      id="pixQr"
+      alt="QR Code Pix">
+
 
     <p>
-      <strong>Pix Copia e Cola</strong>
+      <strong>
+        Pix Copia e Cola
+      </strong>
     </p>
+
 
     <input
       id="pixCode"
@@ -1143,308 +1620,432 @@ footer strong{color:#00aaff}
       readonly
       placeholder="Gerando Pix...">
 
+
     <button
       class="btn btn-primary"
       style="width:100%;margin-top:12px"
       onclick="copyPix()">
+
       📋 COPIAR PIX
+
     </button>
 
-    <div class="status" id="pixStatus"></div>
+
+    <div
+      class="status"
+      id="pixStatus">
+    </div>
+
 
     <button
       id="checkPayment"
       class="btn btn-secondary"
       style="width:100%;margin-top:10px"
       onclick="checkPayment()">
+
       🔄 VERIFICAR PAGAMENTO
+
     </button>
+
 
     <div
       id="paymentSuccess"
       style="display:none;margin-top:20px">
 
-      <h3>✅ Pagamento confirmado!</h3>
+      <h3>
+        ✅ Pagamento confirmado!
+      </h3>
 
-      <p style="margin-top:10px;color:#9fb0c8">
+      <p
+        style="margin-top:10px;color:#9fb0c8">
+
         O pagamento foi recebido.
+
       </p>
 
     </div>
 
   </div>
+
 </div>
+
 
 <script>
 
+/* CONFIGURAÇÃO */
+
 const CONFIG = {
-  apiBaseUrl: "https://dimas-ff.onrender.com",
-  discordUrl: "https://discord.gg/42aTVc5Z5y"
+
+  apiBaseUrl:
+    "https://dimas-ff.onrender.com",
+
+  discordUrl:
+    "https://discord.gg/42aTVc5Z5y"
+
 };
+
+
+/* CUPOM */
 
 const COUPON_CODE = "ZERO3";
 const COUPON_DISCOUNT = 0.10;
 const COUPON_MINIMUM = 7;
 
-const sideMenu = document.getElementById("sideMenu");
+
+/* MENU */
+
+const sideMenu =
+  document.getElementById("sideMenu");
+
 
 function toggleMenu(){
+
   sideMenu.classList.toggle("open");
+
 }
+
 
 function closeMenu(){
+
   sideMenu.classList.remove("open");
+
 }
+
+
+/* DISCORD */
 
 function discord(event){
-  if(event) event.preventDefault();
-  window.location.href = CONFIG.discordUrl;
+
+  if(event){
+    event.preventDefault();
+  }
+
+  window.location.href =
+    CONFIG.discordUrl;
+
 }
 
-function coupon(event){
-  if(event) event.preventDefault();
-  document.getElementById("cupom").scrollIntoView({
-    behavior:"smooth"
-  });
-}
+
+/* PRODUTO */
 
 let selectedProduct = "";
 let selectedPrice = "";
 let selectedAmount = 0;
-
 let couponApplied = false;
-let finalAmount = 0;
 
-function openPurchase(product, price, amount){
+
+/* ABRIR COMPRA */
+
+function openPurchase(
+  product,
+  price,
+  amount
+){
 
   selectedProduct = product;
   selectedPrice = price;
   selectedAmount = Number(amount);
-  finalAmount = selectedAmount;
   couponApplied = false;
 
-  document.getElementById("productName").textContent = product;
-  document.getElementById("productPrice").textContent = price;
 
-  document.getElementById("priceOld").style.display = "none";
-  document.getElementById("priceFinal").textContent =
-    formatMoney(selectedAmount);
+  document.getElementById(
+    "productName"
+  ).textContent = product;
 
-  document.getElementById("playerId").value = "";
-  document.getElementById("cpfCnpj").value = "";
-  document.getElementById("couponCode").value = "";
 
-  document.getElementById("couponResult").textContent = "";
-  document.getElementById("discountInfo").style.display = "none";
+  document.getElementById(
+    "productPrice"
+  ).textContent = price;
 
-  document.getElementById("formMessage").style.display = "none";
 
-  document.getElementById("purchaseModal").classList.add("show");
+  document.getElementById(
+    "playerId"
+  ).value = "";
+
+
+  document.getElementById(
+    "cpfCnpj"
+  ).value = "";
+
+
+  document.getElementById(
+    "coupon"
+  ).value = "";
+
+
+  document.getElementById(
+    "formMessage"
+  ).style.display = "none";
+
+
+  document.getElementById(
+    "discountInfo"
+  ).style.display = "none";
+
+
+  document.getElementById(
+    "discountError"
+  ).style.display = "none";
+
+
+  document.getElementById(
+    "purchaseModal"
+  ).classList.add("show");
+
 }
+
+
+/* FECHAR COMPRA */
 
 function closePurchase(){
-  document.getElementById("purchaseModal").classList.remove("show");
+
+  document.getElementById(
+    "purchaseModal"
+  ).classList.remove("show");
+
 }
 
-function cleanCpfCnpj(value){
-  return value.replace(/\D/g,"");
-}
+
+/* APLICAR CUPOM */
 
 function applyCoupon(){
 
-  const code =
-    document.getElementById("couponCode").value
+  const coupon =
+    document.getElementById(
+      "coupon"
+    ).value
       .trim()
       .toUpperCase();
 
-  const result =
-    document.getElementById("couponResult");
 
   const info =
-    document.getElementById("discountInfo");
+    document.getElementById(
+      "discountInfo"
+    );
 
-  const priceFinal =
-    document.getElementById("priceFinal");
 
-  couponApplied = false;
-  finalAmount = selectedAmount;
+  const error =
+    document.getElementById(
+      "discountError"
+    );
+
 
   info.style.display = "none";
+  error.style.display = "none";
 
-  if(!code){
 
-    result.textContent =
-      "Digite o código do cupom.";
+  couponApplied = false;
 
-    result.style.color = "#ffb4b4";
 
-    priceFinal.textContent =
-      formatMoney(selectedAmount);
+  if(!coupon){
+
+    error.textContent =
+      "Digite um cupom para aplicar.";
+
+    error.style.display =
+      "block";
+
+    return;
+  }
+
+
+  if(coupon !== COUPON_CODE){
+
+    error.textContent =
+      "Cupom inválido.";
+
+    error.style.display =
+      "block";
 
     return;
   }
 
-  if(code !== COUPON_CODE){
-
-    result.textContent =
-      "❌ Cupom inválido.";
-
-    result.style.color = "#ff9b9b";
-
-    priceFinal.textContent =
-      formatMoney(selectedAmount);
-
-    return;
-  }
 
   if(selectedAmount < COUPON_MINIMUM){
 
-    result.textContent =
-      "⚠️ O cupom ZERO3 não funciona neste pacote. O valor mínimo para usar o cupom é R$ 7,00.";
+    error.textContent =
+      "O cupom ZERO3 não funciona em compras de R$ 5,00. O cupom é válido para compras de R$ 7,00 ou mais.";
 
-    result.style.color = "#ffd27a";
-
-    priceFinal.textContent =
-      formatMoney(selectedAmount);
+    error.style.display =
+      "block";
 
     return;
   }
 
-  const discount =
-    Number(
-      (selectedAmount * COUPON_DISCOUNT)
-        .toFixed(2)
-    );
 
-  finalAmount =
-    Number(
-      (selectedAmount - discount)
-        .toFixed(2)
-    );
+  const discounted =
+    selectedAmount *
+    (1 - COUPON_DISCOUNT);
+
 
   couponApplied = true;
 
-  result.textContent =
-    "✅ Cupom ZERO3 aplicado! Você recebeu 10% de desconto.";
 
-  result.style.color = "#75ffb1";
+  info.textContent =
+    "✅ Cupom ZERO3 aplicado! 10% de desconto. Valor final: " +
+    formatMoney(discounted);
 
-  document.getElementById("originalValue").textContent =
-    formatMoney(selectedAmount);
 
-  document.getElementById("discountValue").textContent =
-    "-" + formatMoney(discount);
-
-  document.getElementById("finalValue").textContent =
-    formatMoney(finalAmount);
-
-  info.style.display = "block";
-
-  priceFinal.textContent =
-    formatMoney(finalAmount);
-
-  document.getElementById("priceOld").textContent =
-    formatMoney(selectedAmount);
-
-  document.getElementById("priceOld").style.display =
+  info.style.display =
     "block";
+
 }
+
+
+/* LIMPAR CPF */
+
+function cleanCpfCnpj(value){
+
+  return value.replace(/\D/g,"");
+
+}
+
+
+/* CONTINUAR E GERAR PIX */
 
 async function continuePurchase(){
 
   const playerId =
-    document.getElementById("playerId")
-      .value.trim();
+    document.getElementById(
+      "playerId"
+    ).value.trim();
+
 
   const cpf =
     cleanCpfCnpj(
-      document.getElementById("cpfCnpj")
-        .value
+      document.getElementById(
+        "cpfCnpj"
+      ).value
     );
 
+
   const coupon =
-    document.getElementById("couponCode")
-      .value
+    document.getElementById(
+      "coupon"
+    ).value
       .trim()
       .toUpperCase();
 
+
   const message =
-    document.getElementById("formMessage");
+    document.getElementById(
+      "formMessage"
+    );
+
 
   if(!playerId){
 
     message.textContent =
       "Digite o ID do jogador para continuar.";
 
-    message.style.display = "block";
+    message.style.display =
+      "block";
+
     return;
   }
+
 
   if(!cpf){
 
     message.textContent =
-      "Digite seu CPF ou CNPJ para continuar.";
+      "Digite seu CPF para continuar.";
 
-    message.style.display = "block";
+    message.style.display =
+      "block";
+
     return;
   }
 
-  if(cpf.length !== 11 && cpf.length !== 14){
+
+  if(cpf.length !== 11){
 
     message.textContent =
-      "Digite um CPF ou CNPJ válido.";
+      "Digite um CPF válido com 11 números.";
 
-    message.style.display = "block";
+    message.style.display =
+      "block";
+
     return;
   }
+
+
+  /*
+    Se colocou ZERO3 mas ainda não aplicou,
+    valida automaticamente.
+  */
 
   if(coupon === COUPON_CODE){
 
     if(selectedAmount < COUPON_MINIMUM){
 
       message.textContent =
-        "⚠️ O cupom ZERO3 não pode ser usado nesta compra. O valor mínimo é R$ 7,00.";
+        "O cupom ZERO3 não funciona em compras de R$ 5,00. O cupom é válido para compras de R$ 7,00 ou mais.";
 
-      message.style.display = "block";
+      message.style.display =
+        "block";
+
       return;
     }
 
     couponApplied = true;
 
-    finalAmount =
-      Number(
-        (selectedAmount * 0.90)
-          .toFixed(2)
-      );
-
-  }else if(coupon){
-
-    message.textContent =
-      "❌ Cupom inválido.";
-
-    message.style.display = "block";
-    return;
-
-  }else{
-
-    couponApplied = false;
-    finalAmount = selectedAmount;
   }
 
-  if(finalAmount < 5){
+
+  if(
+    coupon &&
+    coupon !== COUPON_CODE
+  ){
 
     message.textContent =
-      "O valor final da cobrança não pode ser menor que R$ 5,00.";
+      "Cupom inválido.";
 
-    message.style.display = "block";
+    message.style.display =
+      "block";
+
     return;
   }
 
-  message.style.display = "block";
-  message.textContent = "⏳ Gerando seu Pix...";
+
+  message.style.display =
+    "block";
+
+
+  message.textContent =
+    "⏳ Gerando seu Pix...";
+
 
   const base =
-    CONFIG.apiBaseUrl.replace(/\/$/,"");
+    CONFIG.apiBaseUrl.replace(
+      /\/$/,
+      ""
+    );
+
+
+  /*
+    Calcula o valor final ANTES
+    de mandar para o servidor.
+  */
+
+  let finalAmount =
+    selectedAmount;
+
+
+  if(
+    couponApplied &&
+    selectedAmount >= COUPON_MINIMUM
+  ){
+
+    finalAmount =
+      Number(
+        (
+          selectedAmount *
+          (1 - COUPON_DISCOUNT)
+        ).toFixed(2)
+      );
+
+  }
+
 
   try{
 
@@ -1455,28 +2056,38 @@ async function continuePurchase(){
           method:"POST",
 
           headers:{
-            "Content-Type":"application/json"
+            "Content-Type":
+              "application/json"
           },
 
           body:JSON.stringify({
 
-            amount:selectedAmount,
+            amount:
+              finalAmount,
 
-            product:selectedProduct,
+            product:
+              selectedProduct,
 
-            playerId:playerId,
+            playerId:
+              playerId,
 
-            cpf:cpf,
+            cpf:
+              cpf,
 
-            coupon:coupon
+            coupon:
+              couponApplied
+                ? COUPON_CODE
+                : null
 
           })
         }
       );
 
+
     const data =
       await response.json()
         .catch(() => ({}));
+
 
     if(!response.ok){
 
@@ -1484,36 +2095,54 @@ async function continuePurchase(){
         data.error ||
         "Não foi possível gerar o Pix."
       );
+
     }
+
 
     if(!data.payload){
 
       throw new Error(
         "O servidor não retornou o Pix."
       );
+
     }
+
 
     window.currentPaymentId =
       data.paymentId;
 
+
     closePurchase();
 
-    document.getElementById("pixProduct")
-      .textContent =
-      data.couponApplied
-        ? selectedProduct + " — ZERO3 (-10%)"
-        : selectedProduct;
 
-    document.getElementById("pixAmount")
-      .textContent =
+    document.getElementById(
+      "pixProduct"
+    ).textContent =
+      selectedProduct +
+      (
+        couponApplied
+          ? " — ZERO3 (-10%)"
+          : ""
+      );
+
+
+    document.getElementById(
+      "pixAmount"
+    ).textContent =
       formatMoney(data.amount);
 
-    document.getElementById("pixCode")
-      .value =
+
+    document.getElementById(
+      "pixCode"
+    ).value =
       data.payload;
 
+
     const qr =
-      document.getElementById("pixQr");
+      document.getElementById(
+        "pixQr"
+      );
+
 
     if(data.encodedImage){
 
@@ -1521,36 +2150,57 @@ async function continuePurchase(){
         "data:image/png;base64," +
         data.encodedImage;
 
-      qr.style.display = "block";
+      qr.style.display =
+        "block";
 
     }else{
 
-      qr.style.display = "none";
+      qr.style.display =
+        "none";
+
     }
 
-    document.getElementById("pixStatus")
-      .textContent =
+
+    document.getElementById(
+      "pixStatus"
+    ).textContent =
       "✅ Pix gerado! Faça o pagamento pelo seu banco.";
 
-    document.getElementById("paymentSuccess")
-      .style.display = "none";
 
-    document.getElementById("checkPayment")
-      .style.display = "block";
+    document.getElementById(
+      "paymentSuccess"
+    ).style.display =
+      "none";
 
-    document.getElementById("pixModal")
-      .classList.add("show");
+
+    document.getElementById(
+      "checkPayment"
+    ).style.display =
+      "block";
+
+
+    document.getElementById(
+      "pixModal"
+    ).classList.add("show");
+
 
   }catch(error){
 
-    message.textContent = "";
+    message.textContent =
+      "";
+
 
     alert(
       "Não foi possível gerar o Pix:\n\n" +
       error.message
     );
+
   }
+
 }
+
+
+/* FORMATAR DINHEIRO */
 
 function formatMoney(value){
 
@@ -1562,55 +2212,88 @@ function formatMoney(value){
         currency:"BRL"
       }
     );
+
 }
+
+
+/* COPIAR PIX */
 
 async function copyPix(){
 
   const input =
-    document.getElementById("pixCode");
+    document.getElementById(
+      "pixCode"
+    );
+
 
   if(!input.value){
 
-    alert("O Pix ainda não foi gerado.");
+    alert(
+      "O Pix ainda não foi gerado."
+    );
+
     return;
   }
+
 
   try{
 
     await navigator.clipboard
       .writeText(input.value);
 
-    document.getElementById("pixStatus")
-      .textContent =
+
+    document.getElementById(
+      "pixStatus"
+    ).textContent =
       "✅ Pix copiado! Cole no aplicativo do seu banco.";
 
   }catch(error){
 
     input.select();
+
     document.execCommand("copy");
 
-    document.getElementById("pixStatus")
-      .textContent =
+
+    document.getElementById(
+      "pixStatus"
+    ).textContent =
       "✅ Pix copiado!";
+
   }
+
 }
+
+
+/* VERIFICAR PAGAMENTO */
 
 async function checkPayment(){
 
   if(!window.currentPaymentId){
 
-    alert("Nenhum pagamento encontrado.");
+    alert(
+      "Nenhum pagamento encontrado."
+    );
+
     return;
   }
 
+
   const status =
-    document.getElementById("pixStatus");
+    document.getElementById(
+      "pixStatus"
+    );
+
 
   status.textContent =
     "⏳ Verificando pagamento...";
 
+
   const base =
-    CONFIG.apiBaseUrl.replace(/\/$/,"");
+    CONFIG.apiBaseUrl.replace(
+      /\/$/,
+      ""
+    );
+
 
   try{
 
@@ -1623,9 +2306,11 @@ async function checkPayment(){
         )
       );
 
+
     const data =
       await response.json()
         .catch(() => ({}));
+
 
     if(!response.ok){
 
@@ -1633,18 +2318,26 @@ async function checkPayment(){
         data.error ||
         "Não foi possível verificar o pagamento."
       );
+
     }
+
 
     if(
       data.status === "RECEIVED" ||
       data.status === "CONFIRMED"
     ){
 
-      document.getElementById("paymentSuccess")
-        .style.display = "block";
+      document.getElementById(
+        "paymentSuccess"
+      ).style.display =
+        "block";
 
-      document.getElementById("checkPayment")
-        .style.display = "none";
+
+      document.getElementById(
+        "checkPayment"
+      ).style.display =
+        "none";
+
 
       status.textContent =
         "✅ Pagamento confirmado!";
@@ -1653,31 +2346,49 @@ async function checkPayment(){
 
       status.textContent =
         "⏳ Pagamento ainda não confirmado. Tente novamente.";
+
     }
+
 
   }catch(error){
 
-    status.textContent = "";
+    status.textContent =
+      "";
+
 
     alert(
       "Erro ao verificar pagamento:\n\n" +
       error.message
     );
+
   }
+
 }
+
+
+/* FECHAR PIX */
 
 function closePix(){
 
-  document.getElementById("pixModal")
-    .classList.remove("show");
+  document.getElementById(
+    "pixModal"
+  ).classList.remove("show");
+
 }
+
+
+/* CONTAS */
 
 function accountMessage(){
 
   alert(
     "Essa conta ainda está sendo cadastrada. Em breve estará disponível."
   );
+
 }
+
+
+/* FECHAR MODAIS CLICANDO FORA */
 
 document
   .getElementById("purchaseModal")
@@ -1685,11 +2396,17 @@ document
     "click",
     function(event){
 
-      if(event.target === this){
+      if(
+        event.target === this
+      ){
+
         closePurchase();
+
       }
+
     }
   );
+
 
 document
   .getElementById("pixModal")
@@ -1697,18 +2414,29 @@ document
     "click",
     function(event){
 
-      if(event.target === this){
+      if(
+        event.target === this
+      ){
+
         closePix();
+
       }
+
     }
   );
+
+
+/* FECHAR MENU CLICANDO FORA */
 
 document.addEventListener(
   "click",
   function(event){
 
     const button =
-      document.getElementById("menuBtn");
+      document.getElementById(
+        "menuBtn"
+      );
+
 
     if(
       sideMenu.classList.contains("open") &&
@@ -1717,11 +2445,13 @@ document.addEventListener(
     ){
 
       closeMenu();
+
     }
+
   }
 );
 
 </script>
 
 </body>
-      </html>
+</html>
