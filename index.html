@@ -38,6 +38,10 @@ footer{text-align:center;padding:30px 18px;border-top:1px solid rgba(0,140,255,.
 .selected-product{padding:18px;margin-bottom:18px;border-radius:12px;background:rgba(0,130,255,.08);border:1px solid rgba(0,140,255,.25)}.selected-product strong{display:block;color:#00aaff;font-size:22px;margin-bottom:5px}
 label{display:block;margin:15px 0 7px;color:#b8c6dc;font-weight:bold}input{width:100%;padding:14px;border-radius:10px;border:1px solid rgba(0,140,255,.3);outline:none;background:#050c1b;color:#fff;font-size:15px}
 .warning{margin-top:15px;padding:12px;border-radius:10px;background:rgba(255,170,0,.06);border:1px solid rgba(255,170,0,.2);color:#d8c28e;font-size:13px;line-height:1.5}.form-message{margin-top:15px;padding:12px;display:none;border-radius:10px;background:rgba(0,140,255,.08);border:1px solid rgba(0,140,255,.3);color:#a8dcff;line-height:1.5}
+
+.gallery-overlay{position:fixed;inset:0;z-index:3000;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.9);backdrop-filter:blur(8px)}
+.gallery-overlay.show{display:flex}.gallery-box{position:relative;width:min(95vw,900px);max-height:92vh;display:flex;align-items:center;justify-content:center}.gallery-image{max-width:100%;max-height:82vh;object-fit:contain;border-radius:14px;box-shadow:0 0 35px rgba(0,140,255,.25)}
+.gallery-close,.gallery-prev,.gallery-next{position:absolute;border:1px solid rgba(0,170,255,.7);background:rgba(4,12,28,.9);color:#fff;border-radius:12px;cursor:pointer;font-weight:900;z-index:2}.gallery-close{right:0;top:-48px;width:40px;height:40px;font-size:24px}.gallery-prev,.gallery-next{top:50%;transform:translateY(-50%);width:48px;height:48px;font-size:24px}.gallery-prev{left:8px}.gallery-next{right:8px}.gallery-caption{position:absolute;bottom:-42px;left:0;right:0;text-align:center;color:#b9c9df;font-size:14px}
 @media(max-width:600px){header{height:64px}.side-menu{top:64px;height:calc(100vh - 64px)}.logo{font-size:22px}.hero{min-height:570px;padding-top:45px}.hero h1{font-size:58px}section{padding:55px 15px}.section-title{font-size:28px}.diamond-grid,.steps{grid-template-columns:1fr}.account-grid{grid-template-columns:1fr}.account-gallery img{height:240px}.account-gallery.single img{height:280px}}
 </style>
 </head>
@@ -85,17 +89,21 @@ label{display:block;margin:15px 0 7px;color:#b8c6dc;font-weight:bold}input{width
 
 <section id="contas">
 <h2 class="section-title">Contas <span>Free Fire</span></h2>
-<p class="section-subtitle">Escolha uma conta e veja a imagem principal.</p>
+<p class="section-subtitle">Toque na imagem para ver todas as fotos da conta.</p>
 <div class="account-grid">
 <div class="account-card">
-<div class="account-gallery single"><img src="conta01.jpg" alt="Perfil da Conta 01"></div>
-<h3>👤 Conta #01</h3><p>Conta Free Fire com as informações mostradas na imagem.</p><div class="account-price">R$ 173,00</div>
+<div class="account-gallery single">
+<img src="conta01.jpg" alt="Conta Free Fire 01" onclick="openGallery(0)" style="cursor:zoom-in">
+</div>
+<div class="account-price">R$ 173,00</div>
 <button class="buy-btn" onclick="openAccountPurchase('Conta #01','R$ 173,00',173)">💳 PAGAR</button>
 </div>
 
 <div class="account-card">
-<div class="account-gallery single"><img src="conta02.jpg" alt="Perfil da Conta 02"></div>
-<h3>👤 Conta #02</h3><p>Conta Free Fire com as informações mostradas na imagem.</p><div class="account-price">R$ 163,00</div>
+<div class="account-gallery single">
+<img src="conta02.jpg" alt="Conta Free Fire 02" onclick="openGallery(1)" style="cursor:zoom-in">
+</div>
+<div class="account-price">R$ 163,00</div>
 <button class="buy-btn" onclick="openAccountPurchase('Conta #02','R$ 163,00',163)">💳 PAGAR</button>
 </div>
 </div>
@@ -126,6 +134,17 @@ label{display:block;margin:15px 0 7px;color:#b8c6dc;font-weight:bold}input{width
 
 <footer><p>© 2026 <strong>Dimas FF</strong>. Todos os direitos reservados.</p></footer>
 
+
+<div class="gallery-overlay" id="galleryOverlay" onclick="galleryBackground(event)">
+  <div class="gallery-box">
+    <button class="gallery-close" onclick="closeGallery()">×</button>
+    <button class="gallery-prev" onclick="galleryPrev(event)">‹</button>
+    <img id="galleryImage" class="gallery-image" src="" alt="Foto da conta">
+    <button class="gallery-next" onclick="galleryNext(event)">›</button>
+    <div id="galleryCaption" class="gallery-caption"></div>
+  </div>
+</div>
+
 <div class="modal" id="purchaseModal"><div class="modal-box">
 <div class="modal-top"><h2>💎 Comprar</h2><button class="close" onclick="closePurchase()">×</button></div>
 <div class="selected-product"><strong id="productName">Pacote</strong><span id="productPrice">R$ 0,00</span></div>
@@ -152,6 +171,19 @@ label{display:block;margin:15px 0 7px;color:#b8c6dc;font-weight:bold}input{width
 
 <script>
 const CONFIG={apiBaseUrl:"https://dimas-ff.onrender.com",discordUrl:"https://discord.gg/42aTVc5Z5y"};
+const accountGalleries=[
+  {name:"Conta #01",images:["conta01.jpg","conta01-2.jpg","conta01-3.jpg","conta01-4.jpg","conta01-5.jpg"]},
+  {name:"Conta #02",images:["conta02.jpg","conta02-2.jpg","conta02-3.jpg","conta02-4.jpg","conta02-5.jpg","conta02-6.jpg"]}
+];
+let galleryAccount=0,galleryIndex=0;
+function openGallery(account){galleryAccount=account;galleryIndex=0;renderGallery();document.getElementById("galleryOverlay").classList.add("show");document.body.style.overflow="hidden"}
+function renderGallery(){const g=accountGalleries[galleryAccount];document.getElementById("galleryImage").src=g.images[galleryIndex];document.getElementById("galleryCaption").textContent=`${g.name} • ${galleryIndex+1}/${g.images.length}`}
+function closeGallery(){document.getElementById("galleryOverlay").classList.remove("show");document.body.style.overflow=""}
+function galleryPrev(e){e.stopPropagation();const g=accountGalleries[galleryAccount];galleryIndex=(galleryIndex-1+g.images.length)%g.images.length;renderGallery()}
+function galleryNext(e){e.stopPropagation();const g=accountGalleries[galleryAccount];galleryIndex=(galleryIndex+1)%g.images.length;renderGallery()}
+function galleryBackground(e){if(e.target.id==="galleryOverlay")closeGallery()}
+document.addEventListener("keydown",e=>{if(!document.getElementById("galleryOverlay").classList.contains("show"))return;if(e.key==="Escape")closeGallery();if(e.key==="ArrowLeft")galleryPrev(e);if(e.key==="ArrowRight")galleryNext(e)});
+
 const sideMenu=document.getElementById("sideMenu");
 function toggleMenu(){sideMenu.classList.toggle("open")}
 function closeMenu(){sideMenu.classList.remove("open")}
