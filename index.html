@@ -43,6 +43,30 @@ label{display:block;margin:15px 0 7px;color:#b8c6dc;font-weight:bold}input{width
 .gallery-overlay.show{display:flex}.gallery-box{position:relative;width:min(95vw,900px);max-height:92vh;display:flex;align-items:center;justify-content:center}.gallery-image{max-width:100%;max-height:82vh;object-fit:contain;border-radius:14px;box-shadow:0 0 35px rgba(0,140,255,.25)}
 .gallery-close,.gallery-prev,.gallery-next{position:absolute;border:1px solid rgba(0,170,255,.7);background:rgba(4,12,28,.9);color:#fff;border-radius:12px;cursor:pointer;font-weight:900;z-index:2}.gallery-close{right:0;top:-48px;width:40px;height:40px;font-size:24px}.gallery-prev,.gallery-next{top:50%;transform:translateY(-50%);width:48px;height:48px;font-size:24px}.gallery-prev{left:8px}.gallery-next{right:8px}.gallery-caption{position:absolute;bottom:-42px;left:0;right:0;text-align:center;color:#b9c9df;font-size:14px}
 @media(max-width:600px){header{height:64px}.side-menu{top:64px;height:calc(100vh - 64px)}.logo{font-size:22px}.hero{min-height:570px;padding-top:45px}.hero h1{font-size:58px}section{padding:55px 15px}.section-title{font-size:28px}.diamond-grid,.steps{grid-template-columns:1fr}.account-grid{grid-template-columns:1fr}.account-gallery img{height:240px}.account-gallery.single img{height:280px}}
+
+/* Ajustes finais Dimas FF */
+.account-card{position:relative;padding:14px;transition:transform .2s,border-color .2s,box-shadow .2s}
+.account-card:hover{transform:translateY(-4px);border-color:#00aaff;box-shadow:0 0 28px rgba(0,140,255,.18)}
+.account-gallery.single{position:relative;margin:0 0 14px}
+.account-gallery.single::after{content:"🔍 Toque para ver todas as fotos";position:absolute;left:10px;right:10px;bottom:10px;padding:8px;border-radius:9px;background:rgba(0,0,0,.72);color:#dff5ff;font-size:12px;font-weight:700;text-align:center;pointer-events:none}
+.account-gallery.single img{width:100%;height:300px;object-fit:cover;border-radius:12px;display:block}
+.account-price{text-align:center;margin:10px 0 14px}
+.account-card .buy-btn{font-size:15px;letter-spacing:.3px}
+.gallery-box{max-width:760px;width:calc(100% - 28px);max-height:92vh;padding:14px;border-radius:20px;background:#061126;border:1px solid #008cff;box-shadow:0 0 50px rgba(0,140,255,.28);position:relative}
+.gallery-box img{display:block;width:100%;max-height:72vh;object-fit:contain;border-radius:12px;background:#02050b}
+.gallery-caption{text-align:center;color:#a9dfff;font-weight:800;margin:10px 0 2px}
+.gallery-close,.gallery-prev,.gallery-next{position:absolute;border:0;color:#fff;background:rgba(0,20,45,.9);border:1px solid rgba(0,160,255,.5);cursor:pointer;z-index:2}
+.gallery-close{top:22px;right:22px;width:38px;height:38px;border-radius:10px;font-size:22px}
+.gallery-prev,.gallery-next{top:50%;transform:translateY(-50%);width:42px;height:55px;border-radius:12px;font-size:30px}
+.gallery-prev{left:22px}.gallery-next{right:22px}
+@media(max-width:600px){
+.account-gallery.single img{height:250px}
+.gallery-box{width:calc(100% - 18px);padding:9px}
+.gallery-box img{max-height:70vh}
+.gallery-prev,.gallery-next{width:38px;height:48px;font-size:25px}
+.gallery-prev{left:14px}.gallery-next{right:14px}
+.gallery-close{top:14px;right:14px}
+}
 </style>
 </head>
 <body>
@@ -93,7 +117,7 @@ label{display:block;margin:15px 0 7px;color:#b8c6dc;font-weight:bold}input{width
 <div class="account-grid">
 <div class="account-card">
 <div class="account-gallery single">
-<img src="conta01.jpg" alt="Conta Free Fire 01" onclick="openGallery(0)" style="cursor:zoom-in">
+<img src="conta01-1.jpg" alt="Conta Free Fire 01" onclick="openGallery(0)" style="cursor:zoom-in">
 </div>
 <div class="account-price">R$ 173,00</div>
 <button class="buy-btn" onclick="openAccountPurchase('Conta #01','R$ 173,00',173)">💳 PAGAR</button>
@@ -101,7 +125,7 @@ label{display:block;margin:15px 0 7px;color:#b8c6dc;font-weight:bold}input{width
 
 <div class="account-card">
 <div class="account-gallery single">
-<img src="conta02.jpg" alt="Conta Free Fire 02" onclick="openGallery(1)" style="cursor:zoom-in">
+<img src="conta02-1.jpg" alt="Conta Free Fire 02" onclick="openGallery(1)" style="cursor:zoom-in">
 </div>
 <div class="account-price">R$ 163,00</div>
 <button class="buy-btn" onclick="openAccountPurchase('Conta #02','R$ 163,00',163)">💳 PAGAR</button>
@@ -123,7 +147,7 @@ label{display:block;margin:15px 0 7px;color:#b8c6dc;font-weight:bold}input{width
 <h2 class="section-title">Como <span>funciona?</span></h2><p class="section-subtitle">Processo simples em poucos passos.</p>
 <div class="steps">
 <div class="step"><div class="step-number">1</div><h3>Escolha</h3><p>Escolha os diamantes ou veja as contas disponíveis.</p></div>
-<div class="step"><div class="step-number">2</div><h3>Informe seus dados</h3><p>Nos diamantes, informe o ID do jogador. Nas contas, informe e-mail e CPF/CNPJ. Se quiser, use o cupom.</p></div>
+<div class="step"><div class="step-number">2</div><h3>Informe seus dados</h3><p>Nos diamantes, informe o ID do jogador. Nas contas, informe e-mail e CPF/CNPJ. O cupom é opcional.</p></div>
 <div class="step"><div class="step-number">3</div><h3>Pagamento</h3><p>O valor com desconto, quando aplicável, é enviado para a cobrança Pix.</p></div>
 <div class="step"><div class="step-number">4</div><h3>Receba</h3><p>Após a confirmação, siga as instruções de atendimento.</p></div>
 </div>
@@ -172,8 +196,8 @@ label{display:block;margin:15px 0 7px;color:#b8c6dc;font-weight:bold}input{width
 <script>
 const CONFIG={apiBaseUrl:"https://dimas-ff.onrender.com",discordUrl:"https://discord.gg/42aTVc5Z5y"};
 const accountGalleries=[
-  {name:"Conta #01",images:["conta01.jpg","conta01-2.jpg","conta01-3.jpg","conta01-4.jpg","conta01-5.jpg"]},
-  {name:"Conta #02",images:["conta02.jpg","conta02-2.jpg","conta02-3.jpg","conta02-4.jpg","conta02-5.jpg","conta02-6.jpg"]}
+  {name:"Conta #01",images:["conta01-1.jpg","conta01-2.jpg","conta01-3.jpg","conta01-4.jpg","conta01-5.jpg"]},
+  {name:"Conta #02",images:["conta02-1.jpg","conta02-2.jpg","conta02-3.jpg","conta02-4.jpg","conta02-5.jpg","conta02-6.jpg"]}
 ];
 let galleryAccount=0,galleryIndex=0;
 function openGallery(account){galleryAccount=account;galleryIndex=0;renderGallery();document.getElementById("galleryOverlay").classList.add("show");document.body.style.overflow="hidden"}
@@ -248,3 +272,4 @@ document.getElementById("purchaseModal").addEventListener("click",e=>{if(e.targe
 </script>
 </body>
 </html>
+
