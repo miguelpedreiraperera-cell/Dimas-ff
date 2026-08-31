@@ -251,7 +251,7 @@ async function continuePurchase(){
   const coupon=document.getElementById("coupon").value.trim().toUpperCase();
   const msg=document.getElementById("formMessage");
   if(purchaseType==="diamonds"&&!playerId){msg.textContent="Digite o ID do jogador para continuar.";msg.style.display="block";return}
-  if(!email||!/^\S+@\S+\.\S+$/.test(email)){msg.textContent="Digite um e-mail válido para continuar.";msg.style.display="block";return}
+  if(purchaseType==="account"&&(!email||!/^\S+@\S+\.\S+$/.test(email))){msg.textContent="Digite um e-mail válido para continuar.";msg.style.display="block";return}
   if(!cpf){msg.textContent="Digite seu CPF ou CNPJ para continuar.";msg.style.display="block";return}
   if(cpf.length!==11&&cpf.length!==14){msg.textContent="Digite um CPF ou CNPJ válido.";msg.style.display="block";return}
   msg.textContent="⏳ Gerando seu Pix...";msg.style.display="block";
