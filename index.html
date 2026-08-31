@@ -89,7 +89,7 @@ label{display:block;margin:15px 0 7px;color:#b8c6dc;font-weight:bold}input{width
 <div class="hero-content">
 <div class="badge">⚡ LOJA DIGITAL FREE FIRE</div>
 <h1>DIMAS <span>FF</span></h1>
-<p>obrigado por adquirir seu produto na Dimas-ff, venha ver oque tem de melhor não perca!.</p>
+<p>Obrigado por adquirir seu produto na Dimas-FF, venha ver o que tem de melhor. Não perca!</p>
 <div class="hero-buttons">
 <a class="btn btn-primary" href="#diamantes">💎 Diamantes</a>
 <a class="btn btn-secondary" href="#contas">👤 Contas</a>
@@ -173,7 +173,7 @@ label{display:block;margin:15px 0 7px;color:#b8c6dc;font-weight:bold}input{width
 <div class="modal-top"><h2>💎 Comprar</h2><button class="close" onclick="closePurchase()">×</button></div>
 <div class="selected-product"><strong id="productName">Pacote</strong><span id="productPrice">R$ 0,00</span></div>
 <div id="playerField"><label for="playerId">👤 ID do jogador</label><input id="playerId" type="text" inputmode="numeric" placeholder="Digite seu ID do Free Fire" maxlength="30"></div>
-<label for="email">📧 E-mail</label><input id="email" type="email" placeholder="Digite seu e-mail" maxlength="120" autocomplete="email">
+<div id="emailField"><label for="email">📧 E-mail</label><input id="email" type="email" placeholder="Digite seu e-mail" maxlength="120" autocomplete="email"></div>
 <label for="cpfCnpj">🪪 CPF ou CNPJ</label><input id="cpfCnpj" type="text" inputmode="numeric" placeholder="Digite seu CPF ou CNPJ" maxlength="18" autocomplete="off">
 <label for="coupon">🎁 Cupom de desconto</label><input id="coupon" type="text" placeholder="Digite ZERO3" maxlength="20" autocomplete="off">
 <button class="btn btn-secondary" style="width:100%;margin-top:10px" onclick="applyCoupon()">🎁 APLICAR CUPOM</button>
@@ -224,12 +224,12 @@ function resetForm(){
 function openPurchase(product,price,amount){
   purchaseType="diamonds"; selectedProduct=product; selectedPrice=price; selectedAmount=amount; discountedAmount=amount;
   document.getElementById("productName").textContent=product; document.getElementById("productPrice").textContent=price;
-  document.getElementById("playerField").style.display="block"; resetForm(); document.getElementById("purchaseModal").classList.add("show");
+  document.getElementById("playerField").style.display="block"; document.getElementById("emailField").style.display="none"; resetForm(); document.getElementById("purchaseModal").classList.add("show");
 }
 function openAccountPurchase(product,price,amount){
   purchaseType="account"; selectedProduct=product; selectedPrice=price; selectedAmount=amount; discountedAmount=amount;
   document.getElementById("productName").textContent=product; document.getElementById("productPrice").textContent=price;
-  document.getElementById("playerField").style.display="none"; resetForm(); document.getElementById("purchaseModal").classList.add("show");
+  document.getElementById("playerField").style.display="none"; document.getElementById("emailField").style.display="block"; resetForm(); document.getElementById("purchaseModal").classList.add("show");
 }
 function closePurchase(){document.getElementById("purchaseModal").classList.remove("show")}
 function closePix(){document.getElementById("pixModal").classList.remove("show")}
@@ -256,7 +256,7 @@ async function continuePurchase(){
   if(cpf.length!==11&&cpf.length!==14){msg.textContent="Digite um CPF ou CNPJ válido.";msg.style.display="block";return}
   msg.textContent="⏳ Gerando seu Pix...";msg.style.display="block";
   try{
-    const r=await fetch(CONFIG.apiBaseUrl.replace(/\/$/,"")+"/api/create-pix",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({amount:selectedAmount,product:selectedProduct,playerId:purchaseType==="diamonds"?playerId:"",cpfCnpj:cpf,email,coupon,purchaseType})});
+    const r=await fetch(CONFIG.apiBaseUrl.replace(/\/$/,"")+"/api/create-pix",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({amount:selectedAmount,product:selectedProduct,playerId:purchaseType==="diamonds"?playerId:"",cpfCnpj:cpf,email:purchaseType==="account"?email:"",coupon,purchaseType})});
     const data=await r.json().catch(()=>({}));
     if(!r.ok)throw new Error(data.error||"Não foi possível gerar o Pix.");
     if(!data.payload)throw new Error("O servidor não retornou o Pix.");
@@ -272,4 +272,3 @@ document.getElementById("purchaseModal").addEventListener("click",e=>{if(e.targe
 </script>
 </body>
 </html>
-
